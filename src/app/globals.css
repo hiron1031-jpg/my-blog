@@ -2,21 +2,21 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-primary: #2d6a4f;
-  --color-primary-dark: #1b4332;
-  --color-secondary: #495057;
-  --color-accent: #74c69d;
-  --color-surface: #f6faf8;
+  --color-primary: #e8622a;
+  --color-primary-dark: #c94f1c;
+  --color-secondary: #1e3a5f;
+  --color-accent: #f4a261;
+  --color-surface: #faf8f5;
   --color-card: #ffffff;
-  --color-border: #d8f3dc;
-  --color-heading: #1b4332;
+  --color-border: #fde8d8;
+  --color-heading: #1e3a5f;
 
   --font-family-sans: var(--font-noto-sans-jp), "Noto Sans JP", sans-serif;
 }
 
 :root {
-  --background: #f6faf8;
-  --foreground: #495057;
+  --background: #faf8f5;
+  --foreground: #1e3a5f;
 }
 
 body {
@@ -28,13 +28,13 @@ body {
 
 /* Typography prose customization */
 .prose {
-  --tw-prose-body: #495057;
-  --tw-prose-headings: #1b4332;
-  --tw-prose-links: #2d6a4f;
-  --tw-prose-bold: #1b4332;
-  --tw-prose-code: #1b4332;
-  --tw-prose-quotes: #495057;
-  --tw-prose-quote-borders: #74c69d;
+  --tw-prose-body: #374151;
+  --tw-prose-headings: #1e3a5f;
+  --tw-prose-links: #e8622a;
+  --tw-prose-bold: #1e3a5f;
+  --tw-prose-code: #1e3a5f;
+  --tw-prose-quotes: #374151;
+  --tw-prose-quote-borders: #f4a261;
 }
 
 /* Code block styling */
