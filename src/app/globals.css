@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #14a7cc;
+  --color-primary-dark: #0e8aaa;
+  --color-secondary: #4e7079;
+  --color-accent: #7bceb8;
+  --color-surface: #f2fcff;
+  --color-card: #ffffff;
+  --color-border: #d6eef5;
+  --color-heading: #2d4a52;
+
+  --font-family-sans: var(--font-noto-sans-jp), "Noto Sans JP", sans-serif;
+}
+
+:root {
+  --background: #f2fcff;
+  --foreground: #4e7079;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography prose customization */
+.prose {
+  --tw-prose-body: #4e7079;
+  --tw-prose-headings: #2d4a52;
+  --tw-prose-links: #14a7cc;
+  --tw-prose-bold: #2d4a52;
+  --tw-prose-code: #2d4a52;
+  --tw-prose-quotes: #4e7079;
+  --tw-prose-quote-borders: #7bceb8;
+}
+
+/* Code block styling */
+[data-rehype-pretty-code-fragment] {
+  @apply my-6 overflow-hidden rounded-lg;
+}
+
+[data-rehype-pretty-code-fragment] pre {
+  @apply overflow-x-auto p-4 text-sm;
+}
+
+/* Smooth scroll for TOC */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile hamburger animation */
+.hamburger-line {
+  @apply block h-0.5 w-6 bg-current transition-all duration-300;
+}
