@@ -12,13 +12,15 @@ interface HeroCarouselProps {
 }
 
 const categoryGradients: Record<string, string> = {
-  ビジネス戦略: "from-[#0e8aaa] to-[#2d4a52]",
-  リーダーシップ: "from-[#2d4a52] to-[#4e7079]",
-  マーケティング: "from-[#14a7cc] to-[#7bceb8]",
+  土木施工管理技士: "from-[#1b4332] to-[#2d6a4f]",
+  造園施工管理技士: "from-[#2d6a4f] to-[#74c69d]",
+  試験対策: "from-[#1b4332] to-[#495057]",
+  勉強法: "from-[#2d6a4f] to-[#1b4332]",
+  現場のリアル: "from-[#495057] to-[#2d6a4f]",
 };
 
 function getGradient(category: string) {
-  return categoryGradients[category] ?? "from-[#14a7cc] to-[#2d4a52]";
+  return categoryGradients[category] ?? "from-[#1b4332] to-[#2d6a4f]";
 }
 
 export default function HeroCarousel({ posts }: HeroCarouselProps) {
