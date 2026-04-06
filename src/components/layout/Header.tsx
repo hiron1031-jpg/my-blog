@@ -7,6 +7,7 @@ import { FiSearch, FiMenu, FiX } from "react-icons/fi";
 const navItems = [
   { label: "記事一覧", href: "/posts" },
   { label: "カテゴリ", href: "/categories" },
+  { label: "過去問ダウンロード", href: "/pastproblems" },
   { label: "お問い合わせ", href: "/contact" },
   { label: "このサイトについて", href: "/about" },
 ];
@@ -21,7 +22,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <span className="text-xl font-bold text-primary">
-              ビジネス知識ラボ
+              土木のヒロブログ
             </span>
           </Link>
 
