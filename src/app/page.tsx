@@ -3,6 +3,7 @@ import { getAllPosts, getAllCategories } from "@/lib/mdx";
 import PostGrid from "@/components/home/PostGrid";
 import CategoryBanner from "@/components/home/CategoryBanner";
 import HeroCarousel from "@/components/home/HeroCarousel";
+import QuickAccess from "@/components/home/QuickAccess";
 
 export default function HomePage() {
   const allPosts = getAllPosts();
@@ -19,6 +20,9 @@ export default function HomePage() {
           <HeroCarousel posts={featuredPosts} />
         </section>
       )}
+
+      {/* Quick Access */}
+      <QuickAccess />
 
       {/* Category Links */}
       {categories.length > 0 && (
