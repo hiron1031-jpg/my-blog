@@ -14,6 +14,7 @@ import RelatedPosts from "@/components/post/RelatedPosts";
 import AuthorBox from "@/components/post/AuthorBox";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Badge from "@/components/ui/Badge";
+import JsonLd from "@/components/JsonLd";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: post.frontmatter.title,
     description: post.frontmatter.description,
     keywords: post.frontmatter.tags.join(", "),
+    authors: [{ name: post.frontmatter.author }],
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.description,
@@ -59,10 +61,59 @@ export default async function PostPage({ params }: PageProps) {
   const headings = extractHeadings(post.content);
   const related = getRelatedPosts(slug, post.frontmatter.category);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のヒロブログ";
   const postUrl = `${siteUrl}/posts/${slug}`;
+  const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(post.frontmatter.title)}&category=${encodeURIComponent(post.frontmatter.category)}`;
+  const categoryUrl = `${siteUrl}/categories/${encodeURIComponent(post.frontmatter.category)}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${postUrl}#article`,
+        "headline": post.frontmatter.title,
+        "description": post.frontmatter.description,
+        "datePublished": post.frontmatter.date,
+        "dateModified": post.frontmatter.date,
+        "author": {
+          "@type": "Person",
+          "name": post.frontmatter.author,
+          "url": `${siteUrl}/about`,
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": siteName,
+          "url": siteUrl,
+        },
+        "image": ogImageUrl,
+        "url": postUrl,
+        "keywords": post.frontmatter.tags.join(", "),
+        "articleSection": post.frontmatter.category,
+        "inLanguage": "ja-JP",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": `${siteUrl}#blog`,
+          "name": siteName,
+          "url": siteUrl,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${postUrl}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "ホーム", "item": siteUrl },
+          { "@type": "ListItem", "position": 2, "name": "記事一覧", "item": `${siteUrl}/posts` },
+          { "@type": "ListItem", "position": 3, "name": post.frontmatter.category, "item": categoryUrl },
+          { "@type": "ListItem", "position": 4, "name": post.frontmatter.title, "item": postUrl },
+        ],
+      },
+    ],
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
+      <JsonLd schema={jsonLd} />
       <Breadcrumb
         items={[
           { label: "記事一覧", href: "/posts" },

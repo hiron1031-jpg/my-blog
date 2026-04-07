@@ -4,6 +4,34 @@ import PostGrid from "@/components/home/PostGrid";
 import CategoryBanner from "@/components/home/CategoryBanner";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import QuickAccess from "@/components/home/QuickAccess";
+import JsonLd from "@/components/JsonLd";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "土木のヒロブログ | 施工管理技士 資格取得サポート",
+  },
+  description:
+    "1級・2級土木施工管理技士、造園施工管理技士を目指す方のための勉強法・過去問・試験対策ブログ。現役土木職員ヒロが合格への道を徹底解説します。",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "土木のヒロブログ | 施工管理技士 資格取得サポート",
+    description:
+      "1級・2級土木施工管理技士、造園施工管理技士を目指す方のための勉強法・過去問・試験対策ブログ。",
+    url: "/",
+    type: "website",
+    images: [
+      {
+        url: "/api/og?title=%E5%9C%9F%E6%9C%A8%E3%81%AE%E3%83%92%E3%83%AD%E3%83%96%E3%83%AD%E3%82%B0",
+        width: 1200,
+        height: 630,
+        alt: "土木のヒロブログ",
+      },
+    ],
+  },
+};
 
 export default function HomePage() {
   const allPosts = getAllPosts();
@@ -11,8 +39,44 @@ export default function HomePage() {
   const recentPosts = allPosts.slice(0, 6);
   const categories = getAllCategories();
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のヒロブログ";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}#website`,
+        "url": siteUrl,
+        "name": siteName,
+        "description": "1級・2級土木施工管理技士、造園施工管理技士の資格取得サポートブログ",
+        "inLanguage": "ja-JP",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${siteUrl}/search?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}#organization`,
+        "name": siteName,
+        "url": siteUrl,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${siteUrl}/favicon.svg`,
+        },
+      },
+    ],
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
+      <JsonLd schema={jsonLd} />
 
       {/* Hero Carousel */}
       {featuredPosts.length > 0 && (
