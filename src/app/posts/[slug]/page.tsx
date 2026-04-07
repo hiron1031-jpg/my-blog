@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getPostBySlug(slug);
   if (!post) return {};
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(post.frontmatter.title)}&category=${encodeURIComponent(post.frontmatter.category)}`;
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
@@ -41,6 +42,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: post.frontmatter.date,
       tags: post.frontmatter.tags,
       url: `${siteUrl}/posts/${slug}`,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: post.frontmatter.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImageUrl],
     },
   };
 }

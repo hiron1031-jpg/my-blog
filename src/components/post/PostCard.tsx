@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FiClock, FiCalendar } from "react-icons/fi";
 import Badge from "@/components/ui/Badge";
+import CategoryThumbnail from "@/components/post/CategoryThumbnail";
 import { formatDate } from "@/lib/utils";
 import type { Post } from "@/types/post";
 
@@ -27,9 +28,10 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center" style={{background: "linear-gradient(to bottom right, rgba(20,167,204,0.2), rgba(123,206,184,0.2))"}}>
-              <span className="text-4xl">📄</span>
-            </div>
+            <CategoryThumbnail
+              category={frontmatter.category}
+              title={frontmatter.title}
+            />
           )}
           {/* Category overlay */}
           <div className="absolute top-3 left-3">
