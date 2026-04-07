@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
+import HelmetIcon from "./HelmetIcon";
 
 const navItems = [
   { label: "記事一覧", href: "/posts" },
@@ -20,9 +21,19 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary">
-              土木のヒロブログ
+          <Link href="/" className="flex items-center gap-2 group">
+            {/* Helmet icon with navy background pill */}
+            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-secondary shadow-sm group-hover:shadow-md transition-shadow">
+              <HelmetIcon size={22} />
+            </span>
+            {/* Site name */}
+            <span className="flex flex-col leading-none">
+              <span className="text-[11px] font-medium text-secondary/60 tracking-widest">
+                DOBOKU NO HIRO
+              </span>
+              <span className="text-lg font-bold text-secondary tracking-tight">
+                土木のヒロブログ
+              </span>
             </span>
           </Link>
 

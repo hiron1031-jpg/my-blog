@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Navy rounded background -->
+  <rect width="32" height="32" rx="7" fill="#1e3a5f"/>
+  <!-- Helmet dome (orange) -->
+  <path d="M8 21 C8 13 11.5 8 16 8 C20.5 8 24 13 24 21 Z" fill="#e8622a"/>
+  <!-- Helmet brim (darker orange) -->
+  <path d="M6 21 L26 21 L26 23.5 Q16 25.5 6 23.5 Z" fill="#c94f1c"/>
+  <!-- Shine highlight -->
+  <path d="M11 14 Q13 11.5 16 10.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+</svg>
