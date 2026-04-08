@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import BeaverMascot from "@/components/layout/BeaverMascot";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,9 +20,7 @@ export default function AboutPage() {
 
       <div className="bg-white rounded-2xl border border-border p-8 mb-8">
         <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-          <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-3xl shrink-0">
-            {authorName.charAt(0)}
-          </div>
+          <BeaverMascot preset="supervisor" size={80} className="rounded-2xl flex-shrink-0" />
           <div>
             <h2 className="text-xl font-bold text-heading mb-2">{authorName}</h2>
             <p className="text-secondary text-sm leading-relaxed">{authorBio}</p>

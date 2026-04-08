@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FiShield, FiDownload, FiAlertCircle } from "react-icons/fi";
 import PastProblemsClient from "@/components/pastproblems/PastProblemsClient";
+import BeaverMascot from "@/components/layout/BeaverMascot";
 
 export const metadata: Metadata = {
   title: "過去問 無料ダウンロード | 土木のヒロブログ",
@@ -17,19 +18,22 @@ export default function PastProblemsPage() {
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
         <div className="absolute bottom-0 left-1/4 w-60 h-60 rounded-full bg-primary/10" />
 
-        <div className="relative z-10">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-primary text-white px-3 py-1 rounded-full mb-4">
-            <FiDownload size={12} />
-            無料ダウンロード
-          </span>
-          <h1 className="text-2xl md:text-4xl font-bold mb-3 leading-snug">
-            施工管理技士<br className="md:hidden" /> 過去問ダウンロード
-          </h1>
-          <p className="text-white/80 text-sm md:text-base max-w-xl">
-            1級・2級 土木施工管理技士、1級・2級 造園施工管理技士の
-            過去問（問題・解答）を全て無料でダウンロードできます。
-            平成24年度〜令和7年度分を掲載。
-          </p>
+        <div className="relative z-10 flex flex-col md:flex-row md:items-end gap-6">
+          <div>
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-primary text-white px-3 py-1 rounded-full mb-4">
+              <FiDownload size={12} />
+              無料ダウンロード
+            </span>
+            <h1 className="text-2xl md:text-4xl font-bold mb-3 leading-snug">
+              施工管理技士<br className="md:hidden" /> 過去問ダウンロード
+            </h1>
+            <p className="text-white/80 text-sm md:text-base max-w-xl">
+              1級・2級 土木施工管理技士、1級・2級 造園施工管理技士の
+              過去問（問題・解答）を全て無料でダウンロードできます。
+              平成24年度〜令和7年度分を掲載。
+            </p>
+          </div>
+          <BeaverMascot preset="check" size={100} className="drop-shadow-lg self-end md:self-auto flex-shrink-0" />
         </div>
       </div>
 

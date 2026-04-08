@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import BeaverMascot from "@/components/layout/BeaverMascot";
 
 // ---- Types ----
 export interface QuizQuestion {
@@ -368,6 +369,9 @@ export default function QuizClient({
     return (
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="bg-white rounded-2xl border border-border shadow-sm p-8 text-center">
+          <div className="flex justify-center mb-4">
+            <BeaverMascot preset={pct >= 70 ? "celebrate" : "ok"} size={80} />
+          </div>
           <p className="text-sm text-secondary/60 mb-2">{getExamLabel(quizKey)}</p>
           <div className="text-6xl font-bold text-primary mb-1">
             {finalScore}

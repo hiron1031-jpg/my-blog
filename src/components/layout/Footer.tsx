@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import BeaverMascot from "./BeaverMascot";
 
 const footerNav = [
   {
@@ -40,16 +40,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4 max-w-sm">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <span className="relative w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0">
-                <Image
-                  src="/images/beaver.png"
-                  alt="土木のトリセツ マスコット"
-                  width={180}
-                  height={120}
-                  className="absolute top-0 left-0"
-                  style={{ width: "180px", height: "auto" }}
-                />
-              </span>
+              <BeaverMascot preset="default" size={44} className="rounded-xl" />
               <div className="flex flex-col leading-none">
                 <span className="text-[10px] font-semibold text-white/50 tracking-widest">
                   DOBOKU NO TORISETSU

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
-import Image from "next/image";
+import BeaverMascot from "./BeaverMascot";
 
 const navItems = [
   { label: "記事一覧", href: "/posts" },
@@ -24,17 +24,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             {/* Beaver mascot icon */}
-            <span className="relative w-10 h-10 rounded-xl overflow-hidden bg-white shadow-sm group-hover:shadow-md transition-shadow flex-shrink-0">
-              <Image
-                src="/images/beaver.png"
-                alt="土木のトリセツ マスコット"
-                width={180}
-                height={120}
-                className="absolute top-0 left-0"
-                style={{ width: "180px", height: "auto" }}
-                priority
-              />
-            </span>
+            <BeaverMascot preset="default" size={44} className="rounded-xl shadow-sm group-hover:shadow-md transition-shadow" />
             {/* Site name */}
             <span className="flex flex-col leading-none">
               <span className="text-[11px] font-medium text-secondary/60 tracking-widest">
