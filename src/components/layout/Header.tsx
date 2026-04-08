@@ -9,6 +9,7 @@ const navItems = [
   { label: "記事一覧", href: "/posts" },
   { label: "カテゴリ", href: "/categories" },
   { label: "過去問ダウンロード", href: "/pastproblems" },
+  { label: "クイズ", href: "/quiz" },
   { label: "お問い合わせ", href: "/contact" },
   { label: "このサイトについて", href: "/about" },
 ];

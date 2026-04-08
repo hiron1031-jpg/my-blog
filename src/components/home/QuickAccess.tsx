@@ -52,6 +52,23 @@ const items = [
     hover: "hover:from-[#c94f1c] hover:to-[#e8622a]",
     textColor: "text-white",
   },
+  {
+    href: "/quiz",
+    label: "練習問題クイズ",
+    sub: "4択クイズで実力チェック！全40問",
+    badge: "NEW",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
+        {/* Question mark icon */}
+        <circle cx="24" cy="24" r="17" stroke="white" strokeWidth="3" fill="none" opacity="0.9"/>
+        <path d="M18 19c0-3.3 2.7-6 6-6s6 2.7 6 6c0 2.5-1.5 4.5-3.5 5.5C25.5 25.5 24 26.5 24 29" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+        <circle cx="24" cy="34" r="2" fill="white"/>
+      </svg>
+    ),
+    bg: "from-[#7b2d8b] to-[#a855a8]",
+    hover: "hover:from-[#5c1f6a] hover:to-[#7b2d8b]",
+    textColor: "text-white",
+  },
 ];
 
 export default function QuickAccess() {
@@ -61,7 +78,7 @@ export default function QuickAccess() {
         <span className="w-1 h-6 bg-primary rounded-full inline-block" />
         <h2 className="text-xl font-bold text-heading">コンテンツから探す</h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {items.map((item) => (
           <Link
             key={item.href}
