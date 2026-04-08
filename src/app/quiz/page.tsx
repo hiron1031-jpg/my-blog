@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import QuizClient from "@/components/quiz/QuizClient";
 import JsonLd from "@/components/JsonLd";
 import questionsData from "@/data/quiz/questions.json";
-import type { QuizQuestion } from "@/components/quiz/QuizClient";
+import yearQuestionsData from "@/data/quiz/year-questions.json";
+import type { QuizQuestion, YearQuestionsMap } from "@/components/quiz/QuizClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
 
 export default function QuizPage() {
   const questions = questionsData as QuizQuestion[];
+  const yearQuestions = yearQuestionsData as unknown as YearQuestionsMap;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
   // FAQPage JSON-LD（先頭5問を使用）
@@ -73,7 +75,7 @@ export default function QuizPage() {
       </div>
 
       {/* Quiz */}
-      <QuizClient questions={questions} />
+      <QuizClient questions={questions} yearQuestions={yearQuestions} />
     </div>
   );
 }

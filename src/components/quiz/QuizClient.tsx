@@ -5,7 +5,9 @@ import { useState, useEffect } from "react";
 // ---- Types ----
 export interface QuizQuestion {
   id: string;
-  exam: "doboku-1kyu" | "doboku-2kyu" | "zouen-1kyu" | "zouen-2kyu";
+  exam: string;
+  year?: string;
+  number?: number;
   category: string;
   question: string;
   options: string[];
@@ -13,14 +15,21 @@ export interface QuizQuestion {
   explanation: string;
 }
 
+export type YearQuestionsMap = {
+  [exam: string]: {
+    [year: string]: QuizQuestion[];
+  };
+};
+
 type ExamId = "all" | "doboku-1kyu" | "doboku-2kyu" | "zouen-1kyu" | "zouen-2kyu";
+type Mode = "practice" | "year";
 type Phase = "start" | "playing" | "answered" | "finished";
 
 interface ExamScore {
   best: number;
   lastPlayed: string;
 }
-type ScoreMap = Partial<Record<ExamId, ExamScore>>;
+type ScoreMap = Record<string, ExamScore>;
 
 // ---- Constants ----
 const EXAM_CONFIGS: Array<{
@@ -67,6 +76,19 @@ const EXAM_CONFIGS: Array<{
   },
 ];
 
+// 年度別が存在する試験の定義
+const YEAR_EXAM_CONFIGS: Array<{
+  examKey: string;
+  label: string;
+  gradient: string;
+}> = [
+  {
+    examKey: "doboku-1kyu",
+    label: "1級土木施工管理技士",
+    gradient: "from-[#1e3a5f] to-[#2d5494]",
+  },
+];
+
 const OPTION_LABELS = ["A", "B", "C", "D"];
 
 // ---- Utilities ----
@@ -87,14 +109,29 @@ function getMessage(correct: number, total: number): string {
   return "💪 まだ伸びしろがあります！解説をよく読んで再チャレンジしよう！";
 }
 
-function getExamLabel(id: ExamId): string {
-  return EXAM_CONFIGS.find((c) => c.id === id)?.label ?? "全問題";
+function getExamLabel(id: string): string {
+  const found = EXAM_CONFIGS.find((c) => c.id === id);
+  if (found) return found.label;
+  // Year key: "year-doboku-1kyu-R6" → "1級土木 R6年度"
+  const m = id.match(/^year-(\w+)-(\w+)$/);
+  if (m) {
+    const exam = YEAR_EXAM_CONFIGS.find((e) => e.examKey === m[1]);
+    return exam ? `${exam.label} ${m[2]}年度` : id;
+  }
+  return id;
 }
 
 // ---- Main Component ----
-export default function QuizClient({ questions }: { questions: QuizQuestion[] }) {
+export default function QuizClient({
+  questions,
+  yearQuestions,
+}: {
+  questions: QuizQuestion[];
+  yearQuestions: YearQuestionsMap;
+}) {
+  const [mode, setMode] = useState<Mode>("practice");
   const [phase, setPhase] = useState<Phase>("start");
-  const [selectedExam, setSelectedExam] = useState<ExamId>("all");
+  const [quizKey, setQuizKey] = useState<string>("all");
   const [activeQuestions, setActiveQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
@@ -111,24 +148,32 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
     }
   }, []);
 
-  // Derived values
+  // Derived
   const currentQuestion = activeQuestions[currentIndex];
   const totalQuestions = activeQuestions.length;
-  const finalScore = answers.filter(
-    (a, i) => a !== null && a === activeQuestions[i]?.correctIndex
-  ).length;
 
   // ---- Handlers ----
-  function startQuiz(examId: ExamId) {
+  function startPracticeQuiz(examId: ExamId) {
     const pool =
       examId === "all"
         ? questions
         : questions.filter((q) => q.exam === examId);
     const shuffled = shuffle(pool);
-    setSelectedExam(examId);
+    setQuizKey(examId);
     setActiveQuestions(shuffled);
     setCurrentIndex(0);
     setAnswers(new Array(shuffled.length).fill(null));
+    setSelectedOption(null);
+    setPhase("playing");
+  }
+
+  function startYearQuiz(examKey: string, year: string) {
+    const pool = yearQuestions[examKey]?.[year] ?? [];
+    // Year quizzes are in order (not shuffled)
+    setQuizKey(`year-${examKey}-${year}`);
+    setActiveQuestions(pool);
+    setCurrentIndex(0);
+    setAnswers(new Array(pool.length).fill(null));
     setSelectedOption(null);
     setPhase("playing");
   }
@@ -157,7 +202,6 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
 
   function finishQuiz() {
     setPhase("finished");
-    // Save score to localStorage
     try {
       const score = answers.filter(
         (a, i) => a !== null && a === activeQuestions[i]?.correctIndex
@@ -166,15 +210,15 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
       const saved: ScoreMap = JSON.parse(
         localStorage.getItem("quiz-scores") ?? "{}"
       );
-      const prev = saved[selectedExam];
-      saved[selectedExam] = {
+      const prev = saved[quizKey];
+      saved[quizKey] = {
         best: prev && prev.best >= score ? prev.best : score,
         lastPlayed: today,
       };
       localStorage.setItem("quiz-scores", JSON.stringify(saved));
       setScores({ ...saved });
     } catch {
-      // ignore localStorage errors
+      // ignore
     }
   }
 
@@ -196,80 +240,140 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
   // ---- Render: Start Screen ----
   if (phase === "start") {
     return (
-      <div className="max-w-2xl mx-auto space-y-6">
-        {/* Intro */}
-        <div className="bg-white rounded-2xl border border-border shadow-sm p-6 text-center">
-          <div className="text-5xl mb-3">📝</div>
-          <h2 className="text-xl font-bold text-heading mb-2">試験種別を選んでスタート</h2>
-          <p className="text-secondary text-sm">
-            解答後に解説を表示。スコアはブラウザに記録されます。
-          </p>
+      <div className="max-w-2xl mx-auto space-y-5">
+        {/* Mode Tabs */}
+        <div className="flex gap-1 bg-surface border border-border rounded-xl p-1">
+          {(["practice", "year"] as Mode[]).map((m) => (
+            <button
+              key={m}
+              onClick={() => setMode(m)}
+              className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-colors ${
+                mode === m
+                  ? "bg-white text-secondary shadow-sm"
+                  : "text-secondary/50 hover:text-secondary"
+              }`}
+            >
+              {m === "practice" ? "📚 練習問題" : "📅 年度別"}
+            </button>
+          ))}
         </div>
 
-        {/* Exam selector buttons */}
-        <div className="space-y-3">
-          {/* Full-width "all" button */}
-          <button
-            onClick={() => startQuiz("all")}
-            className={`w-full flex items-center justify-between px-6 py-4 rounded-2xl bg-gradient-to-br ${EXAM_CONFIGS[0].gradient} ${EXAM_CONFIGS[0].hover} transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-white`}
-          >
-            <div className="text-left">
-              <p className="font-bold text-lg">{EXAM_CONFIGS[0].label}</p>
-              <p className="text-white/80 text-sm">{EXAM_CONFIGS[0].sub}</p>
-            </div>
-            {scores["all"] && (
-              <div className="text-right text-sm text-white/80">
-                <p>前回ベスト</p>
-                <p className="font-bold text-white text-base">
-                  {scores["all"].best}/{questions.length}問
-                </p>
+        {/* Practice Mode */}
+        {mode === "practice" && (
+          <div className="space-y-3">
+            <p className="text-xs text-secondary/50 px-1">試験種別を選んでスタート</p>
+            <button
+              onClick={() => startPracticeQuiz("all")}
+              className={`w-full flex items-center justify-between px-6 py-4 rounded-2xl bg-gradient-to-br ${EXAM_CONFIGS[0].gradient} ${EXAM_CONFIGS[0].hover} transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-white`}
+            >
+              <div className="text-left">
+                <p className="font-bold text-lg">{EXAM_CONFIGS[0].label}</p>
+                <p className="text-white/80 text-sm">{EXAM_CONFIGS[0].sub}</p>
               </div>
-            )}
-          </button>
+              {scores["all"] && (
+                <div className="text-right text-sm text-white/80">
+                  <p>前回ベスト</p>
+                  <p className="font-bold text-white text-base">
+                    {scores["all"].best}/{questions.length}問
+                  </p>
+                </div>
+              )}
+            </button>
+            <div className="grid grid-cols-2 gap-3">
+              {EXAM_CONFIGS.slice(1).map((config) => {
+                const examQs = questions.filter((q) => q.exam === config.id);
+                const score = scores[config.id];
+                return (
+                  <button
+                    key={config.id}
+                    onClick={() => startPracticeQuiz(config.id)}
+                    className={`flex flex-col items-start px-4 py-4 rounded-2xl bg-gradient-to-br ${config.gradient} ${config.hover} transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-white`}
+                  >
+                    <p className="font-bold text-base">{config.label}</p>
+                    <p className="text-white/80 text-xs mt-0.5">{config.sub}</p>
+                    {score ? (
+                      <p className="text-white/70 text-xs mt-2">
+                        ベスト: {score.best}/{examQs.length}問
+                      </p>
+                    ) : (
+                      <p className="text-white/50 text-xs mt-2">未挑戦</p>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
-          {/* 2×2 grid for exam types */}
-          <div className="grid grid-cols-2 gap-3">
-            {EXAM_CONFIGS.slice(1).map((config) => {
-              const examQuestions = questions.filter((q) => q.exam === config.id);
-              const score = scores[config.id];
+        {/* Year Mode */}
+        {mode === "year" && (
+          <div className="space-y-5">
+            {YEAR_EXAM_CONFIGS.map((examConfig) => {
+              const years = Object.keys(yearQuestions[examConfig.examKey] ?? {}).sort(
+                (a, b) => b.localeCompare(a)
+              );
+              if (years.length === 0) return null;
               return (
-                <button
-                  key={config.id}
-                  onClick={() => startQuiz(config.id)}
-                  className={`flex flex-col items-start px-4 py-4 rounded-2xl bg-gradient-to-br ${config.gradient} ${config.hover} transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-white`}
-                >
-                  <p className="font-bold text-base">{config.label}</p>
-                  <p className="text-white/80 text-xs mt-0.5">{config.sub}</p>
-                  {score ? (
-                    <p className="text-white/70 text-xs mt-2">
-                      ベスト: {score.best}/{examQuestions.length}問
-                    </p>
-                  ) : (
-                    <p className="text-white/50 text-xs mt-2">未挑戦</p>
-                  )}
-                </button>
+                <div key={examConfig.examKey} className="space-y-2">
+                  <p className="text-sm font-bold text-heading px-1 flex items-center gap-2">
+                    <span className="w-1 h-4 bg-primary rounded-full inline-block" />
+                    {examConfig.label}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {years.map((year) => {
+                      const pool = yearQuestions[examConfig.examKey][year];
+                      const scoreKey = `year-${examConfig.examKey}-${year}`;
+                      const score = scores[scoreKey];
+                      return (
+                        <button
+                          key={year}
+                          onClick={() => startYearQuiz(examConfig.examKey, year)}
+                          className={`flex flex-col items-start px-5 py-4 rounded-2xl bg-gradient-to-br ${examConfig.gradient} hover:from-[#162d4a] hover:to-[#1e3a5f] transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-white`}
+                        >
+                          <p className="font-bold text-lg">{year}年度</p>
+                          <p className="text-white/80 text-xs mt-0.5">
+                            全{pool.length}問
+                          </p>
+                          {score ? (
+                            <p className="text-white/70 text-xs mt-2">
+                              ベスト: {score.best}/{pool.length}問
+                            </p>
+                          ) : (
+                            <p className="text-white/50 text-xs mt-2">未挑戦</p>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               );
             })}
+
+            {/* Coming soon notice for other exams */}
+            <div className="rounded-xl border border-dashed border-border p-4 text-center text-secondary/40 text-sm">
+              2級土木・造園の年度別問題は順次追加予定です
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
 
   // ---- Render: Result Screen ----
   if (phase === "finished") {
+    const finalScore = answers.filter(
+      (a, i) => a !== null && a === activeQuestions[i]?.correctIndex
+    ).length;
     const pct = Math.round((finalScore / totalQuestions) * 100);
     return (
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="bg-white rounded-2xl border border-border shadow-sm p-8 text-center">
-          <p className="text-sm text-secondary/60 mb-2">{getExamLabel(selectedExam)}</p>
+          <p className="text-sm text-secondary/60 mb-2">{getExamLabel(quizKey)}</p>
           <div className="text-6xl font-bold text-primary mb-1">
             {finalScore}
             <span className="text-3xl text-secondary/40">/{totalQuestions}</span>
           </div>
-          <p className="text-secondary font-medium mb-4">問正解</p>
-
-          {/* Progress bar */}
+          <p className="text-secondary font-medium mb-4">問正解（{pct}%）</p>
           <div className="w-full bg-border rounded-full h-3 mb-4">
             <div
               className="bg-primary h-3 rounded-full transition-all duration-700"
@@ -277,11 +381,18 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
             />
           </div>
           <p className="text-sm text-secondary mb-6">{getMessage(finalScore, totalQuestions)}</p>
-
-          {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
             <button
-              onClick={() => startQuiz(selectedExam)}
+              onClick={() => {
+                // Retry same quiz
+                const isYear = quizKey.startsWith("year-");
+                if (isYear) {
+                  const m = quizKey.match(/^year-(\w+)-(\w+)$/);
+                  if (m) startYearQuiz(m[1], m[2]);
+                } else {
+                  startPracticeQuiz(quizKey as ExamId);
+                }
+              }}
               className="flex-1 py-3 bg-primary text-white font-bold rounded-xl hover:bg-[#c94f1c] transition-colors"
             >
               もう一度
@@ -305,18 +416,25 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
     <div className="max-w-2xl mx-auto space-y-4">
       {/* Progress */}
       <div className="flex items-center justify-between text-sm text-secondary/60">
-        <span className="font-medium text-secondary">
-          {getExamLabel(selectedExam)}
-        </span>
+        <span className="font-medium text-secondary text-xs">{getExamLabel(quizKey)}</span>
         <span>
           <span className="font-bold text-primary text-base">{currentIndex + 1}</span>
           /{totalQuestions}問
+          {currentQuestion.number && (
+            <span className="ml-2 text-xs text-secondary/40">
+              （問題{currentQuestion.number}）
+            </span>
+          )}
         </span>
       </div>
       <div className="w-full bg-border rounded-full h-1.5">
         <div
           className="bg-primary h-1.5 rounded-full transition-all duration-300"
-          style={{ width: `${((currentIndex + (phase === "answered" ? 1 : 0)) / totalQuestions) * 100}%` }}
+          style={{
+            width: `${
+              ((currentIndex + (phase === "answered" ? 1 : 0)) / totalQuestions) * 100
+            }%`,
+          }}
         />
       </div>
 
@@ -357,7 +475,7 @@ export default function QuizClient({ questions }: { questions: QuizQuestion[] })
         ))}
       </div>
 
-      {/* Explanation (shown after answering) */}
+      {/* Explanation */}
       {phase === "answered" && (
         <div
           className={`rounded-xl border-l-4 p-4 text-sm leading-relaxed ${
