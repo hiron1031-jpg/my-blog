@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
-import HelmetIcon from "./HelmetIcon";
+import Image from "next/image";
 
 const navItems = [
   { label: "記事一覧", href: "/posts" },
@@ -23,17 +23,25 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            {/* Helmet icon with navy background pill */}
-            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-secondary shadow-sm group-hover:shadow-md transition-shadow">
-              <HelmetIcon size={22} />
+            {/* Beaver mascot icon */}
+            <span className="relative w-10 h-10 rounded-xl overflow-hidden bg-white shadow-sm group-hover:shadow-md transition-shadow flex-shrink-0">
+              <Image
+                src="/images/beaver.png"
+                alt="土木のトリセツ マスコット"
+                width={180}
+                height={120}
+                className="absolute top-0 left-0"
+                style={{ width: "180px", height: "auto" }}
+                priority
+              />
             </span>
             {/* Site name */}
             <span className="flex flex-col leading-none">
               <span className="text-[11px] font-medium text-secondary/60 tracking-widest">
-                DOBOKU NO HIRO
+                DOBOKU NO TORISETSU
               </span>
               <span className="text-lg font-bold text-secondary tracking-tight">
-                土木のヒロブログ
+                土木のトリセツ
               </span>
             </span>
           </Link>

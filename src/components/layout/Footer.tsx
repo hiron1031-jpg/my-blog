@@ -1,5 +1,5 @@
 import Link from "next/link";
-import HelmetIcon from "./HelmetIcon";
+import Image from "next/image";
 
 const footerNav = [
   {
@@ -40,15 +40,22 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4 max-w-sm">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary">
-                <HelmetIcon size={20} />
+              <span className="relative w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0">
+                <Image
+                  src="/images/beaver.png"
+                  alt="土木のトリセツ マスコット"
+                  width={180}
+                  height={120}
+                  className="absolute top-0 left-0"
+                  style={{ width: "180px", height: "auto" }}
+                />
               </span>
               <div className="flex flex-col leading-none">
                 <span className="text-[10px] font-semibold text-white/50 tracking-widest">
-                  DOBOKU NO HIRO
+                  DOBOKU NO TORISETSU
                 </span>
                 <span className="text-lg font-bold text-white">
-                  土木のヒロブログ
+                  土木のトリセツ
                 </span>
               </div>
             </Link>
@@ -91,7 +98,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/40">
-          <span>© {currentYear} 土木のヒロブログ. All rights reserved.</span>
+          <span>© {currentYear} 土木のトリセツ. All rights reserved.</span>
           <span>1級土木・造園施工管理技士 資格取得サポートブログ</span>
         </div>
       </div>
