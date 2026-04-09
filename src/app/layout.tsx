@@ -11,10 +11,10 @@ const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
 });
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "ビジネス知識ラボ";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
 const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
-  "ビジネスの最前線で役立つ専門知識を、わかりやすく解説するブログです。";
+  "1級土木・造園施工管理技士が教える、資格取得のリアルな勉強法と合格戦略。";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
 
 export const metadata: Metadata = {

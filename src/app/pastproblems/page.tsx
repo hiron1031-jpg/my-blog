@@ -2,16 +2,43 @@ import type { Metadata } from "next";
 import { FiShield, FiDownload, FiAlertCircle } from "react-icons/fi";
 import PastProblemsClient from "@/components/pastproblems/PastProblemsClient";
 import BeaverMascot from "@/components/layout/BeaverMascot";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "過去問 無料ダウンロード | 土木のヒロブログ",
+  title: "過去問 無料ダウンロード",
   description:
     "1級・2級 土木施工管理技士・造園施工管理技士の過去問を無料でダウンロード。全国建設研修センター許諾済み。H24〜R7年度分の問題・解答PDFを一覧で提供します。",
+  alternates: {
+    canonical: "/pastproblems",
+  },
+  openGraph: {
+    title: "施工管理技士 過去問 無料ダウンロード | 土木のトリセツ",
+    description:
+      "1級・2級 土木施工管理技士・造園施工管理技士の過去問を無料でダウンロード。H24〜R7年度分を一覧提供。",
+    url: "/pastproblems",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "施工管理技士 過去問 無料ダウンロード",
+  "description": "1級・2級 土木施工管理技士・造園施工管理技士の過去問を無料でダウンロード。H24〜R7年度分を一覧提供。",
+  "url": `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/pastproblems`,
+  "inLanguage": "ja-JP",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": process.env.NEXT_PUBLIC_SITE_URL ?? "" },
+      { "@type": "ListItem", "position": 2, "name": "過去問ダウンロード", "item": `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/pastproblems` },
+    ],
+  },
 };
 
 export default function PastProblemsPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
+      <JsonLd schema={jsonLd} />
       {/* ── Hero ── */}
       <div className="relative rounded-2xl overflow-hidden mb-10 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] px-6 py-10 md:px-12 md:py-14 text-white shadow-lg">
         {/* decorative circles */}

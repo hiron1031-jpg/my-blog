@@ -10,36 +10,66 @@ import BeaverMascot from "@/components/layout/BeaverMascot";
 export const metadata: Metadata = {
   title: "施工管理技士 練習問題クイズ",
   description:
-    "1級・2級土木施工管理技士、1級・2級造園施工管理技士の練習問題を4択クイズ形式で出題。解説付きで理解を深めよう。全40問。",
+    "1級・2級土木施工管理技士、1級・2級造園施工管理技士の練習問題を4択クイズ形式で出題。解説付き全40問 + R7・R4年度の過去問チャレンジ機能付き。",
   alternates: {
     canonical: "/quiz",
   },
   openGraph: {
-    title: "施工管理技士 練習問題クイズ | 土木のヒロブログ",
+    title: "施工管理技士 練習問題クイズ | 土木のトリセツ",
     description:
-      "1級・2級土木施工管理技士、1級・2級造園施工管理技士の練習問題を4択クイズで出題。解説付き全40問。",
+      "1級・2級土木施工管理技士、1級・2級造園施工管理技士の練習問題を4択クイズで出題。解説付き全40問 + 年度別過去問モード搭載。",
     url: "/quiz",
   },
+  keywords: "施工管理技士,クイズ,練習問題,過去問,1級土木,2級土木,1級造園,2級造園,試験対策",
 };
 
 export default function QuizPage() {
   const questions = questionsData as QuizQuestion[];
   const yearQuestions = yearQuestionsData as unknown as YearQuestionsMap;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
 
-  // FAQPage JSON-LD（先頭5問を使用）
+  // JSON-LD: EducationalWebPage + FAQPage
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "name": "施工管理技士 練習問題クイズ",
-    "mainEntity": questions.slice(0, 5).map((q) => ({
-      "@type": "Question",
-      "name": q.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": q.explanation,
+    "@graph": [
+      {
+        "@type": "EducationalWebPage",
+        "@id": `${siteUrl}/quiz#page`,
+        "name": "施工管理技士 練習問題クイズ",
+        "description": "1級・2級土木施工管理技士、1級・2級造園施工管理技士の練習問題を4択クイズで出題。解説付き全40問 + 年度別過去問モード搭載。",
+        "url": `${siteUrl}/quiz`,
+        "inLanguage": "ja-JP",
+        "educationalLevel": "professional",
+        "learningResourceType": "quiz",
+        "teaches": "施工管理技士 第一次検定",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": `${siteUrl}#website`,
+          "name": siteName,
+          "url": siteUrl,
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "ホーム", "item": siteUrl },
+            { "@type": "ListItem", "position": 2, "name": "練習問題クイズ", "item": `${siteUrl}/quiz` },
+          ],
+        },
       },
-    })),
+      {
+        "@type": "FAQPage",
+        "name": "施工管理技士 練習問題クイズ",
+        "mainEntity": questions.slice(0, 5).map((q) => ({
+          "@type": "Question",
+          "name": q.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": q.explanation,
+          },
+        })),
+      },
+    ],
   };
 
   return (

@@ -50,6 +50,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: "summary_large_image",
       images: [ogImageUrl],
     },
+    alternates: {
+      canonical: `/posts/${slug}`,
+    },
   };
 }
 
