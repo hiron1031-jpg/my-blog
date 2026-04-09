@@ -8,6 +8,7 @@ export const runtime = "nodejs";
 // Font cache (loaded once per serverless instance)
 let fontJP: Buffer | null = null;
 let fontLatin: Buffer | null = null;
+let beaverBase64: string | null = null;
 
 function loadFonts() {
   if (!fontJP) {
@@ -17,6 +18,17 @@ function loadFonts() {
     );
     fontJP = readFileSync(join(base, "noto-sans-jp-japanese-700-normal.woff2"));
     fontLatin = readFileSync(join(base, "noto-sans-jp-latin-700-normal.woff2"));
+  }
+}
+
+function loadBeaverIcon() {
+  if (!beaverBase64) {
+    try {
+      const buf = readFileSync(join(process.cwd(), "public/images/beaver-icon.png"));
+      beaverBase64 = `data:image/png;base64,${buf.toString("base64")}`;
+    } catch {
+      beaverBase64 = "";
+    }
   }
 }
 
@@ -34,12 +46,13 @@ const DEFAULT_GRADIENT: [string, string] = ["#1e3a5f", "#e8622a"];
 export async function GET(request: NextRequest) {
   try {
     loadFonts();
+    loadBeaverIcon();
   } catch {
     // Font loading failed; continue without custom font
   }
 
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") ?? "土木のヒロブログ";
+  const title = searchParams.get("title") ?? "土木のトリセツ";
   const category = searchParams.get("category") ?? "";
 
   const [gradFrom, gradTo] =
@@ -178,30 +191,34 @@ export async function GET(request: NextRequest) {
               gap: 16,
             }}
           >
-            {/* Helmet icon box */}
-            <div
-              style={{
-                width: 48,
-                height: 48,
-                background: "#e8622a",
-                borderRadius: 12,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {/* Simple helmet shape using emoji as fallback */}
+            {/* Beaver icon */}
+            {beaverBase64 ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={beaverBase64}
+                width={56}
+                height={56}
+                style={{ borderRadius: 12, objectFit: "cover" }}
+                alt="beaver"
+              />
+            ) : (
               <div
                 style={{
+                  width: 56,
+                  height: 56,
+                  background: "#e8622a",
+                  borderRadius: 12,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   color: "white",
                   fontSize: 28,
                   fontWeight: 700,
-                  display: "flex",
                 }}
               >
-                H
+                🦫
               </div>
-            </div>
+            )}
             <div
               style={{
                 display: "flex",
@@ -218,7 +235,7 @@ export async function GET(request: NextRequest) {
                   display: "flex",
                 }}
               >
-                DOBOKU NO HIRO
+                DOBOKU NO TORISETSU
               </div>
               <div
                 style={{
@@ -228,7 +245,7 @@ export async function GET(request: NextRequest) {
                   display: "flex",
                 }}
               >
-                土木のヒロブログ
+                土木のトリセツ
               </div>
             </div>
           </div>
