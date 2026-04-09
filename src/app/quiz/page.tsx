@@ -51,7 +51,7 @@ export default function QuizPage() {
       {/* Hero */}
       <div className="rounded-2xl bg-gradient-to-br from-secondary to-[#2d5494] text-white px-6 py-8 mb-8 shadow-md">
         <div className="flex items-center gap-4 mb-3">
-          <BeaverMascot preset="study" size={72} className="drop-shadow-md flex-shrink-0" />
+          <BeaverMascot preset="computer" size={72} className="drop-shadow-md flex-shrink-0" />
           <h1 className="text-2xl font-bold">施工管理技士 練習問題クイズ</h1>
         </div>
         <p className="text-white/80 text-sm leading-relaxed mb-4">

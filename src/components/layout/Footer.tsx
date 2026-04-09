@@ -40,7 +40,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4 max-w-sm">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <BeaverMascot preset="default" size={44} className="rounded-xl" />
+              <BeaverMascot preset="icon" size={44} className="rounded-xl" />
               <div className="flex flex-col leading-none">
                 <span className="text-[10px] font-semibold text-white/50 tracking-widest">
                   DOBOKU NO TORISETSU

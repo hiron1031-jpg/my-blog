@@ -24,7 +24,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             {/* Beaver mascot icon */}
-            <BeaverMascot preset="default" size={44} className="rounded-xl shadow-sm group-hover:shadow-md transition-shadow" />
+            <BeaverMascot preset="icon" size={44} className="rounded-xl shadow-sm group-hover:shadow-md transition-shadow" />
             {/* Site name */}
             <span className="flex flex-col leading-none">
               <span className="text-[11px] font-medium text-secondary/60 tracking-widest">

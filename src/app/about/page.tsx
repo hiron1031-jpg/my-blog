@@ -20,7 +20,7 @@ export default function AboutPage() {
 
       <div className="bg-white rounded-2xl border border-border p-8 mb-8">
         <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-          <BeaverMascot preset="supervisor" size={80} className="rounded-2xl flex-shrink-0" />
+          <BeaverMascot preset="survey" size={80} className="rounded-2xl flex-shrink-0" />
           <div>
             <h2 className="text-xl font-bold text-heading mb-2">{authorName}</h2>
             <p className="text-secondary text-sm leading-relaxed">{authorBio}</p>

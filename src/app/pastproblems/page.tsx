@@ -33,7 +33,7 @@ export default function PastProblemsPage() {
               平成24年度〜令和7年度分を掲載。
             </p>
           </div>
-          <BeaverMascot preset="check" size={100} className="drop-shadow-lg self-end md:self-auto flex-shrink-0" />
+          <BeaverMascot preset="schedule" size={100} className="drop-shadow-lg self-end md:self-auto flex-shrink-0" />
         </div>
       </div>
 
