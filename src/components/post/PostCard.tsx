@@ -53,6 +53,15 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
         <p className="text-xs text-secondary/80 line-clamp-3 flex-1 mb-3">
           {excerpt}
         </p>
+        {frontmatter.tags && frontmatter.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mb-2">
+            {frontmatter.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-surface text-secondary/70 border border-border">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="flex items-center gap-3 text-xs text-secondary/60 mt-auto">
           <span className="flex items-center gap-1">
             <FiCalendar size={11} />

@@ -55,7 +55,7 @@ const items = [
   {
     href: "/quiz",
     label: "練習問題クイズ",
-    sub: "4択クイズで実力チェック！全40問",
+    sub: "年度別過去問・4択クイズで実力チェック",
     badge: "NEW",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
