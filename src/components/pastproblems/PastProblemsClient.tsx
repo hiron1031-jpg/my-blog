@@ -86,6 +86,33 @@ const CATEGORIES: ExamCategory[] = [
           s("薬液 実地","/pastproblems/2doboku/R7_yaku_jitti.pdf"),
         ]
       },
+      { key:"R6",  label:"令和6年度",
+        files:[
+          q("前期 学科","/pastproblems/2doboku/R6_1_gakka.pdf"),
+          a("前期 解答","/pastproblems/2doboku/R6_1_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2doboku/R6_2_gakka.pdf"),
+          a("後期 解答","/pastproblems/2doboku/R6_2_kaitou.pdf"),
+          s("実地","/pastproblems/2doboku/R6_jitti.pdf"),
+        ]
+      },
+      { key:"R5",  label:"令和5年度",
+        files:[
+          q("前期 学科","/pastproblems/2doboku/R5_1_gakka.pdf"),
+          a("前期 解答","/pastproblems/2doboku/R5_1_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2doboku/R5_2_gakka.pdf"),
+          a("後期 解答","/pastproblems/2doboku/R5_2_kaitou.pdf"),
+          s("実地","/pastproblems/2doboku/R5_jitti.pdf"),
+        ]
+      },
+      { key:"R4",  label:"令和4年度",
+        files:[
+          q("前期 学科","/pastproblems/2doboku/R4_1_gakka.pdf"),
+          a("前期 解答","/pastproblems/2doboku/R4_1_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2doboku/R4_2_gakka.pdf"),
+          a("後期 解答","/pastproblems/2doboku/R4_2_kaitou.pdf"),
+          s("実地","/pastproblems/2doboku/R4_jitti.pdf"),
+        ]
+      },
       { key:"R3",  label:"令和3年度",
         files:[
           q("前期 学科","/pastproblems/2doboku/R3_1_gakka.pdf"),
@@ -156,6 +183,9 @@ const CATEGORIES: ExamCategory[] = [
     years: [
       { key:"R7", label:"令和7年度",
         files:[ q("第一次検定A","/pastproblems/1zou/R7_A.pdf"), q("第一次検定B","/pastproblems/1zou/R7_B.pdf"), s("第二次検定","/pastproblems/1zou/R7_jitti.pdf"), a("解答","/pastproblems/1zou/R7_kaitou.pdf") ]
+      },
+      { key:"R6", label:"令和6年度",
+        files:[ q("第一次検定A","/pastproblems/1zou/R6_A.pdf"), q("第一次検定B","/pastproblems/1zou/R6_B.pdf"), s("第二次検定","/pastproblems/1zou/R6_jitti.pdf"), a("解答","/pastproblems/1zou/R6_kaitou.pdf") ]
       },
       { key:"R5", label:"令和5年度",
         files:[ q("第一次検定A","/pastproblems/1zou/R5_A.pdf"), q("第一次検定B","/pastproblems/1zou/R5_B.pdf"), s("第二次検定","/pastproblems/1zou/R5_jitti.pdf"), a("解答","/pastproblems/1zou/R5_kaitou.pdf") ]

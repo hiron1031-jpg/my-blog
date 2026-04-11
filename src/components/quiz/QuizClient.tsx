@@ -546,10 +546,6 @@ export default function QuizClient({
               );
             })}
 
-            {/* 追加予定案内 */}
-            <div className="rounded-xl border border-dashed border-border p-4 text-center text-secondary/40 text-sm">
-              年度別問題は順次追加予定です
-            </div>
           </div>
         )}
       </div>
