@@ -616,7 +616,7 @@ export default function QuizClient({
               onClick={() => { setPhase("start"); }}
               className="flex-1 py-3 bg-surface border border-border text-secondary font-bold rounded-xl hover:border-primary hover:text-primary transition-colors"
             >
-              別のクイズへ
+              別のチャレンジへ
             </button>
           </div>
         </div>

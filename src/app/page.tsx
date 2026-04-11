@@ -140,8 +140,8 @@ export default function HomePage() {
               </svg>
             </div>
             <div>
-              <p className="font-bold text-heading text-sm mb-1">インタラクティブ練習問題</p>
-              <p className="text-xs text-secondary/70 leading-relaxed">年度別・試験別の4択クイズで隙間時間に実力チェック。解説付きで理解が深まる。</p>
+              <p className="font-bold text-heading text-sm mb-1">過去問チャレンジ</p>
+              <p className="text-xs text-secondary/70 leading-relaxed">年度別・試験別の4択で隙間時間に実力チェック。R4〜R7年度の過去問1,178問搭載。</p>
             </div>
           </div>
         </div>

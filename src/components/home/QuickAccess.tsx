@@ -54,8 +54,8 @@ const items = [
   },
   {
     href: "/quiz",
-    label: "練習問題クイズ",
-    sub: "年度別過去問・4択クイズで実力チェック",
+    label: "過去問チャレンジ",
+    sub: "年度別過去問・4択で実力チェック",
     badge: "NEW",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
