@@ -11,7 +11,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   return getAllCategories().map((cat) => ({
-    category: encodeURIComponent(cat.name),
+    category: cat.name,
   }));
 }
 
