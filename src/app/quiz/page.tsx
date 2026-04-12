@@ -29,6 +29,18 @@ export default function QuizPage() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
 
+  // 総問題数を計算
+  const totalYearQuestions = Object.values(yearQuestions).reduce(
+    (sum, examData) =>
+      sum +
+      Object.values(examData).reduce(
+        (s2, yearData) =>
+          s2 + Object.values(yearData).reduce((s3, qs) => s3 + qs.length, 0),
+        0
+      ),
+    0
+  );
+
   // JSON-LD: EducationalWebPage + FAQPage
   const jsonLd = {
     "@context": "https://schema.org",
@@ -85,28 +97,21 @@ export default function QuizPage() {
           <h1 className="text-2xl font-bold">施工管理技士 過去問チャレンジ</h1>
         </div>
         <p className="text-white/80 text-sm leading-relaxed mb-4">
-          1級・2級 土木施工管理技士と造園施工管理技士の練習問題です。
-          4択形式で解答後に解説を表示。スコアはブラウザに自動保存されます。
+          1級・2級 土木施工管理技士と造園施工管理技士の年度別過去問を4択形式で出題。
+          解答後に解説を表示。スコアはブラウザに自動保存されます。
         </p>
         <div className="flex flex-wrap gap-2 text-xs">
-          {[
-            { label: "1級土木", count: 10 },
-            { label: "2級土木", count: 10 },
-            { label: "1級造園", count: 10 },
-            { label: "2級造園", count: 10 },
-          ].map((item) => (
-            <span
-              key={item.label}
-              className="bg-white/20 px-3 py-1 rounded-full font-medium"
-            >
-              {item.label}：{item.count}問
-            </span>
-          ))}
+          <span className="bg-white/20 px-3 py-1 rounded-full font-medium">
+            土木・造園 全{totalYearQuestions}問収録
+          </span>
+          <span className="bg-white/20 px-3 py-1 rounded-full font-medium">
+            R4〜R7年度対応
+          </span>
         </div>
       </div>
 
       {/* Quiz */}
-      <QuizClient questions={questions} yearQuestions={yearQuestions} />
+      <QuizClient yearQuestions={yearQuestions} />
     </div>
   );
 }
