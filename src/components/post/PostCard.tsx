@@ -42,12 +42,11 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
               title={frontmatter.title}
             />
           )}
-          {/* Category overlay */}
+          {/* Category overlay（リンク内のa入れ子を避けるためspanで表示） */}
           <div className="absolute top-3 left-3">
-            <Badge
-              label={frontmatter.category}
-              href={`/categories/${encodeURIComponent(frontmatter.category)}`}
-            />
+            <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-primary text-white">
+              {frontmatter.category}
+            </span>
           </div>
         </div>
       </Link>
