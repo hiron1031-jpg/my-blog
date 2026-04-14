@@ -8,7 +8,7 @@ export default function AuthorBox() {
         <BeaverMascot preset="icon" size={56} className="rounded-xl shadow-sm" />
       </div>
       <div>
-        <p className="font-bold text-heading text-sm mb-0.5">ヒロ</p>
+        <p className="font-bold text-heading text-sm mb-0.5">ビーバーくん</p>
         <p className="text-xs text-primary font-medium mb-2">1級土木・造園施工管理技士</p>
         <p className="text-xs text-secondary/80 leading-relaxed">
           造園作業員として働きながら独学で2級・1級造園施工管理技士を取得。その後、1級土木施工管理技士も独学で合格。

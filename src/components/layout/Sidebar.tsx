@@ -15,7 +15,7 @@ export default function Sidebar() {
         <div className="flex flex-col items-center text-center gap-3">
           <BeaverMascot preset="icon" size={64} className="rounded-full shadow-sm" />
           <div>
-            <p className="font-bold text-heading text-sm">ヒロ</p>
+            <p className="font-bold text-heading text-sm">ビーバーくん</p>
             <p className="text-xs text-primary font-medium mt-0.5">
               1級土木・造園施工管理技士
             </p>
