@@ -16,6 +16,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import Badge from "@/components/ui/Badge";
 import JsonLd from "@/components/JsonLd";
 import { formatDate } from "@/lib/utils";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -63,6 +64,7 @@ export default async function PostPage({ params }: PageProps) {
 
   const headings = extractHeadings(post.content);
   const related = getRelatedPosts(slug, post.frontmatter.category);
+  const recentPosts = getAllPosts().filter((p) => p.slug !== slug).slice(0, 4);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のヒロブログ";
   const postUrl = `${siteUrl}/posts/${slug}`;
@@ -196,12 +198,54 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Sidebar */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24 space-y-6">
+          <div className="sticky top-24 space-y-5">
+            {/* TOC */}
             {headings.length > 0 && <TableOfContents headings={headings} />}
+
+            {/* Quiz CTA */}
+            <Link
+              href="/quiz"
+              className="block bg-gradient-to-br from-[#7b2d8b] to-[#a855a8] rounded-2xl p-4 text-white text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p className="text-[11px] font-bold opacity-75 mb-0.5 tracking-wide">🎯 無料で腕試し！</p>
+              <p className="text-sm font-bold leading-snug">過去問チャレンジ</p>
+              <p className="text-xs opacity-70 mt-0.5">年度別・4択クイズ</p>
+            </Link>
+
+            {/* Recent Posts */}
+            <div className="bg-card rounded-2xl p-4 border border-border shadow-sm">
+              <p className="text-sm font-bold text-heading mb-3 flex items-center gap-1.5">
+                <span className="w-1 h-4 bg-accent rounded-full inline-block" />
+                最新記事
+              </p>
+              <ul className="space-y-3">
+                {recentPosts.map((rp) => (
+                  <li key={rp.slug}>
+                    <Link href={`/posts/${rp.slug}`} className="flex gap-2.5 group">
+                      <div className="w-14 h-10 rounded-lg overflow-hidden shrink-0 bg-surface border border-border">
+                        {rp.frontmatter.thumbnail && rp.frontmatter.thumbnail.length > 0 ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={rp.frontmatter.thumbnail}
+                            alt={rp.frontmatter.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-primary/50 to-accent/50" />
+                        )}
+                      </div>
+                      <p className="text-xs font-medium text-heading leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                        {rp.frontmatter.title}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {/* Tag cloud */}
             {post.frontmatter.tags.length > 0 && (
-              <div className="bg-surface rounded-xl p-4 border border-border">
+              <div className="bg-card rounded-xl p-4 border border-border shadow-sm">
                 <p className="text-sm font-bold text-heading mb-3 flex items-center gap-1.5">
                   <FiTag size={14} />
                   タグ
@@ -218,6 +262,16 @@ export default async function PostPage({ params }: PageProps) {
                 </div>
               </div>
             )}
+
+            {/* Past Problems CTA */}
+            <Link
+              href="/pastproblems"
+              className="block bg-gradient-to-br from-[#e8622a] to-[#f08c4b] rounded-2xl p-4 text-white text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p className="text-[11px] font-bold opacity-75 mb-0.5 tracking-wide">📥 完全無料！</p>
+              <p className="text-sm font-bold leading-snug">過去問PDF ダウンロード</p>
+              <p className="text-xs opacity-70 mt-0.5">H24〜R7年度 全対応</p>
+            </Link>
           </div>
         </aside>
       </div>

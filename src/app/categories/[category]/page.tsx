@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getAllCategories, getPostsByCategory } from "@/lib/mdx";
 import PostGrid from "@/components/home/PostGrid";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import Sidebar from "@/components/layout/Sidebar";
 import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 
@@ -69,9 +70,20 @@ export default async function CategoryPage({ params }: PageProps) {
           { label: name },
         ]}
       />
-      <h1 className="text-2xl font-bold text-heading mb-2">{name}</h1>
-      <p className="text-secondary text-sm mb-8">{posts.length}件の記事</p>
-      <PostGrid posts={posts} />
+
+      <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-10">
+        <main>
+          <h1 className="text-2xl font-bold text-heading mb-1">{name}</h1>
+          <p className="text-secondary text-sm mb-8">{posts.length}件の記事</p>
+          <PostGrid posts={posts} />
+        </main>
+
+        <div className="hidden lg:block">
+          <div className="sticky top-24">
+            <Sidebar />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
