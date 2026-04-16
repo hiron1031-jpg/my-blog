@@ -32,17 +32,17 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
               title={frontmatter.title}
             />
           )}
-          {/* Category badge（spanでa入れ子を回避） */}
-          <div className="absolute top-3 left-3">
-            <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-primary text-white">
-              {frontmatter.category}
-            </span>
-          </div>
         </div>
       </Link>
 
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
+        {/* Category badge */}
+        <div className="mb-2">
+          <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-primary text-white">
+            {frontmatter.category}
+          </span>
+        </div>
         <Link href={`/posts/${slug}`} className="group">
           <h2 className={`font-bold text-heading group-hover:text-primary transition-colors line-clamp-2 mb-2 ${featured ? "text-lg" : "text-base"}`}>
             {frontmatter.title}
