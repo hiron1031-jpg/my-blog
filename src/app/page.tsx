@@ -40,7 +40,7 @@ export default function HomePage() {
   const categories = getAllCategories();
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のヒロブログ";
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
 
   const jsonLd = {
     "@context": "https://schema.org",

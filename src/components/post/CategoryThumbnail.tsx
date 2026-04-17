@@ -70,6 +70,7 @@ function beaverStyle(col: number, row: number): React.CSSProperties {
     backgroundPosition: `${-col * BEAVER_SIZE}px ${-row * CELL_H}px`,
     backgroundRepeat: "no-repeat",
     flexShrink: 0,
+    mixBlendMode: "multiply",
   };
 }
 

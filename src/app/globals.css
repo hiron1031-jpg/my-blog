@@ -35,6 +35,11 @@ body {
   --tw-prose-code: #1e3a5f;
   --tw-prose-quotes: #374151;
   --tw-prose-quote-borders: #f4a261;
+  line-height: 1.85;
+}
+
+.prose p {
+  line-height: 1.85;
 }
 
 /* Code block styling */

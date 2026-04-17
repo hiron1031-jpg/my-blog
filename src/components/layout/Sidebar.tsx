@@ -3,6 +3,7 @@ import { FiChevronRight } from "react-icons/fi";
 import { getAllPosts, getAllCategories } from "@/lib/mdx";
 import BeaverMascot from "./BeaverMascot";
 import { formatDate } from "@/lib/utils";
+import { getCategoryColor } from "@/lib/category-colors";
 
 export default function Sidebar() {
   const recentPosts = getAllPosts().slice(0, 5);
@@ -50,25 +51,34 @@ export default function Sidebar() {
           カテゴリ
         </p>
         <ul className="space-y-0.5">
-          {categories.map((cat) => (
-            <li key={cat.name}>
-              <Link
-                href={`/categories/${encodeURIComponent(cat.name)}`}
-                className="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-surface text-sm text-secondary hover:text-primary transition-colors group"
-              >
-                <span className="flex items-center gap-1.5">
-                  <FiChevronRight
-                    size={11}
-                    className="text-primary/40 group-hover:text-primary transition-colors"
-                  />
-                  {cat.name}
-                </span>
-                <span className="text-xs bg-surface text-secondary/60 px-2 py-0.5 rounded-full border border-border">
-                  {cat.count}
-                </span>
-              </Link>
-            </li>
-          ))}
+          {categories.map((cat) => {
+            const color = getCategoryColor(cat.name);
+            return (
+              <li key={cat.name}>
+                <Link
+                  href={`/categories/${encodeURIComponent(cat.name)}`}
+                  className="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-surface text-sm text-secondary hover:text-primary transition-colors group"
+                >
+                  <span className="flex items-center gap-2">
+                    <span
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: color.hex }}
+                    />
+                    {cat.name}
+                  </span>
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full font-medium"
+                    style={{
+                      backgroundColor: `${color.hex}18`,
+                      color: color.hex,
+                    }}
+                  >
+                    {cat.count}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <Link
           href="/categories"

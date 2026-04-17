@@ -45,7 +45,7 @@ export default function HeroCarousel({ posts }: HeroCarouselProps) {
   const post = posts[current];
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: "16/6" }}>
+    <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: "16/9" }}>
       {/* Background */}
       {post.frontmatter.thumbnail && post.frontmatter.thumbnail.length > 0 ? (
         <Image

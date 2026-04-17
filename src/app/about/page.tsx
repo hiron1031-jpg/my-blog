@@ -7,11 +7,6 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const authorName = process.env.NEXT_PUBLIC_AUTHOR_NAME ?? "管理者";
-  const authorBio =
-    process.env.NEXT_PUBLIC_AUTHOR_BIO ??
-    "ビジネス・経営に関する専門知識を発信しています。実務経験をもとに、わかりやすく実践的な情報をお届けします。";
-
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Breadcrumb items={[{ label: "このサイトについて" }]} />
@@ -22,8 +17,12 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
           <BeaverMascot preset="survey" size={80} className="rounded-2xl flex-shrink-0" />
           <div>
-            <h2 className="text-xl font-bold text-heading mb-2">{authorName}</h2>
-            <p className="text-secondary text-sm leading-relaxed">{authorBio}</p>
+            <h2 className="text-xl font-bold text-heading mb-1">ビーバー監督</h2>
+            <p className="text-xs text-primary font-medium mb-2">1級土木施工管理技士・1級造園施工管理技士</p>
+            <p className="text-secondary text-sm leading-relaxed">
+              造園作業員として働きながら独学で2級・1級造園施工管理技士を取得。その後、1級土木施工管理技士も独学で合格。
+              現在は現役の土木職員として働きながら、資格取得を目指す方に役立つ情報を発信しています。
+            </p>
           </div>
         </div>
       </div>

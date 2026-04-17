@@ -66,7 +66,7 @@ export default async function PostPage({ params }: PageProps) {
   const related = getRelatedPosts(slug, post.frontmatter.category);
   const recentPosts = getAllPosts().filter((p) => p.slug !== slug).slice(0, 4);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のヒロブログ";
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
   const postUrl = `${siteUrl}/posts/${slug}`;
   const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(post.frontmatter.title)}&category=${encodeURIComponent(post.frontmatter.category)}`;
   const categoryUrl = `${siteUrl}/categories/${encodeURIComponent(post.frontmatter.category)}`;
