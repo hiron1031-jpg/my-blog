@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts, getAllCategories, getAllTags } from "@/lib/mdx";
-import { getAllExamYearParams } from "@/lib/pastproblems-data";
+import { getAllExamYearParams, CATEGORIES } from "@/lib/pastproblems-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
@@ -46,6 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...CATEGORIES.map((c) => ({
+      url: `${siteUrl}/shikaku/${c.id}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
     })),
   ];
 }

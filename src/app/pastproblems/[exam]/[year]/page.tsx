@@ -93,6 +93,78 @@ const variantStyles: Record<ExamFile["variant"], string> = {
   second: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100",
 };
 
+// ---- Exam summary (合格率・基準・出題構成) ----
+type ExamSummary = {
+  passRateFirst: string;
+  passRateSecond: string;
+  passCriteria: string;
+  studyHours: string;
+  breakdown: { label: string; ratio: string }[];
+};
+
+function getExamSummary(examId: string): ExamSummary | null {
+  switch (examId) {
+    case "1doboku":
+      return {
+        passRateFirst: "約50〜60%",
+        passRateSecond: "約30〜40%",
+        passCriteria: "第一次・第二次ともに得点率60%以上が目安",
+        studyHours: "独学なら目安400〜500時間",
+        breakdown: [
+          { label: "土木一般（土工・コンクリート・基礎工）", ratio: "約25%" },
+          { label: "専門土木（河川・道路・ダム・トンネル他）", ratio: "約30%" },
+          { label: "法規（建設業法・労基法・安衛法ほか）", ratio: "約15%" },
+          { label: "共通工学（測量・設計図書・契約）", ratio: "約10%" },
+          { label: "施工管理法（工程・品質・安全）", ratio: "約20%" },
+        ],
+      };
+    case "2doboku":
+      return {
+        passRateFirst: "約60〜70%",
+        passRateSecond: "約35〜45%",
+        passCriteria: "第一次・第二次ともに得点率60%以上が目安",
+        studyHours: "独学で200〜300時間",
+        breakdown: [
+          { label: "土木一般（土工・コンクリート・基礎工）", ratio: "約25%" },
+          { label: "専門土木（構造物・河川・道路ほか）", ratio: "約30%" },
+          { label: "法規", ratio: "約15%" },
+          { label: "共通工学", ratio: "約10%" },
+          { label: "施工管理法", ratio: "約20%" },
+        ],
+      };
+    case "1zou":
+      return {
+        passRateFirst: "約40〜50%",
+        passRateSecond: "約30〜45%",
+        passCriteria: "第一次・第二次ともに得点率60%以上が目安",
+        studyHours: "独学で300〜400時間",
+        breakdown: [
+          { label: "造園原論（造園史・植物学・材料）", ratio: "約25%" },
+          { label: "造園施工（植栽・土工・石材工ほか）", ratio: "約30%" },
+          { label: "法規（都市公園法・建設業法ほか）", ratio: "約15%" },
+          { label: "測量・設計図書・積算", ratio: "約10%" },
+          { label: "施工管理法", ratio: "約20%" },
+        ],
+      };
+    case "2zou":
+      return {
+        passRateFirst: "約55〜65%",
+        passRateSecond: "約35〜45%",
+        passCriteria: "第一次・第二次ともに得点率60%以上が目安",
+        studyHours: "独学で150〜250時間",
+        breakdown: [
+          { label: "造園原論", ratio: "約25%" },
+          { label: "造園施工", ratio: "約30%" },
+          { label: "法規", ratio: "約15%" },
+          { label: "測量・設計図書", ratio: "約10%" },
+          { label: "施工管理法", ratio: "約20%" },
+        ],
+      };
+    default:
+      return null;
+  }
+}
+
 // ---- Related benkyoho article slug ----
 function getBenkyohoSlug(examId: string): string | null {
   switch (examId) {
@@ -117,6 +189,7 @@ export default async function Page({ params }: PageProps) {
   const next = idx > 0 ? category.years[idx - 1] : null; // 新しい年度
 
   const tips = getExamTips(exam);
+  const summary = getExamSummary(exam);
   const western = yearKeyToWestern(entry.key);
   const benkyohoSlug = getBenkyohoSlug(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
@@ -199,6 +272,54 @@ export default async function Page({ params }: PageProps) {
         </p>
       </section>
 
+      {/* 試験情報（合格率・基準・出題構成） */}
+      {summary && (
+        <section className="mb-10 bg-white border border-border rounded-xl p-6 md:p-8 shadow-sm">
+          <h2 className="flex items-center gap-2 text-lg md:text-xl font-bold text-gray-800 mb-5">
+            <FiFileText size={20} style={{ color: category.hex }} />
+            {category.shortName}の試験情報
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+            <div className="border border-border rounded-lg p-3">
+              <div className="text-[11px] text-gray-500 mb-1">第一次検定 合格率目安</div>
+              <div className="text-xl font-bold" style={{ color: category.hex }}>{summary.passRateFirst}</div>
+            </div>
+            <div className="border border-border rounded-lg p-3">
+              <div className="text-[11px] text-gray-500 mb-1">第二次検定 合格率目安</div>
+              <div className="text-xl font-bold" style={{ color: category.hex }}>{summary.passRateSecond}</div>
+            </div>
+            <div className="border border-border rounded-lg p-3">
+              <div className="text-[11px] text-gray-500 mb-1">必要勉強時間（独学）</div>
+              <div className="text-sm font-bold text-gray-800 leading-tight">{summary.studyHours}</div>
+            </div>
+          </div>
+
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 mb-5">
+            <strong>合格基準：</strong>{summary.passCriteria}
+          </div>
+
+          <div>
+            <h3 className="text-sm font-bold text-gray-800 mb-3">第一次検定 分野別出題構成（目安）</h3>
+            <ul className="space-y-2">
+              {summary.breakdown.map((b) => (
+                <li key={b.label} className="flex items-center justify-between gap-3 text-sm border-b border-border pb-2">
+                  <span className="text-gray-700">{b.label}</span>
+                  <span className="font-bold text-xs px-2 py-0.5 rounded" style={{ backgroundColor: `${category.hex}15`, color: category.hex }}>
+                    {b.ratio}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[11px] text-gray-500 mt-3">
+              ※ 合格率・出題構成は直近数年間の実績をもとにした概算目安です。公式データは
+              <a href="https://www.fcip-shiken.jp/" target="_blank" rel="noopener noreferrer" className="text-primary underline ml-1">全国建設研修センター</a>
+              等をご確認ください。
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* 出題傾向・対策 */}
       {tips.length > 0 && (
         <section className="mb-10 bg-white border border-border rounded-xl p-6 md:p-8 shadow-sm">
@@ -274,6 +395,22 @@ export default async function Page({ params }: PageProps) {
             <FiArrowRight size={18} className="text-gray-400 group-hover:text-primary flex-shrink-0" />
           </Link>
         ) : <div />}
+      </section>
+
+      {/* Hub link */}
+      <section className="mb-6">
+        <Link
+          href={`/shikaku/${exam}`}
+          className="flex items-center justify-between gap-3 bg-white border border-border rounded-xl p-4 hover:shadow-md transition-shadow"
+        >
+          <div>
+            <div className="text-xs text-gray-500 mb-1">資格ガイド</div>
+            <div className="font-bold text-sm" style={{ color: category.hex }}>
+              {category.name}とは？難易度・合格率・勉強法まとめ
+            </div>
+          </div>
+          <FiArrowRight size={18} className="flex-shrink-0" style={{ color: category.hex }} />
+        </Link>
       </section>
 
       {/* Other exams 横断リンク */}
