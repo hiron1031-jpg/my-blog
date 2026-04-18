@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts, getAllCategories, getAllTags } from "@/lib/mdx";
+import { getAllExamYearParams } from "@/lib/pastproblems-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
@@ -40,5 +41,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...postUrls,
     ...categoryUrls,
     ...tagUrls,
+    ...getAllExamYearParams().map((p) => ({
+      url: `${siteUrl}/pastproblems/${p.exam}/${p.year}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }
