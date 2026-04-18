@@ -41,9 +41,9 @@ const EXAM_META: Record<string, ExamMeta> = {
     overview:
       "1級土木施工管理技士は、大規模な土木工事の監理技術者になれる国家資格です。公共工事の入札条件にも含まれ、建設業界で最も評価される資格の一つ。第一次検定（旧学科）と第二次検定（旧実地）の2段階で実施され、経験記述の記述力が合否を大きく左右します。",
     difficulty: "難易度は高め。特に第二次検定の経験記述は実務経験ベースで自分の言葉で書く必要があり、丸暗記では合格できません。",
-    passRateFirst: "約50〜60%",
-    passRateSecond: "約30〜40%",
-    passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン（年度により微調整あり）",
+    passRateFirst: "令和7年度 43.1%（公式発表）",
+    passRateSecond: "30〜40%程度（一般的な目安）",
+    passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン（国土交通省発表）",
     scopeFirst: [
       "土木一般（土工・コンクリート・基礎工）",
       "専門土木（構造物・河川・砂防・道路・舗装・ダム・トンネル・海岸・港湾・鉄道・地下構造物・上下水道）",
@@ -57,7 +57,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "安全管理・品質管理・工程管理の記述",
       "建設副産物・環境対策",
     ],
-    studyHours: "独学なら目安400〜500時間。1日1〜2時間で半年〜1年が現実的。",
+    studyHours: "400〜500時間程度が一般的な目安（1日1〜2時間で半年〜1年）",
     relatedSlugs: [
       { slug: "doboku-1kyu-benkyoho", label: "1級土木施工管理技士 独学勉強法【完全ロードマップ】" },
       { slug: "doboku-1kyu-hinshutu", label: "1級土木 頻出問題・分野別対策" },
@@ -72,9 +72,9 @@ const EXAM_META: Record<string, ExamMeta> = {
     overview:
       "2級土木施工管理技士は、主任技術者として土木工事の現場を担当できる国家資格です。1級のステップアップ前提で取得する方が多く、19歳以上から受験できる「第一次検定のみ」の新制度により受験者数が増加傾向。前期（6月）・後期（10月）の年2回チャンスがあります。",
     difficulty: "1級に比べると難易度は抑えめ。ただし第二次検定の経験記述は1級同様、添削を受けておくと安心。",
-    passRateFirst: "約60〜70%",
-    passRateSecond: "約35〜45%",
-    passCriteria: "第一次・第二次ともに得点率60%以上（年度により微調整あり）",
+    passRateFirst: "令和6年度(前期) 43.0%（公式発表）",
+    passRateSecond: "令和6年度 35.0%（公式発表）",
+    passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン（国土交通省発表）",
     scopeFirst: [
       "土木一般（土工・コンクリート・基礎工）",
       "専門土木（構造物・河川・砂防・道路・舗装・上下水道など）",
@@ -87,7 +87,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "土工・コンクリート工の専門記述",
       "安全管理・品質管理の記述",
     ],
-    studyHours: "独学で200〜300時間が目安。1日1時間で半年ほど。",
+    studyHours: "200〜300時間程度が一般的な目安（1日1時間で半年ほど）",
     relatedSlugs: [
       { slug: "doboku-2kyu-benkyoho", label: "2級土木施工管理技士 独学勉強法" },
       { slug: "doboku-goukakuritsu", label: "土木施工管理技士の合格率と難易度" },
@@ -100,9 +100,9 @@ const EXAM_META: Record<string, ExamMeta> = {
     overview:
       "1級造園施工管理技士は、造園工事の監理技術者として大規模工事を担当できる国家資格です。公共緑化工事や都市公園、再開発プロジェクトの入札要件となっており、造園業界でのキャリアアップに不可欠。受験者数は土木系より少なく、情報が少ないのが特徴です。",
     difficulty: "植物学・造園史・施工法など範囲が広く、土木系より覚える内容が独特。第二次検定の記述では造園特有の用語と施工知識が問われます。",
-    passRateFirst: "約40〜50%",
-    passRateSecond: "約30〜45%",
-    passCriteria: "第一次・第二次ともに得点率60%以上が目安",
+    passRateFirst: "40〜50%程度（一般的な目安）",
+    passRateSecond: "令和6年度 40.0%（公式発表）",
+    passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン（国土交通省発表）",
     scopeFirst: [
       "造園原論（造園史・植物学・造園材料）",
       "造園施工（土工・植栽・石材工・竹垣工・排水工）",
@@ -116,7 +116,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "安全管理・工程管理の記述",
       "樹木・樹種の同定問題",
     ],
-    studyHours: "独学で300〜400時間が目安。植物名の暗記に時間がかかる。",
+    studyHours: "300〜400時間程度が一般的な目安（植物名の暗記に時間がかかる）",
     relatedSlugs: [
       { slug: "zouen-1kyu-benkyoho", label: "1級造園施工管理技士 独学勉強法" },
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
@@ -129,9 +129,9 @@ const EXAM_META: Record<string, ExamMeta> = {
     overview:
       "2級造園施工管理技士は、造園工事の主任技術者として中小規模の現場を担当できる国家資格です。庭園・公園・緑化工事の現場監督に必須レベルの資格で、1級へのステップとしても最適。19歳以上から第一次検定のみ受験できる新制度で、受験者数が増えています。",
     difficulty: "造園史・植物学の暗記量は多いものの、出題範囲は1級より絞られ、過去問対策で十分合格が狙えます。",
-    passRateFirst: "約55〜65%",
-    passRateSecond: "約35〜45%",
-    passCriteria: "第一次・第二次ともに得点率60%以上が目安",
+    passRateFirst: "直近数年の平均 約53%（目安）",
+    passRateSecond: "直近数年の平均 約47%（目安）",
+    passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン（国土交通省発表）",
     scopeFirst: [
       "造園原論（造園史・植物基礎）",
       "造園施工（植栽・土工・石材工など基本）",
@@ -144,7 +144,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "植栽・移植の施工記述",
       "樹木の同定",
     ],
-    studyHours: "独学で150〜250時間が目安。1日1時間で4〜6ヶ月。",
+    studyHours: "150〜250時間程度が一般的な目安（1日1時間で4〜6ヶ月）",
     relatedSlugs: [
       { slug: "zouen-2kyu-benkyoho", label: "2級造園施工管理技士 独学勉強法" },
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
@@ -294,6 +294,11 @@ export default async function ShikakuHubPage({ params }: PageProps) {
             <strong>合格基準：</strong>{meta.passCriteria}
           </div>
           <p className="mt-4 text-gray-700 leading-relaxed">{meta.difficulty}</p>
+          <p className="mt-3 text-[11px] text-gray-500 leading-relaxed">
+            ※ 合格率は
+            <a href="https://www.jctc.jp/exam/itstatus/" target="_blank" rel="noopener noreferrer" className="text-primary underline mx-1">一般財団法人 全国建設研修センターの公表資料</a>
+            および国土交通省発表をもとに記載しています。最新の合格基準・受験要項は必ず公式発表をご確認ください。勉強時間は独学合格者の一般的な目安で、個人差があります。
+          </p>
         </section>
 
         {/* 試験範囲 */}
