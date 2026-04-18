@@ -199,6 +199,12 @@ export const CATEGORIES: ExamCategory[] = [
       { key:"R1", label:"令和元年度",
         files:[ q("学科A","/pastproblems/1zou/R1_A.pdf"), q("学科B","/pastproblems/1zou/R1_B.pdf"), s("実地","/pastproblems/1zou/R1_jitti.pdf"), a("解答","/pastproblems/1zou/R1_kaitou.pdf") ]
       },
+      { key:"H30", label:"平成30年度",
+        files:[ q("学科A","/pastproblems/1zou/H30_A.pdf"), q("学科B","/pastproblems/1zou/H30_B.pdf"), s("実地","/pastproblems/1zou/H30_jitti.pdf"), a("解答","/pastproblems/1zou/H30_kaitou.pdf") ]
+      },
+      { key:"H29", label:"平成29年度",
+        files:[ q("学科A","/pastproblems/1zou/H29_A.pdf"), q("学科B","/pastproblems/1zou/H29_B.pdf"), s("実地","/pastproblems/1zou/H29_jitti.pdf"), a("解答","/pastproblems/1zou/H29_kaitou.pdf") ]
+      },
     ],
   },
   {
@@ -219,6 +225,33 @@ export const CATEGORIES: ExamCategory[] = [
           s("実地","/pastproblems/2zou/R7_jissi.pdf"),
         ]
       },
+      { key:"R6", label:"令和6年度",
+        files:[
+          q("前期 学科","/pastproblems/2zou/R6_zenki.pdf"),
+          a("前期 解答","/pastproblems/2zou/R6_zenki_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2zou/R6_kouki.pdf"),
+          a("後期 解答","/pastproblems/2zou/R6_kouki_kaitou.pdf"),
+          s("第二次検定","/pastproblems/2zou/R6_jissi.pdf"),
+        ]
+      },
+      { key:"R5", label:"令和5年度",
+        files:[
+          q("前期 学科","/pastproblems/2zou/R5_zenki.pdf"),
+          a("前期 解答","/pastproblems/2zou/R5_zenki_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2zou/R5_kouki.pdf"),
+          a("後期 解答","/pastproblems/2zou/R5_kouki_kaitou.pdf"),
+          s("第二次検定","/pastproblems/2zou/R5_jissi.pdf"),
+        ]
+      },
+      { key:"R4", label:"令和4年度",
+        files:[
+          q("前期 学科","/pastproblems/2zou/R4_zenki.pdf"),
+          a("前期 解答","/pastproblems/2zou/R4_zenki_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2zou/R4_kouki.pdf"),
+          a("後期 解答","/pastproblems/2zou/R4_kouki_kaitou.pdf"),
+          s("第二次検定","/pastproblems/2zou/R4_jissi.pdf"),
+        ]
+      },
       { key:"R3", label:"令和3年度",
         files:[
           q("前期 学科","/pastproblems/2zou/R3_zenki.pdf"),
@@ -226,6 +259,36 @@ export const CATEGORIES: ExamCategory[] = [
           q("後期 学科","/pastproblems/2zou/R3_kouki.pdf"),
           q("後期 学科②","/pastproblems/2zou/R3_kouki2.pdf"),
           a("後期 解答","/pastproblems/2zou/R3_kouki_kaitou.pdf"),
+        ]
+      },
+      { key:"R2", label:"令和2年度", note:"後期のみ実施（COVID-19）",
+        files:[
+          q("後期 学科","/pastproblems/2zou/R2_kouki.pdf"),
+          a("後期 解答","/pastproblems/2zou/R2_kouki_kaitou.pdf"),
+          s("実地","/pastproblems/2zou/R2_jissi.pdf"),
+        ]
+      },
+      { key:"R1", label:"令和元年度",
+        files:[
+          q("前期 学科","/pastproblems/2zou/R1_zenki.pdf"),
+          a("前期 解答","/pastproblems/2zou/R1_zenki_kaitou.pdf"),
+          q("後期 学科","/pastproblems/2zou/R1_kouki.pdf"),
+          a("後期 解答","/pastproblems/2zou/R1_kouki_kaitou.pdf"),
+          s("実地","/pastproblems/2zou/R1_jissi.pdf"),
+        ]
+      },
+      { key:"H30", label:"平成30年度",
+        files:[
+          q("学科","/pastproblems/2zou/H30_gakka.pdf"),
+          a("解答","/pastproblems/2zou/H30_kaitou.pdf"),
+          s("実地","/pastproblems/2zou/H30_jissi.pdf"),
+        ]
+      },
+      { key:"H29", label:"平成29年度",
+        files:[
+          q("学科","/pastproblems/2zou/H29_gakka.pdf"),
+          a("解答","/pastproblems/2zou/H29_kaitou.pdf"),
+          s("実地","/pastproblems/2zou/H29_jissi.pdf"),
         ]
       },
     ],
