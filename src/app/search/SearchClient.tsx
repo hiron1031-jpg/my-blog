@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
 import Badge from "@/components/ui/Badge";
@@ -18,21 +18,37 @@ interface SearchClientProps {
   index: SearchItem[];
 }
 
+const POPULAR_KEYWORDS = [
+  "経験記述",
+  "勉強法",
+  "合格率",
+  "参考書",
+  "1級土木",
+  "1級造園",
+  "2級土木",
+  "2級造園",
+];
+
 export default function SearchClient({ index }: SearchClientProps) {
   const [query, setQuery] = useState("");
 
-  const results = query.trim()
-    ? index.filter((item) => {
-        const q = query.toLowerCase();
-        return (
-          item.title.toLowerCase().includes(q) ||
-          item.description.toLowerCase().includes(q) ||
-          item.category.toLowerCase().includes(q) ||
-          item.tags.some((t) => t.toLowerCase().includes(q)) ||
-          item.excerpt.toLowerCase().includes(q)
-        );
-      })
-    : [];
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return index.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q) ||
+        item.tags.some((t) => t.toLowerCase().includes(q)) ||
+        item.excerpt.toLowerCase().includes(q)
+    );
+  }, [query, index]);
+
+  const categories = useMemo(() => {
+    const set = new Set(index.map((i) => i.category));
+    return Array.from(set);
+  }, [index]);
 
   return (
     <div className="space-y-6">
@@ -52,15 +68,89 @@ export default function SearchClient({ index }: SearchClientProps) {
         />
       </div>
 
-      {/* Results */}
+      {/* Empty state — show shortcuts */}
+      {!query.trim() && (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-sm font-bold text-heading mb-2">
+              よく検索されるキーワード
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {POPULAR_KEYWORDS.map((kw) => (
+                <button
+                  key={kw}
+                  onClick={() => setQuery(kw)}
+                  className="px-3 py-1.5 text-sm rounded-full border-2 border-border hover:border-primary hover:bg-surface transition-colors"
+                >
+                  {kw}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-bold text-heading mb-2">カテゴリーから探す</h2>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {categories.map((cat) => (
+                <Link
+                  key={cat}
+                  href={`/categories/${encodeURIComponent(cat)}`}
+                  className="border-2 border-border rounded-lg px-3 py-2 text-sm hover:border-primary hover:bg-surface transition-colors"
+                >
+                  <span className="font-semibold text-heading">{cat}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-bold text-heading mb-2">無料ツール</h2>
+            <div className="grid sm:grid-cols-2 gap-2">
+              <Link
+                href="/quiz"
+                className="border-2 border-border rounded-lg px-3 py-2 text-sm hover:border-primary hover:bg-surface transition-colors"
+              >
+                📝 過去問チャレンジ
+              </Link>
+              <Link
+                href="/pastproblems"
+                className="border-2 border-border rounded-lg px-3 py-2 text-sm hover:border-primary hover:bg-surface transition-colors"
+              >
+                📄 過去問PDF 14年分
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Results count */}
       {query.trim() && (
         <p className="text-sm text-secondary">
           {results.length > 0
-            ? `${results.length}件見つかりました`
-            : "該当する記事が見つかりませんでした"}
+            ? `「${query}」で${results.length}件見つかりました`
+            : `「${query}」に該当する記事はありませんでした`}
         </p>
       )}
 
+      {/* No results — suggestion */}
+      {query.trim() && results.length === 0 && (
+        <div className="border-2 border-border rounded-lg p-5 bg-surface">
+          <p className="text-sm text-secondary mb-3">他のキーワードで検索してみてください：</p>
+          <div className="flex flex-wrap gap-2">
+            {POPULAR_KEYWORDS.slice(0, 5).map((kw) => (
+              <button
+                key={kw}
+                onClick={() => setQuery(kw)}
+                className="px-3 py-1 text-xs rounded-full bg-white border border-border hover:border-primary transition-colors"
+              >
+                {kw}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Results */}
       <div className="space-y-4">
         {results.map((item) => (
           <article

@@ -250,7 +250,7 @@ export default function PastProblemsPage() {
 
       {/* ── Footer note ── */}
       <div className="mt-12 pt-8 border-t border-border text-xs text-gray-400 space-y-1">
-        <p>出典：公益財団法人 全国建設研修センター</p>
+        <p>出典：一般財団法人 全国建設研修センター</p>
         <p>掲載している過去問は同センターの許諾のもと、このサイトで公開しています。無断での二次配布はご遠慮ください。</p>
       </div>
     </div>
