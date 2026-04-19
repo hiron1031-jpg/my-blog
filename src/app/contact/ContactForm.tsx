@@ -121,7 +121,7 @@ export default function ContactForm() {
 
       {state === "error" && (
         <p className="text-red-500 text-sm">
-          送信に失敗しました。NEXT_PUBLIC_WEB3FORMS_KEY を .env.local に設定してください。
+          送信に失敗しました。時間をおいて再度お試しいただくか、サイト運営者のX（旧Twitter）宛にご連絡ください。
         </p>
       )}
 
