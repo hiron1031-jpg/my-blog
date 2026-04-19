@@ -4,6 +4,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import type { JSX } from "react";
+import AmazonLink from "./AmazonLink";
 
 const components = {
   h2: ({ children, id }: { children: React.ReactNode; id?: string }) => (
@@ -50,6 +51,7 @@ const components = {
   td: ({ children }: { children: React.ReactNode }) => (
     <td className="px-4 py-2 border border-border text-secondary">{children}</td>
   ),
+  AmazonLink,
 };
 
 interface MdxContentProps {
