@@ -41,7 +41,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   verification: {
-    google: "Q0p5Z0BTX5FkfFHEoEzmtwRmfaZ2WoGHF0Bv7FmF538",
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
+      "Q0p5Z0BTX5FkfFHEoEzmtwRmfaZ2WoGHF0Bv7FmF538",
   },
 };
 
