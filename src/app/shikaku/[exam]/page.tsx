@@ -57,7 +57,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "安全管理・品質管理・工程管理の記述",
       "建設副産物・環境対策",
     ],
-    studyHours: "400〜500時間程度が一般的な目安（1日1〜2時間で半年〜1年）",
+    studyHours: "初受験は300〜400時間程度、関連資格あり100〜150時間（いずれも一般的な目安）",
     relatedSlugs: [
       { slug: "doboku-1kyu-benkyoho", label: "1級土木施工管理技士 独学勉強法【完全ロードマップ】" },
       { slug: "doboku-1kyu-hinshutu", label: "1級土木 頻出問題・分野別対策" },
@@ -87,7 +87,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "土工・コンクリート工の専門記述",
       "安全管理・品質管理の記述",
     ],
-    studyHours: "200〜300時間程度が一般的な目安（1日1時間で半年ほど）",
+    studyHours: "150〜230時間程度が一般的な目安（1日1時間で4〜6ヶ月）",
     relatedSlugs: [
       { slug: "doboku-2kyu-benkyoho", label: "2級土木施工管理技士 独学勉強法" },
       { slug: "doboku-goukakuritsu", label: "土木施工管理技士の合格率と難易度" },
@@ -116,7 +116,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "安全管理・工程管理の記述",
       "樹木・樹種の同定問題",
     ],
-    studyHours: "300〜400時間程度が一般的な目安（植物名の暗記に時間がかかる）",
+    studyHours: "初受験は250〜350時間程度、2級造園取得済み100〜150時間（一般的な目安）",
     relatedSlugs: [
       { slug: "zouen-1kyu-benkyoho", label: "1級造園施工管理技士 独学勉強法" },
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
@@ -144,7 +144,7 @@ const EXAM_META: Record<string, ExamMeta> = {
       "植栽・移植の施工記述",
       "樹木の同定",
     ],
-    studyHours: "150〜250時間程度が一般的な目安（1日1時間で4〜6ヶ月）",
+    studyHours: "150〜230時間程度が一般的な目安（1日1時間で4〜6ヶ月）",
     relatedSlugs: [
       { slug: "zouen-2kyu-benkyoho", label: "2級造園施工管理技士 独学勉強法" },
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
