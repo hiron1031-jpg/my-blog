@@ -61,7 +61,7 @@ const components = {
     <img
       src={src}
       alt={alt ?? ""}
-      className="block mx-auto my-6 max-w-full md:max-w-2xl w-auto h-auto rounded-xl border border-border shadow-sm"
+      className="block mx-auto my-6 max-w-full md:max-w-lg w-auto h-auto rounded-xl border border-border shadow-sm"
       loading="lazy"
     />
   ),

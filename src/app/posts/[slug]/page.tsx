@@ -222,7 +222,7 @@ export default async function PostPage({ params }: PageProps) {
                 {recentPosts.map((rp) => (
                   <li key={rp.slug}>
                     <Link href={`/posts/${rp.slug}`} className="flex gap-2.5 group">
-                      <div className="w-14 h-10 rounded-lg overflow-hidden shrink-0 bg-surface border border-border">
+                      <div className="w-20 aspect-video rounded-lg overflow-hidden shrink-0 bg-surface border border-border">
                         {rp.frontmatter.thumbnail && rp.frontmatter.thumbnail.length > 0 ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img

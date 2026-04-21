@@ -101,7 +101,7 @@ export default function Sidebar() {
                 href={`/posts/${post.slug}`}
                 className="flex gap-3 group"
               >
-                <div className="w-16 h-12 rounded-lg overflow-hidden shrink-0 bg-surface border border-border">
+                <div className="w-20 aspect-video rounded-lg overflow-hidden shrink-0 bg-surface border border-border">
                   {post.frontmatter.thumbnail && post.frontmatter.thumbnail.length > 0 ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
