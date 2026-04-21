@@ -56,6 +56,15 @@ const components = {
       </a>
     );
   },
+  img: ({ src, alt }: { src?: string; alt?: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt ?? ""}
+      className="block mx-auto my-6 max-w-full md:max-w-2xl w-auto h-auto rounded-xl border border-border shadow-sm"
+      loading="lazy"
+    />
+  ),
   table: ({ children }: { children: React.ReactNode }) => (
     <div className="overflow-x-auto my-6">
       <table className="w-full border-collapse text-sm">{children}</table>
