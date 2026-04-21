@@ -5,6 +5,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import type { JSX } from "react";
 import AmazonLink from "./AmazonLink";
+import CalloutBox from "./CalloutBox";
 
 const components = {
   h2: ({ children, id }: { children: React.ReactNode; id?: string }) => (
@@ -18,7 +19,7 @@ const components = {
   h3: ({ children, id }: { children: React.ReactNode; id?: string }) => (
     <h3
       id={id}
-      className="text-xl font-bold text-heading mt-8 mb-3 border-l-4 border-accent pl-3"
+      className="text-xl font-bold text-primary-dark mt-8 mb-3 border-l-4 border-accent pl-3"
     >
       {children}
     </h3>
@@ -28,16 +29,33 @@ const components = {
       {children}
     </blockquote>
   ),
-  a: ({ href, children }: { href?: string; children: React.ReactNode }) => (
-    <a
-      href={href}
-      className="text-primary underline underline-offset-2 hover:text-primary-dark"
-      target={href?.startsWith("http") ? "_blank" : undefined}
-      rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
-    >
-      {children}
-    </a>
-  ),
+  a: ({
+    href,
+    children,
+    className,
+    ...rest
+  }: {
+    href?: string;
+    children: React.ReactNode;
+    className?: string;
+  }) => {
+    const isHeadingAnchor = className?.includes("heading-anchor");
+    return (
+      <a
+        href={href}
+        className={
+          isHeadingAnchor
+            ? "ml-2 text-secondary/40 no-underline hover:text-primary text-sm font-normal"
+            : "text-blue-600 underline underline-offset-2 hover:text-blue-800"
+        }
+        target={href?.startsWith("http") ? "_blank" : undefined}
+        rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  },
   table: ({ children }: { children: React.ReactNode }) => (
     <div className="overflow-x-auto my-6">
       <table className="w-full border-collapse text-sm">{children}</table>
@@ -52,6 +70,7 @@ const components = {
     <td className="px-4 py-2 border border-border text-secondary">{children}</td>
   ),
   AmazonLink,
+  CalloutBox,
 };
 
 interface MdxContentProps {
@@ -69,7 +88,20 @@ export default function MdxContent({ content }: MdxContentProps) {
             remarkPlugins: [remarkGfm],
             rehypePlugins: [
               rehypeSlug,
-              [rehypeAutolinkHeadings, { behavior: "wrap" }],
+              [
+                rehypeAutolinkHeadings,
+                {
+                  behavior: "append",
+                  properties: {
+                    className: ["heading-anchor"],
+                    ariaLabel: "このセクションへのリンク",
+                  },
+                  content: {
+                    type: "text",
+                    value: " #",
+                  },
+                },
+              ],
               [rehypePrettyCode, { theme: "github-light" }],
             ],
           },
