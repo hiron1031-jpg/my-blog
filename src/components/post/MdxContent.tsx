@@ -6,6 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import type { JSX } from "react";
 import AmazonLink from "./AmazonLink";
 import CalloutBox from "./CalloutBox";
+import SchoolCard from "./SchoolCard";
 
 const components = {
   h2: ({ children, id }: { children: React.ReactNode; id?: string }) => (
@@ -80,6 +81,7 @@ const components = {
   ),
   AmazonLink,
   CalloutBox,
+  SchoolCard,
 };
 
 interface MdxContentProps {

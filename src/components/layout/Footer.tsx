@@ -25,6 +25,7 @@ const footerNav = [
       { label: "このサイトについて", href: "/about" },
       { label: "お問い合わせ", href: "/contact" },
       { label: "プライバシーポリシー", href: "/privacy" },
+      { label: "広告表記", href: "/disclosure" },
     ],
   },
 ];
@@ -88,7 +89,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/40">
+        {/* Ad disclosure (景品表示法・ステマ規制対応) */}
+        <div className="pt-6 border-t border-white/15 text-xs text-white/50 leading-relaxed mb-3">
+          本サイトはアフィリエイトプログラムに参加しており、
+          紹介した商品・サービスが成約した場合に報酬を得ることがあります。
+          詳しくは <Link href="/disclosure" className="underline hover:text-white">広告表記</Link> をご確認ください。
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/40">
           <span>© {currentYear} 土木のトリセツ. All rights reserved.</span>
           <span>1級土木・造園施工管理技士 資格取得サポートブログ</span>
         </div>
