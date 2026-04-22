@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
-import type { JSX } from "react";
+import type { MDXComponents } from "mdx/types";
 import AmazonLink from "./AmazonLink";
 import CalloutBox from "./CalloutBox";
 import SchoolCard from "./SchoolCard";
@@ -93,7 +93,7 @@ export default function MdxContent({ content }: MdxContentProps) {
     <div className="prose prose-lg max-w-none">
       <MDXRemote
         source={content}
-        components={components as Record<string, (props: JSX.IntrinsicElements[keyof JSX.IntrinsicElements]) => JSX.Element>}
+        components={components as MDXComponents}
         options={{
           mdxOptions: {
             remarkPlugins: [remarkGfm],
