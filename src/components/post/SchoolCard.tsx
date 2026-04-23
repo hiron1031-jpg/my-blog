@@ -1,3 +1,11 @@
+"use client";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 interface SchoolCardProps {
   /** スクール・講座名 */
   name: string;
@@ -103,6 +111,18 @@ export default function SchoolCard({
           href={url}
           target="_blank"
           rel="noopener noreferrer sponsored"
+          onClick={() => {
+            if (typeof window !== "undefined" && typeof window.gtag === "function") {
+              window.gtag("event", "affiliate_click", {
+                event_category: "affiliate",
+                event_label: name,
+                school_name: name,
+                link_url: url,
+                page_path:
+                  typeof location !== "undefined" ? location.pathname : "",
+              });
+            }
+          }}
           className="inline-block bg-primary text-white font-semibold px-6 py-2.5 rounded-md hover:bg-primary-dark transition-colors no-underline mt-2"
         >
           {ctaText}
