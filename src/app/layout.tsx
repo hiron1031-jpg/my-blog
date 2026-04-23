@@ -16,7 +16,8 @@ const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
 const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
   "1級土木・造園施工管理技士が教える、資格取得のリアルな勉強法と合格戦略。";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -54,9 +55,48 @@ export default function RootLayout({
 }>) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
+  // JSON-LD 構造化データ（Googleがサイト名を正しく認識するため）
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    alternateName: "Doboku no Torisetsu",
+    url: siteUrl,
+    description: siteDescription,
+    inLanguage: "ja-JP",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteName,
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+  };
+
   return (
     <html lang="ja" className={notoSansJP.variable}>
       <body className="min-h-screen flex flex-col">
+        <Script
+          id="website-jsonld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <Script
+          id="organization-jsonld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {gaId && (
           <>
             <Script
