@@ -22,3 +22,19 @@ export function buildAmazonUrl(asin: string): string {
   const base = `https://www.amazon.co.jp/dp/${asin}`;
   return AMAZON_ASSOCIATE_TAG ? `${base}?tag=${AMAZON_ASSOCIATE_TAG}` : base;
 }
+
+/**
+ * 楽天ブックス検索URLを生成（ISBN優先、フォールバックでタイトル検索）
+ * ※ もしもアフィリエイト承認後は、もしも経由のリンクに差し替え予定
+ */
+export function buildRakutenUrl(query: string): string {
+  return `https://books.rakuten.co.jp/search?sitem=${encodeURIComponent(query)}`;
+}
+
+/**
+ * Yahoo!ショッピング検索URLを生成
+ * ※ もしもアフィリエイト承認後は、もしも経由のリンクに差し替え予定
+ */
+export function buildYahooUrl(query: string): string {
+  return `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(query)}`;
+}

@@ -7,6 +7,7 @@ import type { MDXComponents } from "mdx/types";
 import AmazonLink from "./AmazonLink";
 import CalloutBox from "./CalloutBox";
 import SchoolCard from "./SchoolCard";
+import MultiStoreLink from "./MultiStoreLink";
 
 const components = {
   h2: ({ children, id }: { children: React.ReactNode; id?: string }) => (
@@ -82,6 +83,7 @@ const components = {
   AmazonLink,
   CalloutBox,
   SchoolCard,
+  MultiStoreLink,
 };
 
 interface MdxContentProps {
