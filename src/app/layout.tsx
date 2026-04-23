@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   description: siteDescription,
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
     apple: "/apple-icon.png",
   },
@@ -79,7 +79,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: siteName,
     url: siteUrl,
-    logo: `${siteUrl}/favicon.svg`,
+    logo: `${siteUrl}/icon.png`,
   };
 
   return (
