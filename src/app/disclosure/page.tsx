@@ -26,8 +26,16 @@ export default function DisclosurePage() {
           </p>
           <ul className="text-sm leading-relaxed mt-3 list-disc pl-5 space-y-1">
             <li>Amazon.co.jp アソシエイト・プログラム</li>
+            <li>もしもアフィリエイト（株式会社もしも）</li>
             <li>A8.net（株式会社ファンコミュニケーションズ）</li>
           </ul>
+          <p className="text-sm leading-relaxed mt-3 p-3 bg-surface border-l-4 border-accent rounded">
+            <strong>
+              Amazonのアソシエイトとして、土木のトリセツは適格販売により収入を得ています。
+            </strong>
+            <br />
+            また当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています。
+          </p>
           <p className="text-sm leading-relaxed mt-3">
             読者が当サイトのリンクを経由して商品・サービスを購入または申込した場合、当サイトに成果報酬が支払われることがあります。
           </p>

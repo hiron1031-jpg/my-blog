@@ -89,11 +89,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Ad disclosure (景品表示法・ステマ規制対応) */}
-        <div className="pt-6 border-t border-white/15 text-xs text-white/50 leading-relaxed mb-3">
-          本サイトはアフィリエイトプログラムに参加しており、
-          紹介した商品・サービスが成約した場合に報酬を得ることがあります。
-          詳しくは <Link href="/disclosure" className="underline hover:text-white">広告表記</Link> をご確認ください。
+        {/* Ad disclosure (景品表示法・ステマ規制対応 / Amazonアソシエイト明記) */}
+        <div className="pt-6 border-t border-white/15 text-xs text-white/50 leading-relaxed mb-3 space-y-1">
+          <p>
+            Amazonのアソシエイトとして、土木のトリセツは適格販売により収入を得ています。
+            当サイトはアフィリエイト広告（Amazonアソシエイト・もしもアフィリエイト・A8.net）を掲載しています。
+          </p>
+          <p>
+            紹介した商品・サービスが成約した場合に報酬を得ることがあります。
+            詳しくは <Link href="/disclosure" className="underline hover:text-white">広告表記</Link> をご確認ください。
+          </p>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/40">
