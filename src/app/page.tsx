@@ -3,7 +3,10 @@ import { getAllPosts, getAllCategories } from "@/lib/mdx";
 import PostGrid from "@/components/home/PostGrid";
 import CategoryBanner from "@/components/home/CategoryBanner";
 import HeroCarousel from "@/components/home/HeroCarousel";
-import QuickAccess from "@/components/home/QuickAccess";
+import HomeHero from "@/components/home/HomeHero";
+import ExamSelector from "@/components/home/ExamSelector";
+import FreeTools from "@/components/home/FreeTools";
+import LearningSteps from "@/components/home/LearningSteps";
 import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 
@@ -75,26 +78,39 @@ export default function HomePage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
+    <div className="max-w-6xl mx-auto px-4 py-8 space-y-12">
       <JsonLd schema={jsonLd} />
 
-      {/* Hero Carousel */}
+      {/* 1. Welcome Hero */}
+      <HomeHero />
+
+      {/* 2. Exam Selector (4 qualification buttons) */}
+      <ExamSelector />
+
+      {/* 3. Free Tools (2 big buttons) */}
+      <FreeTools />
+
+      {/* 4. Featured posts carousel */}
       {featuredPosts.length > 0 && (
         <section>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-1 h-6 bg-accent rounded-full inline-block" />
+            <h2 className="text-xl font-bold text-heading">注目の記事</h2>
+          </div>
           <HeroCarousel posts={featuredPosts} />
         </section>
       )}
 
-      {/* Quick Access */}
-      <QuickAccess />
+      {/* 5. Learning step guide (affiliate funnel) */}
+      <LearningSteps />
 
-      {/* Category Links */}
+      {/* 6. Categories */}
       {categories.length > 0 && (
         <section>
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-heading flex items-center gap-2">
               <span className="w-1 h-6 bg-accent rounded-full inline-block" />
-              カテゴリ
+              カテゴリから探す
             </h2>
             <Link href="/categories" className="text-sm text-primary hover:underline">
               すべて見る →
