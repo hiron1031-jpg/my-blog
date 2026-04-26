@@ -51,9 +51,15 @@ body {
   @apply overflow-x-auto p-4 text-sm;
 }
 
-/* Smooth scroll for TOC */
+/* Smooth scroll for TOC + sticky header offset */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Headings inside articles get scroll-margin so anchor jumps don't hide under sticky header */
+.prose :is(h2, h3, h4) {
+  scroll-margin-top: 80px;
 }
 
 /* Mobile hamburger animation */

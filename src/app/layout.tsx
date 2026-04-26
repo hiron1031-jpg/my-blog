@@ -84,19 +84,25 @@ export default function RootLayout({
 
   return (
     <html lang="ja" className={notoSansJP.variable}>
-      <body className="min-h-screen flex flex-col">
-        <Script
-          id="website-jsonld"
+      <head>
+        {/* DNSプリコネクトでアフィリエイト・分析リクエストを高速化 */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.amazon.co.jp" />
+        <link rel="dns-prefetch" href="https://hb.afl.rakuten.co.jp" />
+        {gaId && (
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+        )}
+        {/* JSON-LDはinline scriptで配信（Next Scriptのオーバーヘッドを回避） */}
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        <Script
-          id="organization-jsonld"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+      </head>
+      <body className="min-h-screen flex flex-col">
         {gaId && (
           <>
             <Script
