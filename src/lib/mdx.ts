@@ -64,11 +64,33 @@ export function getPostBySlug(slug: string): PostWithContent | null {
 }
 
 export function getRelatedPosts(currentSlug: string, category: string, limit = 3): Post[] {
-  return getAllPosts()
-    .filter(
-      (p) => p.slug !== currentSlug && p.frontmatter.category === category
-    )
-    .slice(0, limit);
+  const allPosts = getAllPosts();
+  const current = allPosts.find((p) => p.slug === currentSlug);
+  const currentTags: string[] = current?.frontmatter.tags ?? [];
+  const all = allPosts.filter((p) => p.slug !== currentSlug);
+
+  // スコアリング：タグ一致数×3 + カテゴリ一致×2 + 新しさ補正
+  const scored = all.map((p) => {
+    const tagOverlap = p.frontmatter.tags.filter((t) => currentTags.includes(t)).length;
+    const categoryMatch = p.frontmatter.category === category ? 1 : 0;
+    const score = tagOverlap * 3 + categoryMatch * 2;
+    return { post: p, score };
+  });
+
+  // スコア順 → 同点は新しい順
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return (
+      new Date(b.post.frontmatter.date).getTime() -
+      new Date(a.post.frontmatter.date).getTime()
+    );
+  });
+
+  // スコア0は除外（タグ・カテゴリどちらも一致しないものは関連なし）
+  // ただし結果が空なら最新記事でフォールバック
+  const filtered = scored.filter((s) => s.score > 0).map((s) => s.post);
+  const result = filtered.length > 0 ? filtered : all;
+  return result.slice(0, limit);
 }
 
 export function getAllCategories(): { name: string; count: number }[] {

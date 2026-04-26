@@ -63,7 +63,7 @@ export default async function PostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const headings = extractHeadings(post.content);
-  const related = getRelatedPosts(slug, post.frontmatter.category);
+  const related = getRelatedPosts(slug, post.frontmatter.category, 6);
   const recentPosts = getAllPosts().filter((p) => p.slug !== slug).slice(0, 4);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
