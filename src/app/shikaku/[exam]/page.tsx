@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import MultiStoreLink from "@/components/post/MultiStoreLink";
 import { CATEGORIES, getCategory } from "@/lib/pastproblems-data";
 
 // ---- Static params ----
@@ -22,6 +23,9 @@ export function generateStaticParams() {
 type PageProps = { params: Promise<{ exam: string }> };
 
 // ---- Exam meta (概要・難易度・合格率) ----
+type RoadmapStep = { label: string; desc: string; href: string };
+type BookItem = { asin: string; title: string; subtitle: string; comment: string };
+
 type ExamMeta = {
   tagline: string;
   overview: string;
@@ -33,6 +37,10 @@ type ExamMeta = {
   scopeSecond: string[];   // 第二次検定出題範囲
   studyHours: string;
   relatedSlugs: { slug: string; label: string }[];
+  roadmap: [RoadmapStep, RoadmapStep, RoadmapStep, RoadmapStep];
+  books: BookItem[];
+  schoolSlug: string; // /posts/school-hikaku-doboku or zouen
+  schoolNote: string;
 };
 
 const EXAM_META: Record<string, ExamMeta> = {
@@ -66,6 +74,28 @@ const EXAM_META: Record<string, ExamMeta> = {
       { slug: "doboku-keiken-kijutsu", label: "経験記述の書き方とコツ" },
       { slug: "goukaku-career", label: "施工管理技士取得後のキャリア戦略" },
     ],
+    roadmap: [
+      { label: "勉強法を知る", desc: "完全ロードマップを把握", href: "/posts/doboku-1kyu-benkyoho" },
+      { label: "参考書を選ぶ", desc: "独学合格者の使用本を確認", href: "#books" },
+      { label: "過去問を解く", desc: "10年分3周＋無料Webクイズ", href: "/quiz" },
+      { label: "経験記述/スクール", desc: "添削で第二次検定対策", href: "/posts/keiken-kijutsu-kakikata" },
+    ],
+    books: [
+      {
+        asin: "4816378243",
+        title: "2026年版 1級土木施工 第1次検定 徹底図解テキスト＆問題集",
+        subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
+        comment: "筆者がメインで使用した1冊。図解豊富で独学者の最短ルート。",
+      },
+      {
+        asin: "4816378561",
+        title: "2026年版 1級土木 第2次検定 徹底解説テキスト・問題集",
+        subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
+        comment: "第二次検定対策の決定版。ナツメ社シリーズで揃えて完結。",
+      },
+    ],
+    schoolSlug: "school-hikaku-doboku",
+    schoolNote: "経験記述の添削や映像講義で安心したい方はスクールも検討を。土木は対応スクールが豊富です。",
   },
   "2doboku": {
     tagline: "土木工事の主任技術者として、中小規模の現場を任せてもらえる登竜門資格",
@@ -94,6 +124,22 @@ const EXAM_META: Record<string, ExamMeta> = {
       { slug: "doboku-sankosho", label: "土木施工管理技士 おすすめ参考書" },
       { slug: "doboku-keiken-kijutsu", label: "経験記述の書き方とコツ" },
     ],
+    roadmap: [
+      { label: "勉強法を知る", desc: "2級独学合格の手順を把握", href: "/posts/doboku-2kyu-benkyoho" },
+      { label: "参考書を選ぶ", desc: "1冊で1次・2次に対応", href: "#books" },
+      { label: "過去問を解く", desc: "無料Webクイズで反復演習", href: "/quiz" },
+      { label: "経験記述対策", desc: "第二次検定の記述パターン習得", href: "/posts/keiken-kijutsu-kakikata" },
+    ],
+    books: [
+      {
+        asin: "4816378383",
+        title: "2026年版 2級土木施工 第1次・第2次検定 徹底図解テキスト",
+        subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
+        comment: "筆者が2級合格時に使用。第一次・第二次が1冊で完結する独学の決定版。",
+      },
+    ],
+    schoolSlug: "school-hikaku-doboku",
+    schoolNote: "2級は独学で十分合格可能ですが、経験記述の添削だけ受けたい方にはスクール活用も有効です。",
   },
   "1zou": {
     tagline: "造園工事業の監理技術者として、公園・緑化・庭園工事を統括できる国家資格",
@@ -123,6 +169,28 @@ const EXAM_META: Record<string, ExamMeta> = {
       { slug: "zouen-sankosho", label: "造園施工管理技士 おすすめ参考書" },
       { slug: "zouen-keiken-kijutsu", label: "造園の経験記述の書き方" },
     ],
+    roadmap: [
+      { label: "勉強法を知る", desc: "1級造園の合格ロードマップ", href: "/posts/zouen-1kyu-benkyoho" },
+      { label: "参考書を選ぶ", desc: "造園特化の現行テキストを比較", href: "#books" },
+      { label: "過去問を解く", desc: "造園過去問を無料Webクイズで", href: "/quiz" },
+      { label: "経験記述対策", desc: "造園特有の植栽・剪定の記述例", href: "/posts/zouen-keiken-kijutsu" },
+    ],
+    books: [
+      {
+        asin: "4911687002",
+        title: "2026年版 1級造園施工管理技士 第一次検定 過去問題解説集",
+        subtitle: "CIC出版",
+        comment: "建設系資格講習で実績のあるCICの解説集。第一次検定の定番。",
+      },
+      {
+        asin: "4910920870",
+        title: "2026年版 1級造園施工管理技士 第二次検定 記述対策集",
+        subtitle: "CIC出版",
+        comment: "経験記述・記述式問題に特化。第二次検定対策の決定版。",
+      },
+    ],
+    schoolSlug: "school-hikaku-zouen",
+    schoolNote: "造園は対応スクールが少なく、独学＋経験記述の添削サービスが現実的な選択肢です。",
   },
   "2zou": {
     tagline: "造園工事業の主任技術者として現場を任される、造園キャリアの第一歩",
@@ -150,6 +218,22 @@ const EXAM_META: Record<string, ExamMeta> = {
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
       { slug: "zouen-sankosho", label: "造園施工管理技士 おすすめ参考書" },
     ],
+    roadmap: [
+      { label: "勉強法を知る", desc: "2級造園 独学合格ガイド", href: "/posts/zouen-2kyu-benkyoho" },
+      { label: "参考書を選ぶ", desc: "1冊で1次・2次に対応", href: "#books" },
+      { label: "過去問を解く", desc: "造園過去問を無料Webクイズで", href: "/quiz" },
+      { label: "経験記述対策", desc: "造園特有の記述例を確認", href: "/posts/zouen-keiken-kijutsu" },
+    ],
+    books: [
+      {
+        asin: "4274234649",
+        title: "改訂2版 ミヤケン先生の合格講義！2級造園施工管理技士 第一次・第二次検定",
+        subtitle: "オーム社 / 宮入 賢一郎",
+        comment: "2級造園の独学者は本書1冊で第一次・第二次が完結。初学者にも分かりやすい講義形式。",
+      },
+    ],
+    schoolSlug: "school-hikaku-zouen",
+    schoolNote: "造園は対応スクールが少なく、独学＋経験記述の添削サービスが現実的な選択肢です。",
   },
 };
 
@@ -265,6 +349,34 @@ export default async function ShikakuHubPage({ params }: PageProps) {
           <p className="text-gray-700 leading-relaxed">{meta.overview}</p>
         </section>
 
+        {/* A. 合格までの4ステップ（ロードマップ） */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold text-secondary mb-4 flex items-center gap-2">
+            <FiTarget /> 合格までの4ステップ
+          </h2>
+          <p className="text-sm text-gray-600 mb-5">
+            このページは{cat.name}受験者の総合ハブです。下記4ステップを順に進めれば独学合格まで一直線です。
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {meta.roadmap.map((step, idx) => (
+              <Link
+                key={idx}
+                href={step.href}
+                className="block bg-white border border-border rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all"
+              >
+                <div
+                  className="text-[10px] font-bold tracking-widest mb-1"
+                  style={{ color: cat.hex }}
+                >
+                  STEP {idx + 1}
+                </div>
+                <div className="font-bold text-secondary text-sm mb-1">{step.label}</div>
+                <div className="text-xs text-gray-500 leading-relaxed">{step.desc}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* 難易度・合格率 */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-secondary mb-4 flex items-center gap-2">
@@ -329,6 +441,61 @@ export default async function ShikakuHubPage({ params }: PageProps) {
                 ))}
               </ul>
             </div>
+          </div>
+        </section>
+
+        {/* B. おすすめ参考書 */}
+        <section id="books" className="mb-10 scroll-mt-20">
+          <h2 className="text-2xl font-bold text-secondary mb-4 flex items-center gap-2">
+            <FiBookOpen /> おすすめ参考書
+          </h2>
+          <p className="text-sm text-gray-600 mb-5">
+            筆者が独学合格時に使用した、または現行版でおすすめできる参考書です。Amazon・楽天・Yahoo!から選んで購入できます。
+          </p>
+          <div className="space-y-4">
+            {meta.books.map((b) => (
+              <MultiStoreLink
+                key={b.asin}
+                asin={b.asin}
+                title={b.title}
+                subtitle={b.subtitle}
+                comment={b.comment}
+              />
+            ))}
+          </div>
+          <div className="mt-4 text-sm">
+            <Link
+              href={
+                exam.endsWith("doboku")
+                  ? "/posts/doboku-sankosho"
+                  : "/posts/zouen-sankosho"
+              }
+              className="text-primary underline"
+            >
+              {cat.name}の参考書をさらに比較する →
+            </Link>
+          </div>
+        </section>
+
+        {/* C. スクール・添削CTA */}
+        <section className="mb-10">
+          <div
+            className="rounded-2xl p-6 border-2"
+            style={{ borderColor: `${cat.hex}33`, background: `${cat.hex}0a` }}
+          >
+            <h3 className="text-lg font-bold text-secondary mb-2 flex items-center gap-2">
+              🎓 スクール・経験記述添削も検討
+            </h3>
+            <p className="text-sm text-gray-700 leading-relaxed mb-4">
+              {meta.schoolNote}
+            </p>
+            <Link
+              href={`/posts/${meta.schoolSlug}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-bold shadow hover:shadow-md transition"
+              style={{ background: cat.hex }}
+            >
+              {cat.shortName} スクール比較を見る →
+            </Link>
           </div>
         </section>
 
@@ -400,6 +567,44 @@ export default async function ShikakuHubPage({ params }: PageProps) {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* D. 次にやること CTA帯 */}
+        <section className="mb-10">
+          <div className="rounded-2xl bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border border-primary/20 p-6">
+            <h3 className="text-lg font-bold text-secondary mb-1">
+              👇 今すぐ始められる3つのアクション
+            </h3>
+            <p className="text-xs text-gray-600 mb-5">
+              情報収集だけで終わらせず、まず1つでも今日から始めましょう。
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <Link
+                href={meta.roadmap[0].href}
+                className="bg-white border border-border rounded-xl p-4 hover:shadow-md transition text-center"
+              >
+                <div className="text-2xl mb-1">📖</div>
+                <div className="font-bold text-sm text-secondary">勉強法を読む</div>
+                <div className="text-xs text-gray-500 mt-1">完全ロードマップ</div>
+              </Link>
+              <Link
+                href="#books"
+                className="bg-white border border-border rounded-xl p-4 hover:shadow-md transition text-center"
+              >
+                <div className="text-2xl mb-1">📚</div>
+                <div className="font-bold text-sm text-secondary">参考書を選ぶ</div>
+                <div className="text-xs text-gray-500 mt-1">独学者の使用本</div>
+              </Link>
+              <Link
+                href="/quiz"
+                className="bg-white border border-border rounded-xl p-4 hover:shadow-md transition text-center"
+              >
+                <div className="text-2xl mb-1">🎯</div>
+                <div className="font-bold text-sm text-secondary">過去問を1問解く</div>
+                <div className="text-xs text-gray-500 mt-1">無料Webクイズ</div>
+              </Link>
+            </div>
+          </div>
         </section>
 
         {/* 他資格 */}
