@@ -1,4 +1,4 @@
-import { buildAmazonUrl, AMAZON_ASSOCIATE_TAG } from "@/lib/affiliate";
+import { buildAmazonUrl } from "@/lib/affiliate";
 
 interface AmazonLinkProps {
   /** Amazon商品のASIN（例: "4816376895"）。URLの /dp/XXXXXXXXXX の部分 */
@@ -46,11 +46,9 @@ export default function AmazonLink({
       >
         Amazonで見る →
       </a>
-      {AMAZON_ASSOCIATE_TAG && (
-        <div className="text-xs text-secondary mt-3">
-          ※ 本リンクはアフィリエイトリンクを含みます。
-        </div>
-      )}
+      <div className="text-xs text-secondary mt-3">
+        ※ 本リンクはアフィリエイトリンク（もしもアフィリエイト経由）を含みます。
+      </div>
     </div>
   );
 }
