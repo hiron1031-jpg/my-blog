@@ -1,15 +1,36 @@
 /**
- * もしもアフィリエイト（Amazon.co.jp商品購入プロモ）設定
+ * もしもアフィリエイト設定
  *
- * 各IDは「もしも管理画面 → Amazon.co.jp商品購入 → 広告リンクへ → どこでもリンク」
+ * 各IDは「もしも管理画面 → 該当プロモ → 広告リンクへ → どこでもリンク」
  * で生成されたソースHTMLから取得した値（URLパラメータの a_id / p_id / pc_id / pl_id）。
  *
  * これらのIDは公開情報（ブラウザのリンクに載る）なのでソースコードに直接書いてOK。
+ * 提携プロモごとに a_id まで含めて異なるので、まるごと定数で持つ。
  */
-const MOSHIMO_A_ID = "5508829";
-const MOSHIMO_P_ID = "170";
-const MOSHIMO_PC_ID = "185";
-const MOSHIMO_PL_ID = "4062";
+
+// Amazon.co.jp 商品購入
+const AMAZON_MOSHIMO = {
+  a_id: "5508829",
+  p_id: "170",
+  pc_id: "185",
+  pl_id: "4062",
+};
+
+// 楽天ブックス 商品購入
+const RAKUTEN_MOSHIMO = {
+  a_id: "5513089",
+  p_id: "56",
+  pc_id: "56",
+  pl_id: "637",
+};
+
+// Yahoo!ショッピング 商品購入
+const YAHOO_MOSHIMO = {
+  a_id: "5508831",
+  p_id: "1225",
+  pc_id: "1925",
+  pl_id: "18502",
+};
 
 /**
  * 互換用：旧 AmazonアソシエイトID（未使用）。
@@ -17,38 +38,49 @@ const MOSHIMO_PL_ID = "4062";
  */
 export const AMAZON_ASSOCIATE_TAG = "";
 
-/**
- * ASIN（Amazon商品ID）から「もしも経由のAmazonアフィリエイトURL」を生成する。
- * すべての <AmazonLink asin="..." /> / <MultiStoreLink asin="..." /> がこの関数を経由するため、
- * ここを差し替えるだけで全記事のリンクが自動的にもしも経由になる。
- *
- * @param asin 例: "4816378243"
- * @returns 例: "https://af.moshimo.com/af/c/click?a_id=...&url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4816378243"
- */
-export function buildAmazonUrl(asin: string): string {
-  const targetUrl = `https://www.amazon.co.jp/dp/${asin}`;
+/** もしも「どこでもリンク」形式のクリックURLを組み立てる共通関数 */
+function buildMoshimoClickUrl(
+  ids: { a_id: string; p_id: string; pc_id: string; pl_id: string },
+  targetUrl: string,
+): string {
   const params = new URLSearchParams({
-    a_id: MOSHIMO_A_ID,
-    p_id: MOSHIMO_P_ID,
-    pc_id: MOSHIMO_PC_ID,
-    pl_id: MOSHIMO_PL_ID,
+    a_id: ids.a_id,
+    p_id: ids.p_id,
+    pc_id: ids.pc_id,
+    pl_id: ids.pl_id,
     url: targetUrl,
   });
   return `https://af.moshimo.com/af/c/click?${params.toString()}`;
 }
 
 /**
- * 楽天ブックス検索URLを生成（ISBN優先、フォールバックでタイトル検索）
- * ※ もしもの楽天プロモが提携承認されたら、buildAmazonUrl と同様にもしも経由に切替可能。
+ * ASIN（Amazon商品ID）から「もしも経由のAmazonアフィリエイトURL」を生成する。
+ * すべての <AmazonLink asin="..." /> / <MultiStoreLink asin="..." /> がこの関数を経由するため、
+ * ここを差し替えるだけで全記事のリンクが自動的にもしも経由になる。
+ *
+ * @param asin 例: "4816378243"
  */
-export function buildRakutenUrl(query: string): string {
-  return `https://books.rakuten.co.jp/search?sitem=${encodeURIComponent(query)}`;
+export function buildAmazonUrl(asin: string): string {
+  return buildMoshimoClickUrl(
+    AMAZON_MOSHIMO,
+    `https://www.amazon.co.jp/dp/${asin}`,
+  );
 }
 
 /**
- * Yahoo!ショッピング検索URLを生成
- * ※ もしものYahoo!プロモが提携承認されたら、buildAmazonUrl と同様にもしも経由に切替可能。
+ * 楽天ブックス検索URLを「もしも経由」で生成する。
+ * 既存の検索ページ遷移はそのまま、もしも経由のクリック計測になる。
+ */
+export function buildRakutenUrl(query: string): string {
+  const target = `https://books.rakuten.co.jp/search?sitem=${encodeURIComponent(query)}`;
+  return buildMoshimoClickUrl(RAKUTEN_MOSHIMO, target);
+}
+
+/**
+ * Yahoo!ショッピング検索URLを「もしも経由」で生成する。
+ * 既存の検索ページ遷移はそのまま、もしも経由のクリック計測になる。
  */
 export function buildYahooUrl(query: string): string {
-  return `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(query)}`;
+  const target = `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(query)}`;
+  return buildMoshimoClickUrl(YAHOO_MOSHIMO, target);
 }

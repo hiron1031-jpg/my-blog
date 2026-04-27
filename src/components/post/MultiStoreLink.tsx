@@ -104,7 +104,7 @@ export default function MultiStoreLink({
         </a>
       </div>
       <div className="text-xs text-secondary/70 mt-3">
-        ※ 本リンクはアフィリエイトリンク（Amazonはもしもアフィリエイト経由）を含みます。楽天/Yahoo!は検索結果ページへ遷移します。価格・在庫は各ストアでご確認ください。
+        ※ 本リンクはアフィリエイトリンク（もしもアフィリエイト経由）を含みます。楽天/Yahoo!は検索結果ページへ遷移します。価格・在庫は各ストアでご確認ください。
       </div>
     </div>
   );
