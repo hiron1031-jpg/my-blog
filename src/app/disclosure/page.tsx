@@ -4,7 +4,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "広告表記",
   description:
-    "当サイトで掲載しているアフィリエイト広告・PR記事に関する表記方針をご案内します。",
+    "「土木のトリセツ」が参加しているアフィリエイトプログラム（Amazonアソシエイト・もしもアフィリエイト・A8.net）と、景品表示法（ステマ規制）に基づく広告リンクの明示方針について案内しています。",
+  alternates: { canonical: "/disclosure" },
+  openGraph: {
+    title: "広告表記 | 土木のトリセツ",
+    description:
+      "参加アフィリエイトプログラムと、ステマ規制に基づく広告リンクの明示方針について。",
+    url: "/disclosure",
+  },
 };
 
 export default function DisclosurePage() {

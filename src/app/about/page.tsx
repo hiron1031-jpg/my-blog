@@ -1,14 +1,79 @@
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import BeaverMascot from "@/components/layout/BeaverMascot";
+import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "このサイトについて",
+  description:
+    "「土木のトリセツ」運営者ビーバー監督のプロフィール。2級造園 → 1級造園 → 1級土木施工管理技士をすべて独学・1発合格した現役の土木職員が、忙しい社会人向けの最短合格ルートを発信しています。",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "このサイトについて | 土木のトリセツ",
+    description:
+      "施工管理技士3資格を独学・1発合格した現役職員「ビーバー監督」のプロフィールとサイトの目的。",
+    url: "/about",
+    images: [
+      {
+        url: "/api/og?title=" + encodeURIComponent("このサイトについて"),
+        width: 1200,
+        height: 630,
+        alt: "土木のトリセツについて",
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+
+  // 著者情報を Person + AboutPage で構造化（E-E-A-T 強化）
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "ホーム", item: siteUrl },
+          { "@type": "ListItem", position: 2, name: "このサイトについて", item: `${siteUrl}/about` },
+        ],
+      },
+      {
+        "@type": "AboutPage",
+        url: `${siteUrl}/about`,
+        name: "このサイトについて | 土木のトリセツ",
+        description:
+          "施工管理技士3資格を独学・1発合格した現役職員「ビーバー監督」のプロフィールとサイトの目的。",
+      },
+      {
+        "@type": "Person",
+        name: "ビーバー監督",
+        jobTitle: "現役 土木職員 / 1級土木施工管理技士・1級造園施工管理技士",
+        description:
+          "造園作業員として働きながら独学で2級造園 → 1級造園 → 1級土木施工管理技士をすべて1発合格。現在は公共工事の施工管理に従事しながら情報発信中。",
+        url: `${siteUrl}/about`,
+        knowsAbout: [
+          "土木施工管理技士",
+          "造園施工管理技士",
+          "施工管理",
+          "独学合格",
+          "経験記述",
+          "公共工事",
+        ],
+        hasCredential: [
+          { "@type": "EducationalOccupationalCredential", name: "1級土木施工管理技士" },
+          { "@type": "EducationalOccupationalCredential", name: "1級造園施工管理技士" },
+          { "@type": "EducationalOccupationalCredential", name: "2級造園施工管理技士" },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <JsonLd schema={jsonLd} />
       <Breadcrumb items={[{ label: "このサイトについて" }]} />
 
       <h1 className="text-2xl font-bold text-heading mb-8">このサイトについて</h1>

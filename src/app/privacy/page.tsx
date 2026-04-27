@@ -3,6 +3,17 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
+  description:
+    "「土木のトリセツ」のプライバシーポリシー。個人情報の取り扱い・Cookieの使用・Googleアナリティクス・Amazonアソシエイトプログラム等の情報収集と利用方針について明示しています。",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "プライバシーポリシー | 土木のトリセツ",
+    description:
+      "個人情報の取り扱い・Cookie・アクセス解析・アフィリエイトプログラムに関する方針を明示しています。",
+    url: "/privacy",
+  },
 };
 
 export default function PrivacyPage() {

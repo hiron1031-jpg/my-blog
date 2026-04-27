@@ -4,6 +4,17 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
+  description:
+    "「土木のトリセツ」運営者へのお問い合わせフォーム。記事内容に関するご質問・ご意見・取材依頼などを受付しています。通常2〜3営業日以内にご返信します。",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "お問い合わせ | 土木のトリセツ",
+    description:
+      "記事内容に関するご質問・ご意見・取材依頼などはこちらから。通常2〜3営業日以内に返信いたします。",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
