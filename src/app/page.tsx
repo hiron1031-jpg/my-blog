@@ -42,6 +42,16 @@ export default function HomePage() {
   const recentPosts = allPosts.slice(0, 6);
   const categories = getAllCategories();
 
+  // 資格別おすすめ記事：4資格それぞれから featured 優先で1本ずつピック
+  const qualificationTags = ["1級土木", "2級土木", "1級造園", "2級造園"] as const;
+  const recommendedByQualification = qualificationTags
+    .map((tag) => {
+      const matches = allPosts.filter((p) => p.frontmatter.tags.includes(tag));
+      const featured = matches.find((p) => p.frontmatter.featured);
+      return { tag, post: featured ?? matches[0] ?? null };
+    })
+    .filter((x): x is { tag: typeof qualificationTags[number]; post: NonNullable<typeof x.post> } => x.post !== null);
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
 
@@ -89,6 +99,35 @@ export default function HomePage() {
 
       {/* 3. Free Tools (2 big buttons) */}
       <FreeTools />
+
+      {/* 資格別おすすめ：受験者を即座に該当記事へ誘導 */}
+      {recommendedByQualification.length > 0 && (
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-1 h-6 bg-primary rounded-full inline-block" />
+            <h2 className="text-xl font-bold text-heading">資格別 まずこの記事から</h2>
+          </div>
+          <p className="text-xs text-secondary mb-4">
+            受験する資格をクリック → その資格のおすすめ記事へ直行できます。
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {recommendedByQualification.map(({ tag, post }) => (
+              <Link
+                key={tag}
+                href={`/posts/${post.slug}`}
+                className="group block p-4 bg-card border border-border rounded-xl hover:border-primary hover:shadow-md transition-all"
+              >
+                <span className="inline-block px-2 py-0.5 mb-2 text-[10px] font-bold text-primary bg-primary/10 rounded">
+                  {tag}
+                </span>
+                <p className="text-sm font-bold text-heading line-clamp-3 group-hover:text-primary transition-colors">
+                  {post.frontmatter.title}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 4. Featured posts carousel */}
       {featuredPosts.length > 0 && (

@@ -69,11 +69,22 @@ export function getRelatedPosts(currentSlug: string, category: string, limit = 3
   const currentTags: string[] = current?.frontmatter.tags ?? [];
   const all = allPosts.filter((p) => p.slug !== currentSlug);
 
-  // スコアリング：タグ一致数×3 + カテゴリ一致×2 + 新しさ補正
+  // 改良版スコアリング：
+  //   タグ一致数 × 4（強め）
+  //   カテゴリ一致 × 2
+  //   featured 記事 +1（編集部のおすすめを優先）
+  //   新しさボーナス（直近1年で 0〜1.0 の連続値、古いほど 0 に近づく）
+  const now = Date.now();
+  const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
+
   const scored = all.map((p) => {
     const tagOverlap = p.frontmatter.tags.filter((t) => currentTags.includes(t)).length;
     const categoryMatch = p.frontmatter.category === category ? 1 : 0;
-    const score = tagOverlap * 3 + categoryMatch * 2;
+    const featuredBonus = p.frontmatter.featured ? 1 : 0;
+    const ageMs = now - new Date(p.frontmatter.date).getTime();
+    const recencyBonus = Math.max(0, 1 - ageMs / ONE_YEAR_MS); // 1年以内は連続的に減衰
+    const score =
+      tagOverlap * 4 + categoryMatch * 2 + featuredBonus + recencyBonus;
     return { post: p, score };
   });
 
@@ -144,6 +155,26 @@ export function getAllTags(): { name: string; count: number }[] {
   return Object.entries(counts)
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count);
+}
+
+/**
+ * 指定カテゴリ内で出現頻度の高いタグを上位 N 件返す。
+ */
+export function getPopularTagsInCategory(
+  category: string,
+  limit = 5
+): { name: string; count: number }[] {
+  const posts = getAllPosts().filter((p) => p.frontmatter.category === category);
+  const counts: Record<string, number> = {};
+  posts.forEach((p) => {
+    p.frontmatter.tags.forEach((t) => {
+      counts[t] = (counts[t] || 0) + 1;
+    });
+  });
+  return Object.entries(counts)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, limit);
 }
 
 export function getPostsByCategory(category: string): Post[] {

@@ -1,5 +1,10 @@
 import { notFound } from "next/navigation";
-import { getAllCategories, getPostsByCategory } from "@/lib/mdx";
+import Link from "next/link";
+import {
+  getAllCategories,
+  getPostsByCategory,
+  getPopularTagsInCategory,
+} from "@/lib/mdx";
 import { getCategoryDescription } from "@/lib/categoryDescriptions";
 import PostGrid from "@/components/home/PostGrid";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -50,6 +55,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const intro = getCategoryDescription(name);
+  const popularTags = getPopularTagsInCategory(name, 5);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -81,8 +87,27 @@ export default async function CategoryPage({ params }: PageProps) {
           <h1 className="text-2xl font-bold text-heading mb-1">{name}</h1>
           <p className="text-secondary text-sm mb-4">{posts.length}件の記事</p>
           {intro && (
-            <div className="mb-8 p-4 bg-surface border-l-4 border-primary rounded-r-lg">
+            <div className="mb-6 p-4 bg-surface border-l-4 border-primary rounded-r-lg">
               <p className="text-sm text-heading leading-relaxed">{intro}</p>
+            </div>
+          )}
+          {popularTags.length > 0 && (
+            <div className="mb-8 p-4 bg-card border border-border rounded-xl">
+              <p className="text-xs font-bold text-secondary mb-2">
+                よく使われているタグ TOP{popularTags.length}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {popularTags.map((t) => (
+                  <Link
+                    key={t.name}
+                    href={`/tags/${encodeURIComponent(t.name)}`}
+                    className="inline-flex items-center gap-1 px-3 py-1 bg-surface text-secondary text-xs rounded-full hover:bg-primary hover:text-white transition-colors"
+                  >
+                    #{t.name}
+                    <span className="text-[10px] opacity-70">({t.count})</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
           <PostGrid posts={posts} />
