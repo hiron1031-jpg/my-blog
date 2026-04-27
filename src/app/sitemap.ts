@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/quiz`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
     { url: `${siteUrl}/pastproblems`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteUrl}/categories`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${siteUrl}/tags`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6 },
     { url: `${siteUrl}/search`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${siteUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${siteUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
