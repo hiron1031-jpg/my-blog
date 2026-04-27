@@ -93,6 +93,34 @@ export function getRelatedPosts(currentSlug: string, category: string, limit = 3
   return result.slice(0, limit);
 }
 
+/**
+ * 同カテゴリ内で日付順に並べたときの前後の記事を返す。
+ * - prev: 1つ古い記事（今の記事より日付が前）
+ * - next: 1つ新しい記事（今の記事より日付が後）
+ * カテゴリ内に該当がなければ全記事から日付順でフォールバック。
+ */
+export function getAdjacentPosts(
+  currentSlug: string,
+  category: string
+): { prev: Post | null; next: Post | null } {
+  const all = getAllPosts(); // 新しい順
+  const sameCategory = all.filter((p) => p.frontmatter.category === category);
+  const pool = sameCategory.length >= 2 ? sameCategory : all;
+
+  // 日付昇順に並べ直す（古い→新しい）
+  const ordered = [...pool].sort(
+    (a, b) =>
+      new Date(a.frontmatter.date).getTime() -
+      new Date(b.frontmatter.date).getTime()
+  );
+  const idx = ordered.findIndex((p) => p.slug === currentSlug);
+  if (idx === -1) return { prev: null, next: null };
+  return {
+    prev: idx > 0 ? ordered[idx - 1] : null,
+    next: idx < ordered.length - 1 ? ordered[idx + 1] : null,
+  };
+}
+
 export function getAllCategories(): { name: string; count: number }[] {
   const posts = getAllPosts();
   const counts: Record<string, number> = {};

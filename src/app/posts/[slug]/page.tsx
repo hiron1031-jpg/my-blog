@@ -5,12 +5,14 @@ import {
   getAllPosts,
   getPostBySlug,
   getRelatedPosts,
+  getAdjacentPosts,
   extractHeadings,
 } from "@/lib/mdx";
 import MdxContent from "@/components/post/MdxContent";
 import TableOfContents from "@/components/post/TableOfContents";
 import ShareButtons from "@/components/post/ShareButtons";
 import RelatedPosts from "@/components/post/RelatedPosts";
+import PostNavigation from "@/components/post/PostNavigation";
 import AuthorBox from "@/components/post/AuthorBox";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Badge from "@/components/ui/Badge";
@@ -64,6 +66,7 @@ export default async function PostPage({ params }: PageProps) {
 
   const headings = extractHeadings(post.content);
   const related = getRelatedPosts(slug, post.frontmatter.category, 6);
+  const { prev, next } = getAdjacentPosts(slug, post.frontmatter.category);
   const recentPosts = getAllPosts().filter((p) => p.slug !== slug).slice(0, 4);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "土木のトリセツ";
@@ -191,6 +194,9 @@ export default async function PostPage({ params }: PageProps) {
 
           {/* Author */}
           <AuthorBox />
+
+          {/* Prev / Next */}
+          <PostNavigation prev={prev} next={next} />
 
           {/* Related */}
           <RelatedPosts posts={related} />
