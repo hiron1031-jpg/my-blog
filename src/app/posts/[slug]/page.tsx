@@ -13,6 +13,7 @@ import TableOfContents from "@/components/post/TableOfContents";
 import ShareButtons from "@/components/post/ShareButtons";
 import RelatedPosts from "@/components/post/RelatedPosts";
 import PostNavigation from "@/components/post/PostNavigation";
+import BookGuideCTA from "@/components/post/BookGuideCTA";
 import AuthorBox from "@/components/post/AuthorBox";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Badge from "@/components/ui/Badge";
@@ -191,6 +192,9 @@ export default async function PostPage({ params }: PageProps) {
 
           {/* Share */}
           <ShareButtons title={post.frontmatter.title} url={postUrl} />
+
+          {/* 参考書ガイドCTA（記事末アフィリエイト動線） */}
+          <BookGuideCTA category={post.frontmatter.category} />
 
           {/* Author */}
           <AuthorBox />

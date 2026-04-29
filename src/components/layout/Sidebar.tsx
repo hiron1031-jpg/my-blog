@@ -133,6 +133,16 @@ export default function Sidebar() {
         </Link>
       </div>
 
+      {/* 参考書ガイド CTA（アフィリエイト動線） */}
+      <Link
+        href="/posts/sankosho-hikaku"
+        className="block bg-gradient-to-br from-[#1976d2] to-[#42a5f5] rounded-2xl p-5 text-white text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+      >
+        <p className="text-[11px] font-bold opacity-80 mb-1 tracking-wide">📚 独学合格者が厳選</p>
+        <p className="text-base font-bold leading-snug">おすすめ参考書ガイド</p>
+        <p className="text-xs opacity-70 mt-1">買って失敗しない1冊が見つかる</p>
+      </Link>
+
       {/* Past Problems CTA */}
       <Link
         href="/pastproblems"
