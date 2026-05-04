@@ -17,7 +17,7 @@ const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
   "1級土木・造園施工管理技士が教える、資格取得のリアルな勉強法と合格戦略。";
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

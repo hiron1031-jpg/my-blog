@@ -3,7 +3,7 @@ import { getAllPosts, getAllCategories, getAllTags } from "@/lib/mdx";
 import { getAllExamYearParams, CATEGORIES } from "@/lib/pastproblems-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.com";
   const posts = getAllPosts();
   const categories = getAllCategories();
   const tags = getAllTags();

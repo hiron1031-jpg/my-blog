@@ -276,7 +276,7 @@ export default async function ShikakuHubPage({ params }: PageProps) {
   const latestYears = cat.years.slice(0, 3);
   const otherExams = CATEGORIES.filter((c) => c.id !== exam);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.com";
 
   const webPageLd = {
     "@context": "https://schema.org",

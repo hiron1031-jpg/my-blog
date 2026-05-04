@@ -47,8 +47,8 @@ export default function SchoolCard({
   return (
     <div className="my-8 border-2 border-primary/30 rounded-xl overflow-hidden bg-card shadow-sm">
       {/* PR ラベル */}
-      <div className="bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary-dark border-b border-primary/20">
-        PR・広告
+      <div className="bg-primary/10 px-4 py-1 text-[10px] font-medium text-primary-dark/70 border-b border-primary/20">
+        [PR]
       </div>
 
       <div className="p-5">
