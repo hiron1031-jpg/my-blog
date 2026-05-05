@@ -42,9 +42,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   verification: {
-    google:
-      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
+    google: [
+      // 新ドメイン doboku-torisetsu.com 用
+      "FpiBkif6ZGH3Iw0BlNFdKt_Hz8fgusA0WAaRMJ6-tm8",
+      // 旧ドメイン doboku-torisetsu.vercel.app 用（互換維持）
       "Q0p5Z0BTX5FkfFHEoEzmtwRmfaZ2WoGHF0Bv7FmF538",
+    ],
   },
 };
 
