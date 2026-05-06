@@ -48,9 +48,9 @@ export default function MultiStoreLink({
   const amazonUrl = buildAmazonUrl(asin);
   const rakutenUrl = buildRakutenUrl(rakutenQuery || title);
   const yahooUrl = buildYahooUrl(yahooQuery || title);
-  // 書影URL：明示指定があればそれを使用、無ければASINから自動推測（Amazon標準形式）
-  const bookImageUrl =
-    imageUrl ?? `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.LZZZZZZZ.jpg`;
+  // 書影URL：明示指定があればそれを使用、無ければASIN(=ISBN)からOpenBD APIで取得
+  // OpenBDは日本書籍向けの無料書影APIで、ISBNベースのため和書はほぼ確実に取得可能
+  const bookImageUrl = imageUrl ?? `https://cover.openbd.jp/${asin}.jpg`;
   const [imgError, setImgError] = useState(false);
 
   const trackClick = (storeName: string, url: string) => {

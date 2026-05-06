@@ -31,11 +31,9 @@ export default function AmazonLink({
   imageUrl,
 }: AmazonLinkProps) {
   const href = asin ? buildAmazonUrl(asin) : url || "#";
+  // 書影URL：明示指定があればそれを使用、無ければASIN(=ISBN)からOpenBD APIで取得
   const bookImageUrl =
-    imageUrl ??
-    (asin
-      ? `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.LZZZZZZZ.jpg`
-      : null);
+    imageUrl ?? (asin ? `https://cover.openbd.jp/${asin}.jpg` : null);
   const [imgError, setImgError] = useState(false);
   const showImage = bookImageUrl && !imgError;
 
