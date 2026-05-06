@@ -84,9 +84,6 @@ export default function AmazonLink({
           </a>
         </div>
       </div>
-      <div className="text-xs text-secondary mt-3">
-        ※ 本リンクはアフィリエイトリンク（もしもアフィリエイト経由）を含みます。
-      </div>
     </div>
   );
 }
