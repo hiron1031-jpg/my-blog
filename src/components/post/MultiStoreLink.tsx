@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   buildAmazonUrl,
   buildRakutenUrl,
@@ -25,6 +26,8 @@ interface MultiStoreLinkProps {
   rakutenQuery?: string;
   /** Yahoo検索クエリを上書き（任意・デフォルトはtitle） */
   yahooQuery?: string;
+  /** 書影画像URL（任意・指定時は優先表示）。未指定の場合はASINから自動推測 */
+  imageUrl?: string;
 }
 
 /**
@@ -40,10 +43,15 @@ export default function MultiStoreLink({
   comment,
   rakutenQuery,
   yahooQuery,
+  imageUrl,
 }: MultiStoreLinkProps) {
   const amazonUrl = buildAmazonUrl(asin);
   const rakutenUrl = buildRakutenUrl(rakutenQuery || title);
   const yahooUrl = buildYahooUrl(yahooQuery || title);
+  // 書影URL：明示指定があればそれを使用、無ければASINから自動推測（Amazon標準形式）
+  const bookImageUrl =
+    imageUrl ?? `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.LZZZZZZZ.jpg`;
+  const [imgError, setImgError] = useState(false);
 
   const trackClick = (storeName: string, url: string) => {
     if (
@@ -64,44 +72,70 @@ export default function MultiStoreLink({
 
   return (
     <div className="my-6 border-2 border-border rounded-lg p-5 bg-surface">
-      <div className="text-xs text-secondary mb-2">📚 筆者のおすすめ書籍</div>
-      <div className="font-bold text-heading text-lg mb-1">{title}</div>
-      {subtitle && (
-        <div className="text-sm text-secondary mb-2">{subtitle}</div>
-      )}
-      {comment && (
-        <div className="text-sm text-secondary mb-3 border-l-4 border-accent pl-3 italic">
-          {comment}
+      <div className="text-xs text-secondary mb-3">📚 筆者のおすすめ書籍</div>
+      <div className="flex gap-4 items-start">
+        {/* 書影画像 */}
+        {!imgError && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <a
+            href={amazonUrl}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            onClick={() => trackClick("amazon-image", amazonUrl)}
+            className="shrink-0 block"
+          >
+            <img
+              src={bookImageUrl}
+              alt={title}
+              width={120}
+              height={170}
+              loading="lazy"
+              onError={() => setImgError(true)}
+              className="w-[120px] h-auto rounded shadow-sm border border-border bg-white object-contain"
+            />
+          </a>
+        )}
+        {/* 書籍情報 */}
+        <div className="flex-1 min-w-0">
+          <div className="font-bold text-heading text-lg mb-1 leading-tight">{title}</div>
+          {subtitle && (
+            <div className="text-sm text-secondary mb-2">{subtitle}</div>
+          )}
+          {comment && (
+            <div className="text-sm text-secondary mb-3 border-l-4 border-accent pl-3 italic">
+              {comment}
+            </div>
+          )}
+          <div className="flex flex-wrap gap-2 mt-3">
+            <a
+              href={amazonUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={() => trackClick("amazon", amazonUrl)}
+              className="inline-block bg-[#ff9900] text-white font-semibold px-4 py-2 rounded-md hover:brightness-95 transition no-underline text-sm"
+            >
+              Amazonで見る
+            </a>
+            <a
+              href={rakutenUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={() => trackClick("rakuten", rakutenUrl)}
+              className="inline-block bg-[#bf0000] text-white font-semibold px-4 py-2 rounded-md hover:brightness-95 transition no-underline text-sm"
+            >
+              楽天ブックスで見る
+            </a>
+            <a
+              href={yahooUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={() => trackClick("yahoo", yahooUrl)}
+              className="inline-block bg-[#ff0033] text-white font-semibold px-4 py-2 rounded-md hover:brightness-95 transition no-underline text-sm"
+            >
+              Yahoo!で見る
+            </a>
+          </div>
         </div>
-      )}
-      <div className="flex flex-wrap gap-2 mt-3">
-        <a
-          href={amazonUrl}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          onClick={() => trackClick("amazon", amazonUrl)}
-          className="inline-block bg-[#ff9900] text-white font-semibold px-4 py-2 rounded-md hover:brightness-95 transition no-underline text-sm"
-        >
-          Amazonで見る
-        </a>
-        <a
-          href={rakutenUrl}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          onClick={() => trackClick("rakuten", rakutenUrl)}
-          className="inline-block bg-[#bf0000] text-white font-semibold px-4 py-2 rounded-md hover:brightness-95 transition no-underline text-sm"
-        >
-          楽天ブックスで見る
-        </a>
-        <a
-          href={yahooUrl}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          onClick={() => trackClick("yahoo", yahooUrl)}
-          className="inline-block bg-[#ff0033] text-white font-semibold px-4 py-2 rounded-md hover:brightness-95 transition no-underline text-sm"
-        >
-          Yahoo!で見る
-        </a>
       </div>
       <div className="text-xs text-secondary/70 mt-3">
         ※ 本リンクはアフィリエイトリンク（もしもアフィリエイト経由）を含みます。楽天/Yahoo!は検索結果ページへ遷移します。価格・在庫は各ストアでご確認ください。
