@@ -6,6 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import type { MDXComponents } from "mdx/types";
 import AmazonLink from "./AmazonLink";
 import CalloutBox from "./CalloutBox";
+import CharacterDialog from "./CharacterDialog";
 import SchoolCard from "./SchoolCard";
 import MultiStoreLink from "./MultiStoreLink";
 
@@ -82,6 +83,7 @@ const components = {
   ),
   AmazonLink,
   CalloutBox,
+  CharacterDialog,
   SchoolCard,
   MultiStoreLink,
 };
