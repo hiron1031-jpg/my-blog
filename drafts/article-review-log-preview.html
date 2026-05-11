@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>商品A プレビュー</title>
+<style>
+  body {
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    max-width: 780px;
+    margin: 40px auto;
+    padding: 0 24px;
+    line-height: 1.8;
+    color: #222;
+    background: #fafafa;
+  }
+  h1 { font-size: 26px; border-bottom: 3px solid #333; padding-bottom: 12px; margin-top: 40px; }
+  h2 {
+    font-size: 20px;
+    border-left: 5px solid #1976d2;
+    padding: 10px 14px;
+    margin-top: 36px;
+    background: #eef5fc;
+  }
+  h3 { font-size: 17px; color: #1976d2; margin-top: 28px; padding-bottom: 4px; border-bottom: 1px dotted #aac; }
+  h4 { font-size: 14px; color: #444; margin-top: 18px; background: #f5f5f5; padding: 6px 10px; }
+  p { margin: 10px 0; }
+  ul { margin: 10px 0; padding-left: 28px; }
+  li { margin: 4px 0; }
+  blockquote {
+    border-left: 4px solid #f0a020;
+    background: #fff8e8;
+    padding: 12px 16px;
+    margin: 16px 0;
+    color: #555;
+  }
+  hr { border: 0; border-top: 2px dashed #ccc; margin: 32px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; background: #fff; font-size: 13px; }
+  th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0; font-weight: bold; }
+  strong { color: #c8390a; }
+  code { background: #f3f3f3; padding: 2px 6px; border-radius: 3px; font-size: 90%; }
+  .info {
+    background: #e0f2f1;
+    border: 1px solid #4db6ac;
+    padding: 12px 16px;
+    margin: 20px 0;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="info">
+<strong>📄 これは商品A（note有料記事）の下書きプレビューです。</strong><br>
+読みながら気になる箇所があればメモして、Claude にフィードバックしてください。
+</div>
+<h1>全記事チェック ＆ 修正ログ</h1>
+
+<p>各記事を <strong>机上知識（数値・専門用語・法令）</strong> と <strong>実務目線（現場感覚）</strong> の両方でチェックした結果。</p>
+
+<p>凡例：</p>
+<ul>
+<li>✅ 修正済み</li>
+<li>⏳ チェック中</li>
+<li>🔵 問題なし</li>
+<li>⚠️ 要対応（hiroさん判断必要）</li>
+</ul>
+
+<hr>
+
+<h2>進捗概要</h2>
+
+<table><thead><tr><th>#</th><th>記事</th><th>状態</th><th>コミット</th></tr></thead><tbody><tr><td>1</td><td>keiken-kijutsu-kakikata</td><td>✅ 済</td><td>822ab72</td></tr><tr><td>2</td><td>doboku-keiken-kijutsu</td><td>✅ 済</td><td>fd95c96</td></tr><tr><td>3</td><td>zouen-keiken-kijutsu</td><td>✅ 済</td><td>51ac933</td></tr><tr><td>4</td><td>doboku-1kyu-hinshutu</td><td>✅ 済</td><td>61067df</td></tr><tr><td>5</td><td>doboku-2kyu-hinshutu</td><td>✅ 済</td><td>87b49f6</td></tr><tr><td>6</td><td>zouen-1kyu-hinshutu</td><td>✅ 済</td><td>4726277</td></tr><tr><td>7</td><td>zouen-2kyu-hinshutu</td><td>✅ 済</td><td>82116af</td></tr><tr><td>8</td><td>doboku-1kyu-2ji-kijutsu</td><td>✅ 済</td><td>c7c9659</td></tr><tr><td>9</td><td>doboku-2kyu-2ji-kijutsu</td><td>✅ 済</td><td>ac39afc</td></tr><tr><td>10</td><td>zouen-1kyu-2ji-kijutsu</td><td>✅ 済</td><td>d2da5da</td></tr><tr><td>11</td><td>zouen-2kyu-2ji-kijutsu</td><td>✅ 済</td><td>a33a487</td></tr><tr><td>12</td><td>doboku-1kyu-moshikomi</td><td>✅ 済（受験料修正）</td><td>4dc6f2c</td></tr><tr><td>13</td><td>doboku-2kyu-moshikomi</td><td>✅ 済（17歳/受験料）</td><td>1b9cb3b</td></tr><tr><td>14</td><td>zouen-1kyu-moshikomi</td><td>✅ 済（既存値正確）</td><td>-</td></tr><tr><td>15</td><td>zouen-2kyu-moshikomi</td><td>✅ 済（17歳/受験料）</td><td>1b9cb3b</td></tr><tr><td>16</td><td>doboku-1kyu-tojitsu</td><td>✅ 済（試験時間）</td><td>a957d18</td></tr><tr><td>17</td><td>doboku-2kyu-tojitsu</td><td>✅ 済（17歳/試験時間）</td><td>a957d18</td></tr><tr><td>18</td><td>zouen-1kyu-tojitsu</td><td>✅ 済（試験時間）</td><td>a957d18</td></tr><tr><td>19</td><td>zouen-2kyu-tojitsu</td><td>✅ 済（17歳/試験時間）</td><td>a957d18</td></tr><tr><td>20</td><td>doboku-1kyu-benkyoho</td><td>✅ 済（4テーマ）</td><td>56c00d3</td></tr><tr><td>21</td><td>doboku-2kyu-benkyoho</td><td>✅ 済（試験日程）</td><td>56c00d3</td></tr><tr><td>22</td><td>zouen-1kyu-benkyoho</td><td>✅ 済（受験資格/合格率）</td><td>56c00d3</td></tr><tr><td>23</td><td>zouen-2kyu-benkyoho</td><td>✅ 済（既存値正確）</td><td>-</td></tr><tr><td>24</td><td>doboku-goukakuritsu</td><td>✅ 済（R7データ）</td><td>ecccb2f</td></tr><tr><td>25</td><td>zouen-goukakuritsu</td><td>✅ 済（R7データ）</td><td>ecccb2f</td></tr><tr><td>26</td><td>sekoukanri-goukakuritsu</td><td>✅ 済（R7データ）</td><td>ecccb2f</td></tr><tr><td>27</td><td>doboku-sankosho</td><td>✅ 確認（重大な問題なし）</td><td>-</td></tr><tr><td>28</td><td>zouen-sankosho</td><td>✅ 確認（重大な問題なし）</td><td>-</td></tr><tr><td>29</td><td>sankosho-hikaku</td><td>✅ 確認（重大な問題なし）</td><td>-</td></tr><tr><td>30</td><td>school-hikaku</td><td>✅ 既存修正済み</td><td>(前セッション)</td></tr><tr><td>31</td><td>school-hikaku-doboku</td><td>✅ 既存修正済み</td><td>(前セッション)</td></tr><tr><td>32</td><td>school-hikaku-zouen</td><td>✅ 既存修正済み</td><td>(前セッション)</td></tr><tr><td>33</td><td>school-vs-dokugaku</td><td>✅ 確認（重大な問題なし）</td><td>-</td></tr><tr><td>34</td><td>shikaku-roadmap</td><td>✅ 確認（重大な問題なし）</td><td>-</td></tr><tr><td>35</td><td>shikaku-moshikomi-flow</td><td>✅ 済（17歳修正）</td><td>01f6685</td></tr><tr><td>36</td><td>shiken-tojitsu-jumbi</td><td>✅ 済（午前+午後2部制）</td><td>80c5505</td></tr><tr><td>37</td><td>goukaku-career</td><td>✅ 確認（重大な問題なし）</td><td>-</td></tr></tbody></table>
+
+<hr>
+
+<h2>1. keiken-kijutsu-kakikata（共通：経験記述の書き方）</h2>
+
+<table><thead><tr><th>項目</th><th>修正前</th><th>修正後</th></tr></thead><tbody><tr><td>出題テーマ</td><td>3つ（品質・工程・安全）</td><td>4つ（+環境対策）</td></tr><tr><td>テーマ説明</td><td>年度で1テーマ変わる</td><td>設問1+設問2 で2テーマ同時出題</td></tr><tr><td>字数</td><td>800〜1000字</td><td>設問1+設問2 合計で約800〜1000字</td></tr><tr><td>例文</td><td>24時間湿潤養生</td><td>5日間湿潤養生（標準示方書）</td></tr><tr><td>NG例</td><td>保温養生（補足なし）</td><td>+「保温養生は寒中用」補足</td></tr><tr><td>画像</td><td>v2</td><td><strong>v3</strong>（差替）</td></tr></tbody></table>
+
+<hr>
+
+<h2>2. doboku-keiken-kijutsu（土木：経験記述）</h2>
+
+<table><thead><tr><th>項目</th><th>修正前</th><th>修正後</th></tr></thead><tbody><tr><td>テーマ準備</td><td>3テーマ（品質・工程・安全）</td><td>4テーマ（+環境対策）</td></tr><tr><td>早朝5時打設</td><td>「早朝5時に開始、25℃以下」</td><td>「事前協議、暑中コン仕様で発注、午前中集中、35℃以下」</td></tr><tr><td>練混ぜ水冷却</td><td>「冷却を要請」</td><td>「JIS A 5308 暑中コン仕様で発注」</td></tr><tr><td>打重ね時間</td><td>60分以内（JIS基準準拠）</td><td>90分以内（自社管理基準）</td></tr><tr><td>フィニッシャー2台並行</td><td>「2台に増強」</td><td>「2工区分割で連続施工」</td></tr><tr><td>立入禁止ロープ</td><td>「ロープを設置」</td><td>「カラーコーン+バリケード」</td></tr><tr><td>フルハーネス型安全帯</td><td>旧名称</td><td>フルハーネス型墜落制止用器具（2019年法改正）</td></tr></tbody></table>
+
+<hr>
+
+<h2>4. doboku-1kyu-hinshutu（1級土木：頻出問題）</h2>
+
+<p>⚠️ <strong>重大誤情報</strong> を発見・修正：令和6年度（2024年）から制度大幅変更されているのに、記事は旧制度のままだった</p>
+
+<table><thead><tr><th>項目</th><th>修正前（旧制度）</th><th>修正後（R6新制度）</th></tr></thead><tbody><tr><td>出題数</td><td>全96問</td><td><strong>全101問</strong></td></tr><tr><td>解答数</td><td>全96問解答</td><td><strong>70問解答</strong>（必須40+選択30）</td></tr><tr><td>試験時間</td><td>2時間30分</td><td><strong>4時間30分</strong>（午前2.5h+午後2h）</td></tr><tr><td>合格基準</td><td>60%（約58問）</td><td><strong>70問中42問以上</strong>かつ応用能力9問以上（足切り）</td></tr><tr><td>力学問題</td><td>言及なし</td><td><strong>R6新設の必須5問</strong>を追加</td></tr><tr><td>出題分野表</td><td>6分野</td><td>8分野（力学・応用能力を明示）</td></tr><tr><td>「専門土木」</td><td>「一般施工」</td><td>「専門土木」（正式名称）</td></tr></tbody></table>
+
+<hr>
+
+<h2>3. zouen-keiken-kijutsu（造園：経験記述）</h2>
+
+<table><thead><tr><th>項目</th><th>修正前</th><th>修正後</th></tr></thead><tbody><tr><td>テーマ表</td><td>4行（工程表の作成混在）</td><td>3行（経験記述のみ）</td></tr><tr><td>活着率</td><td>100%確保</td><td>95%以上確保（業界一般値）</td></tr><tr><td>品質管理 文例</td><td>課題・理由のみ</td><td>対応策①②+結果まで完備</td></tr><tr><td>安全管理 文例</td><td>課題のみ</td><td>対応策①②+結果まで完備（フルハーネス・特別教育・養生ネット等）</td></tr><tr><td>石材単位</td><td>1m²あたり</td><td>1個あたり</td></tr><tr><td>幹周表記</td><td>30cm</td><td>C=0.30m（メートル統一）</td></tr><tr><td>画像</td><td>v2</td><td><strong>v3</strong>（差替）</td></tr></tbody></table>
+
+<hr>
+
+<h2>チェック項目（各記事共通）</h2>
+
+<h3>机上知識</h3>
+<ul>
+<li>[ ] 数値の正確性（合格率・試験日・受験料・条文番号）</li>
+<li>[ ] 専門用語の正確性（指針・示方書ベース）</li>
+<li>[ ] 法改正対応（19歳新制度・フルハーネス等）</li>
+<li>[ ] 出典の正確性</li>
+<li>[ ] 内部リンクの有効性</li>
+</ul>
+
+<h3>実務目線</h3>
+<ul>
+<li>[ ] 数値が現実的か</li>
+<li>[ ] 工法・対策が実務的か</li>
+<li>[ ] 工程・時刻が現実的か</li>
+<li>[ ] 機器・材料の使い方が正確か</li>
+<li>[ ] 表現が現場感覚と合うか</li>
+</ul>
+
+<h3>整合性</h3>
+<ul>
+<li>[ ] 記事内の数値・表記の統一</li>
+<li>[ ] 他記事との矛盾なし</li>
+</ul>
+
+<h3>読者目線</h3>
+<ul>
+<li>[ ] PR・広告色が強すぎないか</li>
+<li>[ ] 読者にとって有益か</li>
+<li>[ ] 画像が記事内容と一致か</li>
+</ul>
+
+</body>
+</html>

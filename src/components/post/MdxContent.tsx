@@ -22,7 +22,7 @@ const components = {
   h3: ({ children, id }: { children: React.ReactNode; id?: string }) => (
     <h3
       id={id}
-      className="text-xl font-bold text-primary-dark mt-8 mb-3 border-l-4 border-accent pl-3"
+      className="text-xl font-bold text-heading mt-8 mb-3 border-l-4 border-accent pl-3"
     >
       {children}
     </h3>
