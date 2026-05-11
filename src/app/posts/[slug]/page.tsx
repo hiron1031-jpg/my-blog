@@ -141,7 +141,7 @@ export default async function PostPage({ params }: PageProps) {
               href={`/categories/${encodeURIComponent(post.frontmatter.category)}`}
               className="mb-4"
             />
-            <h1 className="text-2xl md:text-3xl font-bold text-heading mb-4 leading-snug">
+            <h1 className="text-[1.625rem] md:text-3xl font-bold text-heading mb-4 leading-snug">
               {post.frontmatter.title}
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-secondary/70">
