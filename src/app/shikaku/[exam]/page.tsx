@@ -67,11 +67,13 @@ const EXAM_META: Record<string, ExamMeta> = {
     ],
     studyHours: "初受験は300〜400時間程度、関連資格あり100〜150時間（いずれも一般的な目安）",
     relatedSlugs: [
+      { slug: "doboku-1kyu-moshikomi", label: "1級土木 受験申込み完全ガイド【実務経験証明書の書き方】" },
       { slug: "doboku-1kyu-benkyoho", label: "1級土木施工管理技士 独学勉強法【完全ロードマップ】" },
       { slug: "doboku-1kyu-hinshutu", label: "1級土木 頻出問題・分野別対策" },
+      { slug: "doboku-keiken-kijutsu", label: "経験記述の書き方とコツ" },
+      { slug: "doboku-keiken-kijutsu-kankyo", label: "経験記述 環境対策の例文と書き方【R6・R7対応】" },
       { slug: "doboku-goukakuritsu", label: "土木施工管理技士の合格率と難易度の推移" },
       { slug: "doboku-sankosho", label: "1級土木 おすすめ参考書ランキング" },
-      { slug: "doboku-keiken-kijutsu", label: "経験記述の書き方とコツ" },
       { slug: "goukaku-career", label: "施工管理技士取得後のキャリア戦略" },
     ],
     roadmap: [
@@ -119,10 +121,12 @@ const EXAM_META: Record<string, ExamMeta> = {
     ],
     studyHours: "150〜230時間程度が一般的な目安（1日1時間で4〜6ヶ月）",
     relatedSlugs: [
+      { slug: "doboku-2kyu-moshikomi", label: "2級土木 受験申込み完全ガイド【17歳から受験できる新制度対応】" },
       { slug: "doboku-2kyu-benkyoho", label: "2級土木施工管理技士 独学勉強法" },
+      { slug: "doboku-keiken-kijutsu", label: "経験記述の書き方とコツ" },
+      { slug: "doboku-keiken-kijutsu-kankyo", label: "経験記述 環境対策の例文と書き方【R6・R7対応】" },
       { slug: "doboku-goukakuritsu", label: "土木施工管理技士の合格率と難易度" },
       { slug: "doboku-sankosho", label: "土木施工管理技士 おすすめ参考書" },
-      { slug: "doboku-keiken-kijutsu", label: "経験記述の書き方とコツ" },
     ],
     roadmap: [
       { label: "勉強法を知る", desc: "2級独学合格の手順を把握", href: "/posts/doboku-2kyu-benkyoho" },
@@ -170,10 +174,12 @@ const EXAM_META: Record<string, ExamMeta> = {
     ],
     studyHours: "初受験は250〜350時間程度、2級造園取得済み100〜150時間（一般的な目安）",
     relatedSlugs: [
+      { slug: "zouen-1kyu-moshikomi", label: "1級造園 受験申込み完全ガイド【指定学科・実務経験の書き方】" },
       { slug: "zouen-1kyu-benkyoho", label: "1級造園施工管理技士 独学勉強法" },
+      { slug: "zouen-1kyu-hinshutu", label: "1級造園 頻出問題・分野別対策" },
+      { slug: "zouen-keiken-kijutsu", label: "造園の経験記述の書き方" },
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
       { slug: "zouen-sankosho", label: "造園施工管理技士 おすすめ参考書" },
-      { slug: "zouen-keiken-kijutsu", label: "造園の経験記述の書き方" },
     ],
     roadmap: [
       { label: "勉強法を知る", desc: "1級造園の合格ロードマップ", href: "/posts/zouen-1kyu-benkyoho" },
@@ -220,7 +226,9 @@ const EXAM_META: Record<string, ExamMeta> = {
     ],
     studyHours: "150〜230時間程度が一般的な目安（1日1時間で4〜6ヶ月）",
     relatedSlugs: [
+      { slug: "zouen-2kyu-moshikomi", label: "2級造園 受験申込み完全ガイド【17歳から受験できる新制度対応】" },
       { slug: "zouen-2kyu-benkyoho", label: "2級造園施工管理技士 独学勉強法" },
+      { slug: "zouen-keiken-kijutsu", label: "造園の経験記述の書き方" },
       { slug: "zouen-goukakuritsu", label: "造園施工管理技士の合格率" },
       { slug: "zouen-sankosho", label: "造園施工管理技士 おすすめ参考書" },
     ],
