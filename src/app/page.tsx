@@ -6,6 +6,7 @@ import HeroCarousel from "@/components/home/HeroCarousel";
 import HomeHero from "@/components/home/HomeHero";
 import ExamSelector from "@/components/home/ExamSelector";
 import FreeTools from "@/components/home/FreeTools";
+import NoteBanner from "@/components/home/NoteBanner";
 import LearningSteps from "@/components/home/LearningSteps";
 import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
@@ -99,6 +100,9 @@ export default function HomePage() {
 
       {/* 3. Free Tools (2 big buttons) */}
       <FreeTools />
+
+      {/* 3.5 Note Banner */}
+      <NoteBanner />
 
       {/* 資格別おすすめ：受験者を即座に該当記事へ誘導 */}
       {recommendedByQualification.length > 0 && (
