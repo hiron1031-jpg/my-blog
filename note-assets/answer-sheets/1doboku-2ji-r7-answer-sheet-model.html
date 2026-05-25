@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>1級土木 第二次検定 模範解答入り解答用紙（R7対応）</title>
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 12mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 10pt;
+    color: #000;
+    line-height: 1.5;
+  }
+  .page {
+    page-break-after: always;
+    position: relative;
+    padding-bottom: 8mm;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* 共通：タイトル・問題ヘッダー */
+  h1 { font-size: 16pt; text-align: center; margin: 4mm 0 6mm; letter-spacing: 0.05em; }
+  h2 {
+    font-size: 12pt;
+    border-left: 4px solid #000;
+    padding-left: 6px;
+    margin: 6mm 0 3mm;
+  }
+  h3 { font-size: 11pt; margin: 4mm 0 2mm; }
+  .small { font-size: 9pt; color: #555; }
+
+  /* 模範解答バナー */
+  .model-banner {
+    background: #1a4b8c;
+    color: #fff;
+    text-align: center;
+    padding: 4mm 6mm;
+    font-size: 11pt;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    margin-bottom: 5mm;
+    border-radius: 2px;
+  }
+
+  /* 表紙 */
+  .cover-info {
+    border: 1px solid #000;
+    padding: 6mm;
+    margin-bottom: 6mm;
+  }
+  .cover-info .row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 4mm;
+  }
+  .cover-info .label { width: 30mm; font-weight: bold; }
+  .cover-info .input {
+    flex: 1;
+    border-bottom: 1px solid #000;
+    height: 8mm;
+  }
+  .notice {
+    border: 1px dashed #888;
+    padding: 4mm;
+    font-size: 9pt;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  /* 経験記述：工事概要表 */
+  table.gaiyou {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 4mm;
+  }
+  table.gaiyou th, table.gaiyou td {
+    border: 1px solid #000;
+    padding: 2.5mm 3mm;
+    vertical-align: top;
+    font-weight: normal;
+  }
+  table.gaiyou th {
+    width: 38mm;
+    background: #f3f3f3;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.gaiyou td {
+    height: 9mm;
+  }
+  table.gaiyou .tall td { height: 14mm; }
+
+  /* 記述欄（自由記述・行罫線） */
+  .lined {
+    border: 1px solid #000;
+    background-image: linear-gradient(transparent calc(100% - 1px), #888 calc(100% - 1px));
+    background-size: 100% 7mm;
+    background-position: 0 0;
+  }
+  .lined.short { min-height: 35mm; }
+  .lined.medium { min-height: 56mm; }
+  .lined.long { min-height: 77mm; }
+  .lined.xlong { min-height: 105mm; }
+
+  /* 模範解答記入済みテキスト */
+  .answer-filled {
+    border: 1px solid #aab;
+    background: #f0f4ff;
+    padding: 3mm 4mm;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 9.5pt;
+    color: #1a3a7a;
+    line-height: 1.8;
+    position: relative;
+  }
+  .answer-filled.short { min-height: 35mm; }
+  .answer-filled.medium { min-height: 56mm; }
+  .answer-filled.long { min-height: 77mm; }
+  .answer-filled.xlong { min-height: 105mm; }
+  .answer-filled::before {
+    content: "【模範解答】";
+    display: block;
+    font-size: 8pt;
+    color: #1a4b8c;
+    font-weight: bold;
+    margin-bottom: 2mm;
+    border-bottom: 1px dashed #aab;
+    padding-bottom: 1mm;
+  }
+
+  /* 穴埋め欄（イ〜ホ） */
+  table.fillin {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2mm 0 4mm;
+  }
+  table.fillin th, table.fillin td {
+    border: 1px solid #000;
+    padding: 3mm;
+    text-align: center;
+  }
+  table.fillin th {
+    width: 14mm;
+    background: #f3f3f3;
+  }
+  table.fillin td { height: 14mm; }
+  table.fillin td.ans {
+    background: #f0f4ff;
+    color: #1a3a7a;
+    font-weight: bold;
+    font-size: 10.5pt;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+  }
+
+  /* 番号付きリスト記述欄 */
+  ol.num-list {
+    list-style: none;
+    counter-reset: num;
+  }
+  ol.num-list li {
+    counter-increment: num;
+    margin-bottom: 4mm;
+    display: flex;
+    gap: 3mm;
+  }
+  ol.num-list li::before {
+    content: counter(num);
+    flex-shrink: 0;
+    width: 8mm;
+    height: 8mm;
+    border: 1px solid #000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 8mm;
+    font-weight: bold;
+  }
+  ol.num-list .input {
+    flex: 1;
+    height: 14mm;
+    border: 1px solid #000;
+    background-image: linear-gradient(transparent calc(100% - 1px), #888 calc(100% - 1px));
+    background-size: 100% 7mm;
+  }
+  ol.num-list .ans {
+    flex: 1;
+    min-height: 14mm;
+    border: 1px solid #aab;
+    background: #f0f4ff;
+    color: #1a3a7a;
+    font-weight: bold;
+    font-size: 9.5pt;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    padding: 2mm 3mm;
+    line-height: 1.7;
+  }
+
+  /* 選択チェック欄 */
+  .select-check {
+    display: flex;
+    gap: 6mm;
+    align-items: center;
+    margin: 2mm 0 3mm;
+    font-size: 10pt;
+  }
+  .select-check .box {
+    width: 7mm; height: 7mm;
+    border: 1.5px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1mm;
+  }
+  .select-check .box.checked {
+    background: #1a4b8c;
+    border-color: #1a4b8c;
+    position: relative;
+  }
+  .select-check .box.checked::after {
+    content: "●";
+    position: absolute;
+    top: -1.5mm;
+    left: 0.5mm;
+    font-size: 7pt;
+    color: #fff;
+  }
+
+  /* 問題11用：表 */
+  table.koutei {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3mm;
+  }
+  table.koutei th, table.koutei td {
+    border: 1px solid #000;
+    padding: 3mm;
+    vertical-align: top;
+  }
+  table.koutei th { background: #f3f3f3; text-align: center; width: 22mm; }
+  table.koutei td.input { height: 22mm; }
+  table.koutei td.ans {
+    background: #f0f4ff;
+    color: #1a3a7a;
+    font-weight: bold;
+    font-size: 9pt;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.7;
+  }
+
+  /* 選択問題の選択表示 */
+  .selected-badge {
+    display: inline-block;
+    background: #1a4b8c;
+    color: #fff;
+    font-size: 8pt;
+    padding: 0.5mm 2mm;
+    border-radius: 2px;
+    margin-left: 3mm;
+    vertical-align: middle;
+  }
+  .not-selected-note {
+    font-size: 8.5pt;
+    color: #888;
+    font-style: italic;
+  }
+  .alt-answer-box {
+    border: 1px dashed #aab;
+    background: #f9f9ff;
+    padding: 2mm 3mm;
+    margin-top: 2mm;
+    font-size: 8.5pt;
+    color: #445;
+    line-height: 1.7;
+  }
+  .alt-answer-box::before {
+    content: "※他の正解例：";
+    font-weight: bold;
+    color: #668;
+  }
+
+  /* フッター（控えめロゴ） */
+  .footer {
+    margin-top: 6mm;
+    padding-top: 3mm;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: #777;
+  }
+  .footer .logo {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+  }
+  .footer .logo img { height: 6mm; opacity: 0.55; }
+
+  @media screen {
+    body { background: #ddd; padding: 10mm; }
+    .page {
+      background: #fff;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 12mm 8mm;
+      margin: 0 auto 10mm;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== 表紙 ========== -->
+<div class="page">
+  <div class="model-banner">★ 模範解答入り ★　令和7年度 1級土木 第二次検定 解答用紙</div>
+  <h1>令和7年度 1級土木施工管理技士 第二次検定<br>模範解答入り解答用紙</h1>
+
+  <div class="cover-info">
+    <div class="row"><div class="label">受検番号</div><div class="input"></div></div>
+    <div class="row"><div class="label">氏名</div><div class="input"></div></div>
+    <div class="row"><div class="label">試験地</div><div class="input"></div></div>
+    <div class="row"><div class="label">練習日</div><div class="input"></div></div>
+  </div>
+
+  <div class="notice">
+    <strong>本書について</strong><br>
+    ・本書は「土木のトリセツ」が作成した <strong>想定模範解答入りの参考資料</strong> です。試験機関の公式解答ではありません。<br>
+    ・第二次検定の公式正答は試験機関から非公開です。掲載の解答は、法令・基準書を参照し独学一発合格者の視点から作成した<strong>想定解答</strong>です。<br>
+    ・実際の採点では、複数の表現・同義語が認められる場合があります。<br>
+    ・<span style="color:#c00;font-weight:bold;">問題1（経験記述）は受験者本人の現場経験に基づき記述するため、本書では空白のままとしています。</span><br>
+    ・問題4〜7は4問中2問、問題8〜11は4問中2問を選択します。本書では推奨の2問に模範解答を掲載しています。<br>
+    ・解答欄（青色部分）を参考に、自分の解答と比較してください。
+  </div>
+
+  <div class="footer">
+    <span>1級土木 第二次検定 模範解答入り解答用紙（R7対応）</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題1：経験記述（工事概要） ========== -->
+<div class="page">
+  <h2>【問題1】経験記述　〔工事概要〕</h2>
+  <p class="small">あなたが経験した土木工事に関し、次の事項について明確に記述しなさい。</p>
+  <p style="margin:3mm 0;padding:3mm;background:#fff3f3;border:1px solid #fcc;font-size:9pt;color:#c00;">
+    ⚠️ 経験記述（問題1）は、受験者本人の現場経験に基づいて記述するものです。模範解答はありません。<br>
+    👉 書き方・合格文例は「土木のトリセツ」ブログの経験記述記事をご参照ください。<br>
+    （URL: https://doboku-no-torisetsu.com/posts/doboku-keiken-kijutsu）
+  </p>
+
+  <table class="gaiyou">
+    <tr><th>(1) 工事名</th><td></td></tr>
+    <tr class="tall"><th>(2) あなたの立場</th><td></td></tr>
+  </table>
+
+  <p style="margin: 3mm 0 1mm;"><strong>(3) 工事の内容</strong></p>
+  <table class="gaiyou">
+    <tr><th>① 発注者名</th><td></td></tr>
+    <tr><th>② 工事場所</th><td></td></tr>
+    <tr><th>③ 工期</th><td></td></tr>
+    <tr class="tall"><th>④ 主な工種</th><td></td></tr>
+    <tr class="tall"><th>⑤ 施工量</th><td></td></tr>
+  </table>
+
+  <div class="footer">
+    <span>問題1 経験記述（工事概要） / R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題1：設問1 品質管理 ========== -->
+<div class="page">
+  <h2>【問題1】設問1　品質管理</h2>
+  <p class="small">工事概要に記述した工事の「品質管理」について記述しなさい。</p>
+  <p style="margin:2mm 0;padding:2mm;background:#fff3f3;border:1px solid #fcc;font-size:9pt;color:#c00;">
+    ⚠️ 経験記述は受験者本人の現場経験で記述してください。以下は書き込みスペースです。
+  </p>
+
+  <h3>(1) 具体的な現場状況と特に留意した品質管理上の技術的課題と、その課題を解決するために検討した項目</h3>
+  <div class="lined xlong"></div>
+
+  <h3>(2) (1)で記述した検討項目の対応処置とその評価</h3>
+  <div class="lined long"></div>
+
+  <div class="footer">
+    <span>問題1 設問1 品質管理 / R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題1：設問2 環境対策 ========== -->
+<div class="page">
+  <h2>【問題1】設問2　環境対策</h2>
+  <p class="small">工事概要に記述した工事の「環境対策」について記述しなさい。<br>
+  〈環境対策の例〉周辺環境対策／自然環境対策／建設副産物等対策</p>
+  <p style="margin:2mm 0;padding:2mm;background:#fff3f3;border:1px solid #fcc;font-size:9pt;color:#c00;">
+    ⚠️ 経験記述は受験者本人の現場経験で記述してください。以下は書き込みスペースです。
+  </p>
+
+  <h3>(1) 施工に際し判明した、環境対策上の技術的課題と、その課題を解決するために検討した項目</h3>
+  <div class="lined xlong"></div>
+
+  <h3>(2) (1)で記述した検討項目の対応処置とその評価</h3>
+  <div class="lined long"></div>
+
+  <div class="footer">
+    <span>問題1 設問2 環境対策 / R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題2：労働安全衛生法 穴埋め ========== -->
+<div class="page">
+  <h2>【問題2】工事計画の届出（穴埋め）　✅ 必須問題</h2>
+  <p class="small">（イ）〜（ホ）に当てはまる適切な語句又は数値を記入しなさい。</p>
+
+  <table class="fillin">
+    <tr>
+      <th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th>
+    </tr>
+    <tr>
+      <td class="ans">10</td>
+      <td class="ans">構造</td>
+      <td class="ans">組立図</td>
+      <td class="ans">3.5</td>
+      <td class="ans">通路</td>
+    </tr>
+  </table>
+
+  <div class="alt-answer-box">
+    根拠：労働安全衛生規則 第88条（工事計画の届出）<br>
+    (イ)=10（足場・架設通路の高さ基準10m以上）　(ニ)=3.5（型枠支保工の支柱高さ3.5m以上）<br>
+    (ロ)「構造」＝「構造の概要」でも可　(ハ)「組立図」＝「設計図」は不正解。組立図が正式名称　(ホ)「通路」＝架設通路
+  </div>
+
+  <h2 style="margin-top:6mm;">【問題3】墜落等による危険の防止（記述）　✅ 必須問題</h2>
+  <p class="small">事業者が行わなければならない墜落等による危険の防止に関する措置を <strong>2つ</strong> 記述しなさい（解答欄の例と同一内容は不可）。</p>
+  <p class="small" style="margin-bottom:2mm;">〔例〕高さ2m以上の箇所で作業を行う場合には、作業床を設けなければならない。</p>
+
+  <ol class="num-list">
+    <li>
+      <div class="ans">高さ2m以上の作業床の端・開口部等、墜落の危険がある箇所には、囲い・手すり・覆い等を設けなければならない。</div>
+    </li>
+    <li>
+      <div class="ans">囲い等の設置が困難なとき、または作業の必要上これらを取り外すときは、防網を張り、労働者に要求性能墜落制止用器具を使用させるなど、墜落による危険を防止するための措置を講じなければならない。</div>
+    </li>
+  </ol>
+
+  <div class="alt-answer-box">
+    根拠：労働安全衛生規則 第518条〜第521条　<br>
+    他の正解例：「作業床の幅は40cm以上とし、床材間の隙間は3cm以下」「強風・大雨・大雪等の悪天候で危険が予想されるときは作業させてはならない」「墜落制止用器具を安全に取り付けるための設備を設けなければならない」など<br>
+    ⚠️ 「安全帯」は旧用語。正しくは「要求性能墜落制止用器具（墜落制止用器具）」（2019年改正）
+  </div>
+
+  <div class="footer">
+    <span>問題2・3（必須）/ R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 選択問題(1) 問題4〜7 ========== -->
+<div class="page">
+  <h2>【選択問題(1)】問題4〜問題7（うち2問選択）</h2>
+  <p class="small" style="color:#c00;font-weight:bold;">⚠️ 3問以上解答すると全問不採点。必ず2問だけ選択してください。</p>
+  <p class="small" style="margin-bottom:3mm;">本書では問題4・問題6に模範解答を掲載しています（おすすめの選択2問）。問題5・7の解答欄は参考として空白のままです。</p>
+
+  <h3>【問題4】軟弱地盤上の盛土施工　<span class="select-check"><span class="box checked"></span>選択</span><span class="selected-badge">模範解答あり</span></h3>
+  <table class="fillin">
+    <tr><th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th></tr>
+    <tr>
+      <td class="ans">横断</td>
+      <td class="ans">浸透</td>
+      <td class="ans">側方</td>
+      <td class="ans">腹付け</td>
+      <td class="ans">動態観測</td>
+    </tr>
+  </table>
+  <div class="alt-answer-box">
+    根拠：道路土工 軟弱地盤対策工指針（日本道路協会）<br>
+    (ニ)「腹付け」＝「増し盛り」は減点の可能性あり　(ホ)「動態観測」＝「変位観測」「計測管理」も概ね可
+  </div>
+
+  <h3 style="margin-top:4mm;">【問題5】鉄筋の加工・組立 品質管理　<span class="select-check"><span class="box"></span>非選択</span><span class="not-selected-note">（参考：(イ)BIM/CIM (ロ)熱 (ハ)かぶり (ニ)防錆 (ホ)超音波）</span></h3>
+  <table class="fillin">
+    <tr><th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3 style="margin-top:4mm;">【問題6】地下埋設物に近接した施工　<span class="select-check"><span class="box checked"></span>選択</span><span class="selected-badge">模範解答あり</span></h3>
+  <table class="fillin">
+    <tr><th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th></tr>
+    <tr>
+      <td class="ans">台帳</td>
+      <td class="ans">試掘</td>
+      <td class="ans">表示板</td>
+      <td class="ans">立会い</td>
+      <td class="ans">防護</td>
+    </tr>
+  </table>
+  <div class="alt-answer-box">
+    根拠：土木工事安全施工技術指針（国土交通省）<br>
+    (イ)「台帳」のみ正解（「図面」「設計図書」は不正解）　(ハ)「表示板」が正式（「標識」では減点の可能性）　(ニ)「立合い」も可
+  </div>
+
+  <h3 style="margin-top:4mm;">【問題7】土木工事の施工計画 留意事項　<span class="select-check"><span class="box"></span>非選択</span><span class="not-selected-note">（参考：(イ)調査 (ロ)協議 (ハ)制約条件 (ニ)公衆災害 (ホ)指揮命令）</span></h3>
+  <table class="fillin">
+    <tr><th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="footer">
+    <span>選択問題(1) 問題4〜7 / R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 選択問題(2) 問題8・9 ========== -->
+<div class="page">
+  <h2>【選択問題(2)】問題8〜問題11（うち2問選択）</h2>
+  <p class="small" style="color:#c00;font-weight:bold;">⚠️ 3問以上解答すると全問不採点。必ず2問だけ選択してください。</p>
+  <p class="small" style="margin-bottom:3mm;">本書では問題10・問題11に模範解答を掲載しています（おすすめの選択2問）。問題8・9の解答欄は参考として解答例を示します。</p>
+
+  <h3>【問題8】コンクリートの打継目　留意点　<span class="select-check"><span class="box"></span>非選択</span><span class="not-selected-note">（参考解答あり）</span></h3>
+  <p class="small">①打継目の位置を決める際の留意点　／　②水平打継目の処理の留意点</p>
+  <ol class="num-list">
+    <li>
+      <div class="ans" style="background:#f9f9ff;color:#557;font-weight:normal;">（参考）せん断力が小さく、圧縮力の作用方向に直角となる位置に設ける。</div>
+    </li>
+    <li>
+      <div class="ans" style="background:#f9f9ff;color:#557;font-weight:normal;">（参考）旧コンクリート上面のレイタンスや品質の悪いコンクリートを取り除き、ワイヤブラシで表面を粗にしたうえで、十分に吸水させてから新コンクリートを打設する。</div>
+    </li>
+  </ol>
+
+  <h3 style="margin-top:3mm;">【問題9】TS・GNSS盛土の締固め管理　<span class="select-check"><span class="box"></span>非選択</span><span class="not-selected-note">（参考解答あり）</span></h3>
+  <p class="small">①〜④から2つ選び、番号と実施事項を記述</p>
+  <ol class="num-list">
+    <li>
+      <div class="ans" style="background:#f9f9ff;color:#557;font-weight:normal;">（参考・①試験施工）本施工前に、現場で使用する実際の材料・締固め機械・施工方法で試験施工を行い、規定の締固め度を満足するための「1層のまき出し厚」と「締固め回数」を決定する。</div>
+    </li>
+    <li>
+      <div class="ans" style="background:#f9f9ff;color:#557;font-weight:normal;">（参考・④締固め管理）TS・GNSSにより締固め機械の走行軌跡をリアルタイムで計測・記録し、規定の締固め回数が施工面全体で確保されているかを車載モニターの色分け表示で確認する。回数不足箇所は追加転圧を行う。</div>
+    </li>
+  </ol>
+
+  <div class="footer">
+    <span>選択問題(2) 問題8・9 / R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題10・問題11 ========== -->
+<div class="page">
+  <h3>【問題10】車両系建設機械による掘削・積込み作業の労働災害防止　<span class="select-check"><span class="box checked"></span>選択</span><span class="selected-badge">模範解答あり</span></h3>
+  <p class="small">事業者が実施すべき事項を <strong>5つ</strong> 記述　（根拠：労働安全衛生規則 第151条の2〜第157条）</p>
+  <ol class="num-list">
+    <li>
+      <div class="ans">当該機械の種類・能力、運行経路、作業方法を示す作業計画を作成し、関係労働者に周知させなければならない。</div>
+    </li>
+    <li>
+      <div class="ans">地形・地盤状況等に応じた制限速度を定め、運転者にこれを遵守させなければならない。</div>
+    </li>
+    <li>
+      <div class="ans">運転者に誘導者を置く場合は、一定の合図を定め、誘導者に合図を行わせなければならない。</div>
+    </li>
+    <li>
+      <div class="ans">運転中の機械の作業範囲内に、当該機械の運転者以外の労働者を立ち入らせてはならない。</div>
+    </li>
+    <li>
+      <div class="ans">運転者が運転位置を離れるときは、バケット等の作業装置を地上に下ろし、原動機を止め、走行ブレーキをかけなければならない。</div>
+    </li>
+  </ol>
+
+  <div class="alt-answer-box">
+    他の正解例：「転落・転倒のおそれがある路肩・傾斜地では誘導者を配置しなければならない」「主たる用途以外の作業に使用してはならない」「定期自主検査を実施しなければならない」など
+  </div>
+
+  <h3 style="margin-top:4mm;">【問題11】プレキャストL型擁壁　施工上の留意事項　<span class="select-check"><span class="box checked"></span>選択</span><span class="selected-badge">模範解答あり</span></h3>
+  <p class="small">施工手順番号①〜③のうち2つを選び、工種名・施工上の留意事項を記述（本書：①床掘工・③埋戻し工を選択）</p>
+  <p class="small" style="margin-bottom:2mm;">施工手順：<strong>① 床掘工</strong> → 基礎砕石工 → 均しコンクリート工 → 敷モルタル工 → <strong>② プレキャスト擁壁据付け工</strong> → <strong>③ 埋戻し工</strong> → 路床工</p>
+  <table class="koutei">
+    <tr><th>選択番号</th><th>工種名</th><th>施工上の留意事項</th></tr>
+    <tr>
+      <td style="text-align:center;background:#f0f4ff;color:#1a3a7a;font-weight:bold;">①</td>
+      <td class="ans">床掘工<br>（掘削工）</td>
+      <td class="ans">床付け面は地山を乱さないよう丁寧に仕上げ、不陸が生じないようにする。床付け近くはバックホウの平爪等を使用し、過掘りを防止する。湧水・滞水は排水ポンプや排水溝で速やかに排除し、地盤の軟弱化を防ぐ。<br><span style="font-size:8pt;color:#668;">【キー】地山を乱さない／不陸防止／過掘り防止／排水処理</span></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;background:#f0f4ff;color:#1a3a7a;font-weight:bold;">③</td>
+      <td class="ans">埋戻し工</td>
+      <td class="ans">良質な埋戻し材料を使用し、高まきを避け<strong>1層の仕上り厚さ30cm以下</strong>で締め固める。擁壁近接部はランマーやタンパ等の小型機械で入念に締め固める。擁壁の左右を均等な高さで施工し、偏土圧がかからないようにする。<br><span style="font-size:8pt;color:#668;">【キー】1層30cm以下／小型機械で縁部締固め／左右均等・偏土圧防止</span></td>
+    </tr>
+  </table>
+
+  <div class="alt-answer-box">
+    ②据付け工の留意点：専用吊り具使用・偏荷重防止・縦断勾配3%以上で水平（階段状）施工・敷モルタル密着確認
+  </div>
+
+  <div class="footer">
+    <span>選択問題(2) 問題10・11 / R7</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 採点チェックシート ========== -->
+<div class="page">
+  <h2>採点チェックシート</h2>
+  <p class="small">本書の模範解答と自分の解答を比較してチェックしてください。</p>
+
+  <table style="width:100%;border-collapse:collapse;margin-top:4mm;font-size:9pt;">
+    <tr style="background:#1a4b8c;color:#fff;">
+      <th style="padding:2mm;border:1px solid #000;text-align:center;width:18mm;">問題</th>
+      <th style="padding:2mm;border:1px solid #000;text-align:left;">チェックポイント</th>
+      <th style="padding:2mm;border:1px solid #000;text-align:center;width:20mm;">自己採点</th>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">問題1</td>
+      <td style="padding:2mm;border:1px solid #000;">経験記述（品質管理・環境対策）：具体的な数値・工法名が入っているか</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">問題2</td>
+      <td style="padding:2mm;border:1px solid #000;">穴埋め5箇所（イ=10、ロ=構造、ハ=組立図、ニ=3.5、ホ=通路）全問正解か</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">問題3</td>
+      <td style="padding:2mm;border:1px solid #000;">2つの記述：「例」と同一でないか・「墜落制止用器具」の用語を使えているか</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">選択(1)</td>
+      <td style="padding:2mm;border:1px solid #000;">2問選択できているか（3問以上で不採点）／数値・専門用語が正確か</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">選択(2)</td>
+      <td style="padding:2mm;border:1px solid #000;">2問選択できているか（3問以上で不採点）／具体的記述になっているか</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">問題10</td>
+      <td style="padding:2mm;border:1px solid #000;">5つの記述：「〜しなければならない」の義務表現で書けているか</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+    <tr>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;background:#f3f3f3;">問題11</td>
+      <td style="padding:2mm;border:1px solid #000;">工種名が正確か・数値（30cm、3%）や専門用語（偏土圧・タンパ等）が入っているか</td>
+      <td style="padding:2mm;border:1px solid #000;text-align:center;height:10mm;"></td>
+    </tr>
+  </table>
+
+  <div style="margin-top:6mm;padding:4mm;border:1px solid #1a4b8c;background:#f0f4ff;">
+    <p style="font-weight:bold;color:#1a4b8c;margin-bottom:2mm;">合格に向けた得点目安</p>
+    <p style="font-size:9pt;">合格基準：総得点率 <strong>60%以上</strong>。経験記述（問題1）の配点が高いため、経験記述で確実に点を取りつつ、技術問題（問題2〜11）で <strong>7割以上</strong> を目標にしましょう。</p>
+    <p style="font-size:9pt;margin-top:2mm;">👉 詳しい学習戦略は「土木のトリセツ」の解答解説記事（note）もご参照ください。</p>
+  </div>
+
+  <div class="footer">
+    <span>採点チェックシート / R7 模範解答入り解答用紙</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+</body>
+</html>

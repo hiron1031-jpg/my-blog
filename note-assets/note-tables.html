@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>note用 表画像</title>
+<style>
+  body {
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 15px;
+    background: #f5f5f5;
+    padding: 30px;
+    color: #222;
+    line-height: 1.6;
+  }
+  .table-block {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: inline-block;
+    min-width: 500px;
+  }
+  .table-label {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+  }
+  .table-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a4b8c;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a4b8c;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th {
+    background: #1a4b8c;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #e5e9f2;
+    font-size: 14px;
+    vertical-align: top;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  tr:nth-child(even) td {
+    background: #f7f9ff;
+  }
+  /* 解答表（イ〜ホ） */
+  table.answer th {
+    background: #f3f3f3;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+    width: 20%;
+    border: 1px solid #ccc;
+  }
+  table.answer td {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a3a7a;
+    border: 1px solid #ccc;
+    background: #f0f4ff;
+    padding: 12px;
+  }
+  /* 注記 */
+  .note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #fffbe6;
+    border-left: 3px solid #f5a623;
+    line-height: 1.7;
+  }
+  /* ページ区切り用 */
+  .separator {
+    text-align: center;
+    color: #bbb;
+    font-size: 12px;
+    margin: 0 0 32px;
+  }
+  /* ★マーク */
+  .star { color: #f5a623; }
+</style>
+</head>
+<body>
+
+<!-- ==============================
+  表①：第二次検定の構成と配点目安
+================================= -->
+<div class="table-block">
+  <div class="table-label">表① ／ 「はじめに」セクションに貼り付け</div>
+  <div class="table-title">第二次検定の構成と配点目安</div>
+  <table>
+    <tr>
+      <th>区分</th>
+      <th>問題番号</th>
+      <th>内容</th>
+      <th>備考</th>
+    </tr>
+    <tr>
+      <td>必須問題</td>
+      <td>問題1</td>
+      <td>経験記述</td>
+      <td>全員解答</td>
+    </tr>
+    <tr>
+      <td>必須問題</td>
+      <td>問題2・3</td>
+      <td>法令・安全</td>
+      <td>全員解答</td>
+    </tr>
+    <tr>
+      <td>選択問題(1)</td>
+      <td>問題4〜7</td>
+      <td>土工・コンクリート・施工</td>
+      <td>4問中2問選択</td>
+    </tr>
+    <tr>
+      <td>選択問題(2)</td>
+      <td>問題8〜11</td>
+      <td>各種施工・品質管理</td>
+      <td>4問中2問選択</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表②：問題2 解答
+================================= -->
+<div class="table-block">
+  <div class="table-label">表② ／ 問題2「解答」に貼り付け</div>
+  <div class="table-title">問題2 想定解答</div>
+  <table class="answer">
+    <tr>
+      <th>(イ)</th>
+      <th>(ロ)</th>
+      <th>(ハ)</th>
+      <th>(ニ)</th>
+      <th>(ホ)</th>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>構造</td>
+      <td>組立図</td>
+      <td>3.5</td>
+      <td>通路</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表③：届出が必要な高さ基準
+================================= -->
+<div class="table-block">
+  <div class="table-label">表③ ／ 問題2「解説」に貼り付け</div>
+  <div class="table-title">届出が必要な高さ基準の整理</div>
+  <table>
+    <tr>
+      <th>対象</th>
+      <th>基準</th>
+    </tr>
+    <tr>
+      <td>足場（つり足場・張出し足場以外）</td>
+      <td><strong>高さ 10m以上</strong></td>
+    </tr>
+    <tr>
+      <td>型枠支保工</td>
+      <td><strong>支柱の高さ 3.5m以上</strong></td>
+    </tr>
+    <tr>
+      <td>架設通路</td>
+      <td><strong>高さ 10m以上</strong> かつ <strong>長さ 10m以上</strong></td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表④：問題3 重要数値まとめ
+================================= -->
+<div class="table-block">
+  <div class="table-label">表④ ／ 問題3「解説」に貼り付け</div>
+  <div class="table-title">墜落防止に関する重要数値まとめ</div>
+  <table>
+    <tr>
+      <th>項目</th>
+      <th>基準</th>
+    </tr>
+    <tr>
+      <td>作業床設置の対象</td>
+      <td>高さ <strong>2m以上</strong> の作業箇所</td>
+    </tr>
+    <tr>
+      <td>作業床の幅</td>
+      <td><strong>40cm以上</strong></td>
+    </tr>
+    <tr>
+      <td>床材間の隙間</td>
+      <td><strong>3cm以下</strong></td>
+    </tr>
+    <tr>
+      <td>手すりの高さ</td>
+      <td><strong>85cm以上</strong></td>
+    </tr>
+    <tr>
+      <td>墜落制止用器具の使用</td>
+      <td>高さ2m以上で囲い等の設置が困難な場合</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表⑤：問題4 解答
+================================= -->
+<div class="table-block">
+  <div class="table-label">表⑤ ／ 問題4「解答」に貼り付け</div>
+  <div class="table-title">問題4 想定解答（軟弱地盤上の盛土施工）</div>
+  <table class="answer">
+    <tr>
+      <th>(イ)</th>
+      <th>(ロ)</th>
+      <th>(ハ)</th>
+      <th>(ニ)</th>
+      <th>(ホ)</th>
+    </tr>
+    <tr>
+      <td>横断</td>
+      <td>浸透</td>
+      <td>側方</td>
+      <td>腹付け</td>
+      <td>動態観測</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表⑥：問題5 解答
+================================= -->
+<div class="table-block">
+  <div class="table-label">表⑥ ／ 問題5「解答」に貼り付け</div>
+  <div class="table-title">問題5 想定解答（鉄筋の加工・組立）</div>
+  <table class="answer">
+    <tr>
+      <th>(イ)</th>
+      <th>(ロ)</th>
+      <th>(ハ)</th>
+      <th>(ニ)</th>
+      <th>(ホ)</th>
+    </tr>
+    <tr>
+      <td>BIM/CIM</td>
+      <td>熱</td>
+      <td>かぶり</td>
+      <td>防錆</td>
+      <td>超音波</td>
+    </tr>
+  </table>
+  <div class="note">※(イ)は「3次元モデル」「3次元データ」も正解とされる場合があります。</div>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表⑦：問題6 解答
+================================= -->
+<div class="table-block">
+  <div class="table-label">表⑦ ／ 問題6「解答」に貼り付け</div>
+  <div class="table-title">問題6 想定解答（地下埋設物に近接した施工）</div>
+  <table class="answer">
+    <tr>
+      <th>(イ)</th>
+      <th>(ロ)</th>
+      <th>(ハ)</th>
+      <th>(ニ)</th>
+      <th>(ホ)</th>
+    </tr>
+    <tr>
+      <td>台帳</td>
+      <td>試掘</td>
+      <td>表示板</td>
+      <td>立会い</td>
+      <td>防護</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表⑧：問題7 解答
+================================= -->
+<div class="table-block">
+  <div class="table-label">表⑧ ／ 問題7「解答」に貼り付け</div>
+  <div class="table-title">問題7 想定解答（施工計画作成の留意事項）</div>
+  <table class="answer">
+    <tr>
+      <th>(イ)</th>
+      <th>(ロ)</th>
+      <th>(ハ)</th>
+      <th>(ニ)</th>
+      <th>(ホ)</th>
+    </tr>
+    <tr>
+      <td>調査</td>
+      <td>協議</td>
+      <td>制約条件</td>
+      <td>公衆災害</td>
+      <td>指揮命令</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表⑨：採点ポイント総まとめ
+================================= -->
+<div class="table-block">
+  <div class="table-label">表⑨ ／ 「まとめ」セクションに貼り付け</div>
+  <div class="table-title">採点ポイント総まとめ</div>
+  <table>
+    <tr>
+      <th>重要度</th>
+      <th>ポイント</th>
+    </tr>
+    <tr>
+      <td><span class="star">★★★★★</span></td>
+      <td>法令・基準書の<strong>数値</strong>（高さ・厚さ・勾配等）を正確に書く</td>
+    </tr>
+    <tr>
+      <td><span class="star">★★★★★</span></td>
+      <td>抽象的表現を避け、<strong>具体的な工法名・専門用語</strong>を使う</td>
+    </tr>
+    <tr>
+      <td><span class="star">★★★★☆</span></td>
+      <td>穴埋め問題は<strong>語句群の言葉をそのまま</strong>使う</td>
+    </tr>
+    <tr>
+      <td><span class="star">★★★★☆</span></td>
+      <td>記述問題は<strong>問われた数だけ</strong>確実に書く（多く書いても減点リスクあり）</td>
+    </tr>
+    <tr>
+      <td><span class="star">★★★☆☆</span></td>
+      <td>漢字の誤字・脱字に注意</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+<!-- ==============================
+  表⑩：学習ロードマップ
+================================= -->
+<div class="table-block">
+  <div class="table-label">表⑩ ／ 「まとめ」セクションに貼り付け</div>
+  <div class="table-title">来年度に向けた学習ロードマップ</div>
+  <table>
+    <tr>
+      <th>時期</th>
+      <th>やること</th>
+    </tr>
+    <tr>
+      <td><strong>4〜6月</strong></td>
+      <td>第一次検定対策＋経験記述の素材集め</td>
+    </tr>
+    <tr>
+      <td><strong>7〜8月</strong></td>
+      <td>第二次検定の技術問題（過去問7年分）</td>
+    </tr>
+    <tr>
+      <td><strong>9月</strong></td>
+      <td>経験記述の完成＋模擬演習</td>
+    </tr>
+    <tr>
+      <td><strong>10月直前</strong></td>
+      <td>弱点補強＋当日タイムシミュレーション</td>
+    </tr>
+  </table>
+</div>
+
+<div class="separator">↑ ここまでスクリーンショット ↑</div>
+
+</body>
+</html>
