@@ -22,8 +22,9 @@ export function getAllPosts(): Post[] {
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(raw);
     const rt = readingTime(content);
-    const excerpt = content
+    const excerpt = (data.description as string | undefined)?.slice(0, 150).trim() ?? content
       .replace(/#{1,6}\s+/g, "")
+      .replace(/<[^>]+>/g, "")
       .replace(/[*_`\[\]]/g, "")
       .slice(0, 150)
       .trim();
@@ -49,8 +50,9 @@ export function getPostBySlug(slug: string): PostWithContent | null {
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const rt = readingTime(content);
-  const excerpt = content
+  const excerpt = (data.description as string | undefined)?.slice(0, 150).trim() ?? content
     .replace(/#{1,6}\s+/g, "")
+    .replace(/<[^>]+>/g, "")
     .replace(/[*_`\[\]]/g, "")
     .slice(0, 150)
     .trim();
