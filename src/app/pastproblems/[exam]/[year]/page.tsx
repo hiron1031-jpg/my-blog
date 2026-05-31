@@ -176,6 +176,52 @@ function getBenkyohoSlug(examId: string): string | null {
   }
 }
 
+// ---- Note links (R7限定) ----
+function getNoteLinks(examId: string, yearKey: string): { label: string; url: string; price: string }[] {
+  if (examId === "1doboku" && yearKey === "R7") {
+    return [
+      { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/nc8cc72e51116", price: "無料" },
+      { label: "【500円】R7 解答解説 全10問（問題2〜11）", url: "https://note.com/dobokutorisetsu/n/n051d4898f173", price: "500円" },
+      { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nb501fa18250f", price: "300円" },
+    ];
+  }
+  return [];
+}
+
+// ---- Related articles (exam-specific) ----
+function getRelatedArticles(examId: string): { label: string; href: string }[] {
+  switch (examId) {
+    case "1doboku":
+      return [
+        { label: "1級土木 第一次検定 頻出分野と対策", href: "/posts/doboku-1kyu-hinshutu" },
+        { label: "1級土木 試験当日の持ち物・タイムスケジュール", href: "/posts/doboku-1kyu-tojitsu" },
+        { label: "1級土木 第二次検定 記述問題対策", href: "/posts/doboku-1kyu-2ji-kijutsu" },
+        { label: "土木施工管理技士 経験記述の書き方", href: "/posts/keiken-kijutsu-kakikata" },
+      ];
+    case "2doboku":
+      return [
+        { label: "2級土木 第一次検定 頻出分野と対策", href: "/posts/doboku-2kyu-hinshutu" },
+        { label: "2級土木 試験当日の持ち物・タイムスケジュール", href: "/posts/doboku-2kyu-tojitsu" },
+        { label: "2級土木 第二次検定 記述問題対策", href: "/posts/doboku-2kyu-2ji-kijutsu" },
+      ];
+    case "1zou":
+      return [
+        { label: "1級造園 第一次検定 頻出分野と対策", href: "/posts/zouen-1kyu-hinshutu" },
+        { label: "1級造園 試験当日の持ち物・タイムスケジュール", href: "/posts/zouen-1kyu-tojitsu" },
+        { label: "1級造園 第二次検定 記述問題対策", href: "/posts/zouen-1kyu-2ji-kijutsu" },
+        { label: "造園施工管理技士 経験記述の書き方", href: "/posts/zouen-keiken-kijutsu" },
+      ];
+    case "2zou":
+      return [
+        { label: "2級造園 第一次検定 頻出分野と対策", href: "/posts/zouen-2kyu-hinshutu" },
+        { label: "2級造園 試験当日の持ち物・タイムスケジュール", href: "/posts/zouen-2kyu-tojitsu" },
+        { label: "2級造園 第二次検定 記述問題対策", href: "/posts/zouen-2kyu-2ji-kijutsu" },
+      ];
+    default:
+      return [];
+  }
+}
+
 // ---- Page component ----
 export default async function Page({ params }: PageProps) {
   const { exam, year } = await params;
@@ -192,6 +238,8 @@ export default async function Page({ params }: PageProps) {
   const summary = getExamSummary(exam);
   const western = yearKeyToWestern(entry.key);
   const benkyohoSlug = getBenkyohoSlug(exam);
+  const noteLinks = getNoteLinks(exam, entry.key);
+  const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
   const jsonLd = {
@@ -449,17 +497,52 @@ export default async function Page({ params }: PageProps) {
         </Link>
       </section>
 
+      {/* note 解答解説バナー（R7限定） */}
+      {noteLinks.length > 0 && (
+        <section className="mb-10 bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <h2 className="text-sm font-bold text-amber-900 mb-3">
+            📝 {entry.label} 解答解説・解答用紙（note）
+          </h2>
+          <div className="flex flex-col gap-2">
+            {noteLinks.map((n) => (
+              <a
+                key={n.url}
+                href={n.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-3 py-2.5 bg-white border border-amber-200 rounded-lg text-sm hover:bg-amber-50 transition"
+              >
+                <span className="text-amber-900">{n.label}</span>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${n.price === "無料" ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                  {n.price}
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 関連記事 */}
-      {benkyohoSlug && (
+      {(benkyohoSlug || relatedArticles.length > 0) && (
         <section className="mb-10 bg-surface border border-border rounded-xl p-6">
           <h2 className="text-base font-bold text-gray-800 mb-4">{category.shortName}の合格対策記事</h2>
           <ul className="space-y-2 text-sm">
-            <li>
-              <Link href={`/posts/${benkyohoSlug}`} className="inline-flex items-center gap-2 text-primary hover:underline">
-                <FiArrowRight size={14} />
-                {category.name} 勉強法【独学合格の全手順】
-              </Link>
-            </li>
+            {benkyohoSlug && (
+              <li>
+                <Link href={`/posts/${benkyohoSlug}`} className="inline-flex items-center gap-2 text-primary hover:underline">
+                  <FiArrowRight size={14} />
+                  {category.name} 勉強法【独学合格の全手順】
+                </Link>
+              </li>
+            )}
+            {relatedArticles.map((a) => (
+              <li key={a.href}>
+                <Link href={a.href} className="inline-flex items-center gap-2 text-primary hover:underline">
+                  <FiArrowRight size={14} />
+                  {a.label}
+                </Link>
+              </li>
+            ))}
             <li>
               <Link href="/pastproblems" className="inline-flex items-center gap-2 text-primary hover:underline">
                 <FiArrowRight size={14} />
