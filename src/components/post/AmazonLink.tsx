@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { buildAmazonUrl } from "@/lib/affiliate";
+import { buildAmazonUrl, buildAmazonAnyUrl } from "@/lib/affiliate";
 
 interface AmazonLinkProps {
   /** Amazon商品のASIN（例: "4816376895"）。URLの /dp/XXXXXXXXXX の部分 */
@@ -30,7 +30,11 @@ export default function AmazonLink({
   comment,
   imageUrl,
 }: AmazonLinkProps) {
-  const href = asin ? buildAmazonUrl(asin) : url || "#";
+  const href = asin
+    ? buildAmazonUrl(asin)
+    : url
+      ? buildAmazonAnyUrl(url)
+      : "#";
   // 書影URL：明示指定があればそれを使用、無ければASIN(=ISBN)からOpenBD APIで取得
   const bookImageUrl =
     imageUrl ?? (asin ? `https://cover.openbd.jp/${asin}.jpg` : null);

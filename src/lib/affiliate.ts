@@ -68,6 +68,14 @@ export function buildAmazonUrl(asin: string): string {
 }
 
 /**
+ * Amazon の任意URL（検索URLなど）をもしも経由に変換する。
+ * <AmazonLink url="https://www.amazon.co.jp/s?k=..." /> のケースで使用。
+ */
+export function buildAmazonAnyUrl(targetUrl: string): string {
+  return buildMoshimoClickUrl(AMAZON_MOSHIMO, targetUrl);
+}
+
+/**
  * 楽天ブックス検索URLを「もしも経由」で生成する。
  * 既存の検索ページ遷移はそのまま、もしも経由のクリック計測になる。
  */
