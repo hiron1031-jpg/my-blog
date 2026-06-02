@@ -31,10 +31,21 @@ interface MultiStoreLinkProps {
 }
 
 /**
+ * ISBN-10（ASIN）→ ISBN-13 変換
+ * OpenBD は ISBN-13 形式が必要なため変換して使用する
+ */
+function toIsbn13(isbn10: string): string {
+  const base = "978" + isbn10.substring(0, 9);
+  let sum = 0;
+  for (let i = 0; i < 12; i++) {
+    sum += parseInt(base[i]) * (i % 2 === 0 ? 1 : 3);
+  }
+  const check = (10 - (sum % 10)) % 10;
+  return base + check;
+}
+
+/**
  * 複数ストア（Amazon / 楽天 / Yahoo!）並列リンクカード
- *
- * 書影画像なしの軽量版。もしもアフィリエイト承認後は
- * 「かんたんリンク」のHTMLに置き換える想定。
  */
 export default function MultiStoreLink({
   asin,
@@ -48,9 +59,8 @@ export default function MultiStoreLink({
   const amazonUrl = buildAmazonUrl(asin);
   const rakutenUrl = buildRakutenUrl(rakutenQuery || title);
   const yahooUrl = buildYahooUrl(yahooQuery || title);
-  // 書影URL：明示指定があればそれを使用、無ければASIN(=ISBN)からOpenBD APIで取得
-  // OpenBDは日本書籍向けの無料書影APIで、ISBNベースのため和書はほぼ確実に取得可能
-  const bookImageUrl = imageUrl ?? `https://cover.openbd.jp/${asin}.jpg`;
+  // 書影URL：明示指定があればそれを使用、無ければISBN-13に変換してOpenBD APIで取得
+  const bookImageUrl = imageUrl ?? `https://cover.openbd.jp/${toIsbn13(asin)}.jpg`;
   const [imgError, setImgError] = useState(false);
 
   const trackClick = (storeName: string, url: string) => {

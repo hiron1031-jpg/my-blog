@@ -35,9 +35,17 @@ export default function AmazonLink({
     : url
       ? buildAmazonAnyUrl(url)
       : "#";
-  // 書影URL：明示指定があればそれを使用、無ければASIN(=ISBN)からOpenBD APIで取得
+  // ISBN-10 → ISBN-13 変換（OpenBD はISBN-13が必要）
+  const toIsbn13 = (isbn10: string) => {
+    const base = "978" + isbn10.substring(0, 9);
+    let sum = 0;
+    for (let i = 0; i < 12; i++) {
+      sum += parseInt(base[i]) * (i % 2 === 0 ? 1 : 3);
+    }
+    return base + (10 - (sum % 10)) % 10;
+  };
   const bookImageUrl =
-    imageUrl ?? (asin ? `https://cover.openbd.jp/${asin}.jpg` : null);
+    imageUrl ?? (asin ? `https://cover.openbd.jp/${toIsbn13(asin)}.jpg` : null);
   const [imgError, setImgError] = useState(false);
   const showImage = bookImageUrl && !imgError;
 
