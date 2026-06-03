@@ -22,13 +22,13 @@ const components = {
   h3: ({ children, id }: { children: React.ReactNode; id?: string }) => (
     <h3
       id={id}
-      className="text-xl font-bold text-[#374151] mt-8 mb-3 border-l-4 border-accent pl-3"
+      className="text-xl font-bold text-heading mt-8 mb-3"
     >
       {children}
     </h3>
   ),
   blockquote: ({ children }: { children: React.ReactNode }) => (
-    <blockquote className="border-l-4 border-accent bg-surface px-4 py-3 my-6 rounded-r-lg text-secondary italic">
+    <blockquote className="border-l-2 border-border bg-surface px-4 py-3 my-6 rounded-r-lg text-secondary">
       {children}
     </blockquote>
   ),
