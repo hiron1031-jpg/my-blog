@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ADSENSE_CLIENT, isAdsenseEnabled } from "@/lib/adsense";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -94,6 +95,14 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://hb.afl.rakuten.co.jp" />
         {gaId && (
           <link rel="preconnect" href="https://www.googletagmanager.com" />
+        )}
+        {/* Google AdSense（パブリッシャーID設定時のみ読み込み・審査用スクリプト） */}
+        {isAdsenseEnabled && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+            crossOrigin="anonymous"
+          />
         )}
         {/* JSON-LDはinline scriptで配信（Next Scriptのオーバーヘッドを回避） */}
         <script
