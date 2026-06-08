@@ -172,6 +172,7 @@ type RecommendedBook = {
   title: string;
   subtitle: string;
   comment: string;
+  imageUrl: string;
   rankingSlug: string;
 };
 
@@ -183,6 +184,7 @@ function getRecommendedBook(examId: string): RecommendedBook | null {
         title: "2026年版 1級土木施工 第1次検定 徹底図解テキスト＆問題集",
         subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
         comment: "過去問で間違えた分野は、図解付きテキストで原理から押さえ直すと定着が早いです。独学合格者が選ぶ1級土木の最有力候補。",
+        imageUrl: "/images/books/natsume-1doboku-1ji.jpg",
         rankingSlug: "doboku-1kyu-sankosho-ranking",
       };
     case "2doboku":
@@ -191,6 +193,7 @@ function getRecommendedBook(examId: string): RecommendedBook | null {
         title: "2026年版 2級土木施工 第1次・第2次検定 徹底図解テキスト",
         subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
         comment: "第一次・第二次の両方をこの1冊でカバー。過去問演習とセットで使うと効率的です。",
+        imageUrl: "/images/books/natsume-2doboku.jpg",
         rankingSlug: "doboku-2kyu-sankosho-ranking",
       };
     case "1zou":
@@ -199,6 +202,7 @@ function getRecommendedBook(examId: string): RecommendedBook | null {
         title: "例題で学ぶ!! 1級造園施工管理技士",
         subtitle: "市ヶ谷出版社",
         comment: "造園特有の植物・材料分野は、例題で繰り返すのが近道。過去問の補強教材におすすめ。",
+        imageUrl: "/images/books/1zou.jpeg",
         rankingSlug: "zouen-1kyu-sankosho-ranking",
       };
     case "2zou":
@@ -207,6 +211,7 @@ function getRecommendedBook(examId: string): RecommendedBook | null {
         title: "改訂2版 ミヤケン先生の合格講義！2級造園施工管理技士",
         subtitle: "オーム社 / 宮入賢一郎",
         comment: "初学者にもわかりやすい定番の1冊。過去問でつまずいた基礎を埋めるのに最適です。",
+        imageUrl: "/images/books/miyaken-2zou.jpg",
         rankingSlug: "zouen-2kyu-sankosho-ranking",
       };
     default:
@@ -386,6 +391,7 @@ export default async function Page({ params }: PageProps) {
             title={recommendedBook.title}
             subtitle={recommendedBook.subtitle}
             comment={recommendedBook.comment}
+            imageUrl={recommendedBook.imageUrl}
           />
           <p className="text-sm">
             <Link href={`/posts/${recommendedBook.rankingSlug}`} className="inline-flex items-center gap-1.5 text-primary hover:underline">
