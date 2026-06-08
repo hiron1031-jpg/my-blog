@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import MultiStoreLink from "@/components/post/MultiStoreLink";
 import {
   CATEGORIES,
   getYearEntry,
@@ -165,6 +166,54 @@ function getExamSummary(examId: string): ExamSummary | null {
   }
 }
 
+// ---- Recommended textbook (per exam) ----
+type RecommendedBook = {
+  asin: string;
+  title: string;
+  subtitle: string;
+  comment: string;
+  rankingSlug: string;
+};
+
+function getRecommendedBook(examId: string): RecommendedBook | null {
+  switch (examId) {
+    case "1doboku":
+      return {
+        asin: "4816378243",
+        title: "2026年版 1級土木施工 第1次検定 徹底図解テキスト＆問題集",
+        subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
+        comment: "過去問で間違えた分野は、図解付きテキストで原理から押さえ直すと定着が早いです。独学合格者が選ぶ1級土木の最有力候補。",
+        rankingSlug: "doboku-1kyu-sankosho-ranking",
+      };
+    case "2doboku":
+      return {
+        asin: "4816378383",
+        title: "2026年版 2級土木施工 第1次・第2次検定 徹底図解テキスト",
+        subtitle: "ナツメ社 / 土木施工管理技術検定試験研究会",
+        comment: "第一次・第二次の両方をこの1冊でカバー。過去問演習とセットで使うと効率的です。",
+        rankingSlug: "doboku-2kyu-sankosho-ranking",
+      };
+    case "1zou":
+      return {
+        asin: "4770326726",
+        title: "例題で学ぶ!! 1級造園施工管理技士",
+        subtitle: "市ヶ谷出版社",
+        comment: "造園特有の植物・材料分野は、例題で繰り返すのが近道。過去問の補強教材におすすめ。",
+        rankingSlug: "zouen-1kyu-sankosho-ranking",
+      };
+    case "2zou":
+      return {
+        asin: "4274234649",
+        title: "改訂2版 ミヤケン先生の合格講義！2級造園施工管理技士",
+        subtitle: "オーム社 / 宮入賢一郎",
+        comment: "初学者にもわかりやすい定番の1冊。過去問でつまずいた基礎を埋めるのに最適です。",
+        rankingSlug: "zouen-2kyu-sankosho-ranking",
+      };
+    default:
+      return null;
+  }
+}
+
 // ---- Related benkyoho article slug ----
 function getBenkyohoSlug(examId: string): string | null {
   switch (examId) {
@@ -238,6 +287,7 @@ export default async function Page({ params }: PageProps) {
   const summary = getExamSummary(exam);
   const western = yearKeyToWestern(entry.key);
   const benkyohoSlug = getBenkyohoSlug(exam);
+  const recommendedBook = getRecommendedBook(exam);
   const noteLinks = getNoteLinks(exam, entry.key);
   const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
@@ -319,6 +369,32 @@ export default async function Page({ params }: PageProps) {
           出典：一般財団法人 全国建設研修センター（掲載許諾済み）
         </p>
       </section>
+
+      {/* おすすめ参考書（過去問とセットで使う教材） */}
+      {recommendedBook && (
+        <section className="mb-10">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-gray-800 mb-3">
+            <FiBookOpen size={20} className="text-primary" />
+            過去問とセットで使うなら（{category.shortName} 独学の定番テキスト）
+          </h2>
+          <p className="text-sm text-gray-700 leading-relaxed mb-1">
+            過去問を解いて「解説がもっと欲しい」「苦手分野を基礎から固めたい」と感じたら、
+            図解付きのテキストを1冊持っておくと効率が一気に上がります。
+          </p>
+          <MultiStoreLink
+            asin={recommendedBook.asin}
+            title={recommendedBook.title}
+            subtitle={recommendedBook.subtitle}
+            comment={recommendedBook.comment}
+          />
+          <p className="text-sm">
+            <Link href={`/posts/${recommendedBook.rankingSlug}`} className="inline-flex items-center gap-1.5 text-primary hover:underline">
+              <FiArrowRight size={14} />
+              {category.shortName}のおすすめテキスト・参考書ランキングをもっと見る
+            </Link>
+          </p>
+        </section>
+      )}
 
       {/* 試験情報（合格率・基準・出題構成） */}
       {summary && (
