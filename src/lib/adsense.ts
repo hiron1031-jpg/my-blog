@@ -14,7 +14,7 @@
  *
  * 空文字のあいだは、AdSenseのスクリプトも広告枠も一切読み込まれない（=何も表示されない）。
  */
-export const ADSENSE_CLIENT = "";
+export const ADSENSE_CLIENT = "ca-pub-8503868196416646";
 
 /** AdSenseが有効か（IDが設定済みか）を判定 */
 export const isAdsenseEnabled = ADSENSE_CLIENT.startsWith("ca-pub-");
