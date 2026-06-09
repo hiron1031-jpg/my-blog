@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FiShield, FiDownload, FiAlertCircle, FiBookOpen, FiHelpCircle, FiArrowRight } from "react-icons/fi";
 import PastProblemsClient from "@/components/pastproblems/PastProblemsClient";
+import LearningCycle from "@/components/home/LearningCycle";
 import BeaverMascot from "@/components/layout/BeaverMascot";
 import JsonLd from "@/components/JsonLd";
 
@@ -141,6 +142,11 @@ export default function PastProblemsPage() {
             試験制度の変更（令和3年度〜）により、「学科試験」→「第一次検定」、「実地試験」→「第二次検定」に名称が変わっています。
           </p>
         </div>
+      </div>
+
+      {/* ── 学習サイクル図 ── */}
+      <div className="mb-10">
+        <LearningCycle />
       </div>
 
       {/* ── How to use ── */}
