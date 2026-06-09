@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const western = yearKeyToWestern(entry.key);
 
   const title = `${entry.label} ${category.name} 過去問【問題・解答PDF無料ダウンロード】`;
-  const description = `${entry.label}（${western}年度）の${category.name}本試験問題と解答をPDFで無料ダウンロード。第一次検定・第二次検定の出題傾向と対策ポイントを独学合格者が解説。`;
+  const description = `${entry.label}（${western}年度）の${category.name}本試験問題と解答を登録不要・無料でPDFダウンロード。印刷してそのまま本番演習OK。第一次検定・第二次検定の出題傾向と対策ポイントも独学合格者が解説。`;
 
   return {
     title,
@@ -230,11 +230,11 @@ function getBenkyohoSlug(examId: string): string | null {
   }
 }
 
-// ---- Note links (R7限定) ----
-function getNoteLinks(examId: string, yearKey: string): { label: string; url: string; price: string }[] {
-  if (examId === "1doboku" && yearKey === "R7") {
+// ---- Note links (1級土木のみ。商品はR7第二次検定向けのため全年度ページで最新R7を案内) ----
+function getNoteLinks(examId: string): { label: string; url: string; price: string }[] {
+  if (examId === "1doboku") {
     return [
-      { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/nc8cc72e51116", price: "無料" },
+      { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nc8cc72e51116", price: "無料" },
       { label: "【500円】R7 解答解説 全10問（問題2〜11）", url: "https://note.com/dobokutorisetsu/n/n051d4898f173", price: "500円" },
       { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nb501fa18250f", price: "300円" },
     ];
@@ -293,7 +293,7 @@ export default async function Page({ params }: PageProps) {
   const western = yearKeyToWestern(entry.key);
   const benkyohoSlug = getBenkyohoSlug(exam);
   const recommendedBook = getRecommendedBook(exam);
-  const noteLinks = getNoteLinks(exam, entry.key);
+  const noteLinks = getNoteLinks(exam);
   const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
@@ -374,6 +374,34 @@ export default async function Page({ params }: PageProps) {
           出典：一般財団法人 全国建設研修センター（掲載許諾済み）
         </p>
       </section>
+
+      {/* note 解答解説バナー（1級土木のみ・R7商品を案内） */}
+      {noteLinks.length > 0 && (
+        <section className="mb-10 bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <h2 className="text-sm font-bold text-amber-900 mb-2">
+            📝 令和7年度（最新）1級土木 第二次検定の解答解説・解答用紙（note）
+          </h2>
+          <p className="text-xs text-amber-800 mb-3">
+            自己採点や記述式の答え合わせに。本番形式の解答用紙と、独学合格者による全問解説をnoteで公開しています。
+          </p>
+          <div className="flex flex-col gap-2">
+            {noteLinks.map((n) => (
+              <a
+                key={n.url}
+                href={n.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-3 py-2.5 bg-white border border-amber-200 rounded-lg text-sm hover:bg-amber-50 transition"
+              >
+                <span className="text-amber-900">{n.label}</span>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${n.price === "無料" ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                  {n.price}
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* おすすめ参考書（過去問とセットで使う教材） */}
       {recommendedBook && (
@@ -578,31 +606,6 @@ export default async function Page({ params }: PageProps) {
           <FiArrowRight size={14} />
         </Link>
       </section>
-
-      {/* note 解答解説バナー（R7限定） */}
-      {noteLinks.length > 0 && (
-        <section className="mb-10 bg-amber-50 border border-amber-200 rounded-xl p-5">
-          <h2 className="text-sm font-bold text-amber-900 mb-3">
-            📝 {entry.label} 解答解説・解答用紙（note）
-          </h2>
-          <div className="flex flex-col gap-2">
-            {noteLinks.map((n) => (
-              <a
-                key={n.url}
-                href={n.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between px-3 py-2.5 bg-white border border-amber-200 rounded-lg text-sm hover:bg-amber-50 transition"
-              >
-                <span className="text-amber-900">{n.label}</span>
-                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${n.price === "無料" ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
-                  {n.price}
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* 関連記事 */}
       {(benkyohoSlug || relatedArticles.length > 0) && (

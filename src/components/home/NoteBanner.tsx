@@ -1,6 +1,6 @@
 const noteItems = [
   {
-    href: "https://note.com/dobokutorisetsu/nc8cc72e51116",
+    href: "https://note.com/dobokutorisetsu/n/nc8cc72e51116",
     label: "R7 練習用解答用紙 PDF",
     price: "無料",
     priceColor: "bg-emerald-500",
