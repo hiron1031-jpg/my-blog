@@ -219,6 +219,22 @@ function getRecommendedBook(examId: string): RecommendedBook | null {
   }
 }
 
+// ---- 頻出分野記事 slug ----
+function getHinshutsuSlug(examId: string): string | null {
+  switch (examId) {
+    case "1doboku": return "doboku-1kyu-hinshutu";
+    case "2doboku": return "doboku-2kyu-hinshutu";
+    case "1zou": return "zouen-1kyu-hinshutu";
+    case "2zou": return "zouen-2kyu-hinshutu";
+    default: return null;
+  }
+}
+
+// ---- 経験記述記事 slug ----
+function getKeikenSlug(examId: string): string {
+  return examId.includes("zou") ? "zouen-keiken-kijutsu" : "doboku-keiken-kijutsu";
+}
+
 // ---- Related benkyoho article slug ----
 function getBenkyohoSlug(examId: string): string | null {
   switch (examId) {
@@ -292,6 +308,8 @@ export default async function Page({ params }: PageProps) {
   const summary = getExamSummary(exam);
   const western = yearKeyToWestern(entry.key);
   const benkyohoSlug = getBenkyohoSlug(exam);
+  const hinshutsuSlug = getHinshutsuSlug(exam);
+  const keikenSlug = getKeikenSlug(exam);
   const recommendedBook = getRecommendedBook(exam);
   const noteLinks = getNoteLinks(exam);
   const relatedArticles = getRelatedArticles(exam);
@@ -403,6 +421,41 @@ export default async function Page({ params }: PageProps) {
         </section>
       )}
 
+      {/* 次の一歩（合格までの流れ） */}
+      <section className="mb-10 bg-surface border border-border rounded-xl p-5 md:p-6">
+        <h2 className="flex items-center gap-2 text-base md:text-lg font-bold text-gray-800 mb-3">
+          <FiHelpCircle size={18} className="text-primary" />
+          この過去問を解いたら、次にやること
+        </h2>
+        <ol className="space-y-2.5 text-sm text-gray-700">
+          <li>1. <strong>本番と同じ時間配分</strong>で通しで解く（印刷がおすすめ）</li>
+          <li>2. 自己採点して、間違えた問題に<strong>分野別の印</strong>をつける（コンクリート・土工など）</li>
+          {hinshutsuSlug && (
+            <li>
+              3. 間違いが多かった分野は
+              <Link href={`/posts/${hinshutsuSlug}`} className="text-primary underline hover:no-underline font-medium mx-1">
+                {category.shortName} 頻出分野と対策
+              </Link>
+              で重点的に補強する
+            </li>
+          )}
+          <li>
+            4. スキマ時間は
+            <Link href="/quiz" className="text-primary underline hover:no-underline font-medium mx-1">
+              過去問チャレンジ（無料Webクイズ）
+            </Link>
+            で間違えた分野を反復する
+          </li>
+          <li>
+            5. <strong>第二次検定の経験記述は直前では間に合いません</strong>。
+            <Link href={`/posts/${keikenSlug}`} className="text-primary underline hover:no-underline font-medium mx-1">
+              経験記述の書き方【合格文例付き】
+            </Link>
+            で早めに型を作っておく
+          </li>
+        </ol>
+      </section>
+
       {/* おすすめ参考書（過去問とセットで使う教材） */}
       {recommendedBook && (
         <section className="mb-10">
@@ -505,21 +558,6 @@ export default async function Page({ params }: PageProps) {
           </ul>
         </section>
       )}
-
-      {/* 使い方ミニガイド */}
-      <section className="mb-10 bg-surface border border-border rounded-xl p-5 md:p-6">
-        <h2 className="flex items-center gap-2 text-base md:text-lg font-bold text-gray-800 mb-3">
-          <FiHelpCircle size={18} className="text-primary" />
-          この年度の過去問をこう使う
-        </h2>
-        <ol className="space-y-2 text-sm text-gray-700">
-          <li>1. <strong>まず本番と同じ時間配分</strong>で通しで解いてみる</li>
-          <li>2. 間違えた問題は<strong>分野別に印</strong>をつける（コンクリート・土工など）</li>
-          <li>3. <strong>同じ分野の他年度</strong>も解いて、出題パターンを掴む</li>
-          <li>4. 3日後・1週間後に<strong>間違えた問題だけ再挑戦</strong></li>
-          <li>5. スキマ時間は<Link href="/quiz" className="text-primary underline hover:no-underline">過去問チャレンジ</Link>で反復</li>
-        </ol>
-      </section>
 
       {/* Prev/Next navigation */}
       <section className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
