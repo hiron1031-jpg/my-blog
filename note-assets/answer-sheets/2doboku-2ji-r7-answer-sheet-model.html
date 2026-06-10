@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>2級土木 第二次検定 模範解答入り解答用紙（R7対応）</title>
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 12mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 10pt;
+    color: #000;
+    line-height: 1.5;
+  }
+  .page {
+    page-break-after: always;
+    position: relative;
+    padding-bottom: 8mm;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  h1 { font-size: 16pt; text-align: center; margin: 4mm 0 6mm; letter-spacing: 0.05em; }
+  h2 {
+    font-size: 12pt;
+    border-left: 4px solid #000;
+    padding-left: 6px;
+    margin: 6mm 0 3mm;
+  }
+  h3 { font-size: 11pt; margin: 4mm 0 2mm; }
+  .small { font-size: 9pt; color: #555; }
+
+  .cover-info {
+    border: 1px solid #000;
+    padding: 6mm;
+    margin-bottom: 6mm;
+  }
+  .cover-info .row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 4mm;
+  }
+  .cover-info .label { width: 30mm; font-weight: bold; }
+  .cover-info .input {
+    flex: 1;
+    border-bottom: 1px solid #000;
+    height: 8mm;
+  }
+  .notice {
+    border: 1px dashed #888;
+    padding: 4mm;
+    font-size: 9pt;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  table.gaiyou {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 4mm;
+  }
+  table.gaiyou th, table.gaiyou td {
+    border: 1px solid #000;
+    padding: 2.5mm 3mm;
+    vertical-align: top;
+    font-weight: normal;
+  }
+  table.gaiyou th {
+    width: 38mm;
+    background: #f3f3f3;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.gaiyou td {
+    height: 9mm;
+  }
+  table.gaiyou .tall td { height: 14mm; }
+
+  .lined {
+    border: 1px solid #000;
+    background-image: linear-gradient(transparent calc(100% - 1px), #888 calc(100% - 1px));
+    background-size: 100% 7mm;
+    background-position: 0 0;
+  }
+  .lined.short { min-height: 35mm; }
+  .lined.medium { min-height: 56mm; }
+  .lined.long { min-height: 77mm; }
+  .lined.xlong { min-height: 105mm; }
+
+  /* 模範解答記入済みテキスト */
+  .answer-filled {
+    border: 1px solid #aab;
+    background: #f0f4ff;
+    padding: 3mm 4mm;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 9.5pt;
+    color: #1a3a7a;
+    line-height: 1.8;
+    position: relative;
+  }
+  .answer-filled.short { min-height: 35mm; }
+  .answer-filled.medium { min-height: 56mm; }
+  .answer-filled.long { min-height: 77mm; }
+  .answer-filled.xlong { min-height: 105mm; }
+  .answer-filled::before {
+    content: "【模範解答】";
+    display: block;
+    font-size: 8pt;
+    color: #1a4b8c;
+    font-weight: bold;
+    margin-bottom: 2mm;
+    border-bottom: 1px dashed #aab;
+    padding-bottom: 1mm;
+  }
+
+  table.fillin {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2mm 0 4mm;
+  }
+  table.fillin th, table.fillin td {
+    border: 1px solid #000;
+    padding: 3mm;
+    text-align: center;
+  }
+  table.fillin th {
+    width: 14mm;
+    background: #f3f3f3;
+  }
+  table.fillin td { height: 14mm; }
+  table.fillin td.ans {
+    background: #f0f4ff;
+    color: #1a3a7a;
+    font-weight: bold;
+    font-size: 10.5pt;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+  }
+
+  ol.num-list {
+    list-style: none;
+    counter-reset: num;
+  }
+  ol.num-list li {
+    counter-increment: num;
+    margin-bottom: 4mm;
+    display: flex;
+    gap: 3mm;
+  }
+  ol.num-list li::before {
+    content: counter(num);
+    flex-shrink: 0;
+    width: 8mm;
+    height: 8mm;
+    border: 1px solid #000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 8mm;
+    font-weight: bold;
+  }
+  ol.num-list .ans {
+    flex: 1;
+    min-height: 14mm;
+    border: 1px solid #aab;
+    background: #f0f4ff;
+    color: #1a3a7a;
+    font-weight: bold;
+    font-size: 9.5pt;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    padding: 2mm 3mm;
+    line-height: 1.7;
+  }
+
+  .select-check {
+    display: flex;
+    gap: 6mm;
+    align-items: center;
+    margin: 2mm 0 3mm;
+    font-size: 10pt;
+  }
+  .select-check .box {
+    width: 7mm; height: 7mm;
+    border: 1.5px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1mm;
+  }
+
+  table.koutei {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3mm;
+  }
+  table.koutei th, table.koutei td {
+    border: 1px solid #000;
+    padding: 3mm;
+    vertical-align: top;
+  }
+  table.koutei th { background: #f3f3f3; text-align: center; width: 22mm; }
+  table.koutei td.ans {
+    background: #f0f4ff;
+    color: #1a3a7a;
+    font-family: "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.7;
+  }
+
+  .footer {
+    margin-top: 6mm;
+    padding-top: 3mm;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: #777;
+  }
+  .footer .logo {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+  }
+  .footer .logo img { height: 6mm; opacity: 0.55; }
+
+  @media screen {
+    body { background: #ddd; padding: 10mm; }
+    .page {
+      background: #fff;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 12mm 8mm;
+      margin: 0 auto 10mm;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== 表紙 ========== -->
+<div class="page">
+  <h1>令和7年度 2級土木施工管理技士 第二次検定<br>模範解答入り解答用紙</h1>
+
+  <div class="cover-info">
+    <div class="row"><div class="label">受検番号</div><div class="input"></div></div>
+    <div class="row"><div class="label">氏名</div><div class="input"></div></div>
+    <div class="row"><div class="label">試験地</div><div class="input"></div></div>
+    <div class="row"><div class="label">練習日</div><div class="input"></div></div>
+  </div>
+
+  <div class="notice">
+    <strong>本書について</strong><br>
+    ・本書は「土木のトリセツ」が作成した <strong>想定模範解答入りの参考資料</strong> です。試験機関の公式解答ではありません。<br>
+    ・第二次検定の公式正答は試験機関から非公開です。掲載の解答は、法令・基準書を参照し独学一発合格者の視点から作成した<strong>想定解答</strong>です。<br>
+    ・実際の採点では、複数の表現・同義語が認められる場合があります。<br>
+    ・<span style="color:#c00;font-weight:bold;">問題1（経験記述）は受験者本人の現場経験に基づき記述するため、本書では空白のままとしています。</span><br>
+    ・問題6・7から1問、問題8・9から1問を選択します。本書では<strong>すべての問題に模範解答を掲載</strong>しているので、自分が選択した問題と照合してください。<br>
+    ・解答欄（青色部分）を参考に、自分の解答と比較してください。
+  </div>
+
+  <div class="footer">
+    <span>2級土木 第二次検定 模範解答入り解答用紙（R7対応）</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題1：経験記述（工事概要） ========== -->
+<div class="page">
+  <h2>【問題1】経験記述　〔工事概要〕</h2>
+  <p class="small">⚠️ 経験記述（問題1）は、受験者本人の現場経験に基づいて記述するものです。模範解答はありません。<br>
+  書き方・合格文例はブログ「土木のトリセツ」の経験記述記事（無料）を参照してください。</p>
+
+  <table class="gaiyou">
+    <tr><th>(1) 工事名</th><td></td></tr>
+    <tr class="tall"><th>(2) あなたの立場</th><td></td></tr>
+  </table>
+
+  <p style="margin: 3mm 0 1mm;"><strong>(3) 工事の内容</strong></p>
+  <table class="gaiyou">
+    <tr><th>① 発注者名</th><td></td></tr>
+    <tr><th>② 工事場所</th><td></td></tr>
+    <tr><th>③ 工期</th><td></td></tr>
+    <tr class="tall"><th>④ 主な工種</th><td></td></tr>
+    <tr class="tall"><th>⑤ 施工量</th><td></td></tr>
+  </table>
+
+  <p class="small" style="margin-top:3mm;">
+    ✏️ 記入のポイント：工事名は契約書どおり正式名称で。工期は「令和◯年◯月〜令和◯年◯月」。施工量は「舗装面積1,200m²、延長300m」のように数値で具体的に書きます。
+  </p>
+
+  <div class="footer">
+    <span>問題1 経験記述（工事概要） / R7 2級土木</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題2・問題3 ========== -->
+<div class="page">
+  <h2>【問題2】品質管理（穴埋め）</h2>
+
+  <table class="fillin">
+    <tr>
+      <th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th>
+    </tr>
+    <tr>
+      <td class="ans">コーン指数</td><td class="ans">地盤反力</td><td class="ans">水セメント比</td><td class="ans">25</td><td class="ans">CBR</td>
+    </tr>
+  </table>
+  <p class="small">💡 トラフィカビリティー＝コーン指数／暑中コンクリート＝日平均気温25℃超／路床の強さ＝CBR試験。いずれも頻出の定番セットです。</p>
+
+  <h2>【問題3】工程表の特徴（記述）</h2>
+  <p class="small">2つ選択して記述（本書では①と③の解答例を掲載。②グラフ式工程表でも可）。</p>
+
+  <table class="koutei">
+    <tr><th>番号</th><th>特徴</th></tr>
+    <tr>
+      <td style="text-align:center; color:#1a3a7a; font-weight:bold;">①</td>
+      <td class="ans">バーチャートは、縦軸に工種（作業名）、横軸に日数をとり、各作業の開始・終了時期と所要日数を横棒で表した工程表である。作成が容易で各作業の期間が直感的に分かる反面、作業相互の関連や工期に影響する作業がつかみにくい。</td>
+    </tr>
+    <tr>
+      <td style="text-align:center; color:#1a3a7a; font-weight:bold;">③</td>
+      <td class="ans">出来高累計曲線は、縦軸に工事全体の出来高累計（％）、横軸に工期（日数）をとり、工事の進捗をS字状の曲線で表したものである。工事全体の進捗ペースが一目で分かり、上方・下方の管理限界線（バナナ曲線）と組み合わせて全体の工程管理に用いる。</td>
+    </tr>
+  </table>
+
+  <p class="small" style="margin-top:2mm;">（参考）②グラフ式工程表：縦軸に出来高比率（％）、横軸に日数をとり、工種ごとの進捗を斜線で表す。予定と実績の対比が視覚的に分かるが、作業相互の関連は明確にできない。</p>
+
+  <div class="footer">
+    <span>問題2・3（必須）/ R7 2級土木</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 問題4・問題5 ========== -->
+<div class="page">
+  <h2>【問題4】盛土の施工（穴埋め）</h2>
+
+  <table class="fillin">
+    <tr>
+      <th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th>
+    </tr>
+    <tr>
+      <td class="ans">地耐力</td><td class="ans">せん断</td><td class="ans">圧縮性</td><td class="ans">ICT</td><td class="ans">3次元</td>
+    </tr>
+  </table>
+  <p class="small">💡 盛土材料の条件「せん断強度が大きく・圧縮性が小さい」はワンセットで暗記。ICT土工・3次元データはi-Construction関連の新定番です。</p>
+
+  <h2>【問題5】コンクリート用語の説明（記述）</h2>
+  <p class="small">2つ選択して記述（本書では②と③の解答例を掲載。①④でも可）。</p>
+
+  <table class="koutei">
+    <tr><th>番号</th><th>用語の説明</th></tr>
+    <tr>
+      <td style="text-align:center; color:#1a3a7a; font-weight:bold;">②</td>
+      <td class="ans">コールドジョイントとは、先に打ち込んだコンクリートと後から打ち重ねたコンクリートが、打重ね時間の超過等により一体化せず、打継ぎ部に生じる不連続面のことである。強度や水密性、耐久性の低下の原因となる。</td>
+    </tr>
+    <tr>
+      <td style="text-align:center; color:#1a3a7a; font-weight:bold;">③</td>
+      <td class="ans">ブリーディングとは、コンクリートの打込み・締固めの後、骨材やセメント等の固体材料の沈降に伴い、練混ぜ水の一部が遊離して表面に上昇する現象のことである。</td>
+    </tr>
+  </table>
+
+  <p class="small" style="margin-top:2mm;">（参考）①スペーサ：鉄筋と型枠との間隔を保ち所定のかぶりを確保する部材。④ワーカビリティー：材料分離を生じることなく運搬・打込み・締固め・仕上げ等の作業が容易にできる程度を表すフレッシュコンクリートの性質。</p>
+
+  <div class="footer">
+    <span>問題4・5（必須）/ R7 2級土木</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 選択問題(1) 問題6・問題7 ========== -->
+<div class="page">
+  <h2>【選択問題(1)】問題6・問題7（うち1問選択）</h2>
+  <p class="small">本番では1問のみ解答。本書では両方の模範解答を掲載しています。</p>
+
+  <h3>【問題6】盛土の締固め管理（穴埋め）</h3>
+  <table class="fillin">
+    <tr><th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th></tr>
+    <tr>
+      <td class="ans">強度</td><td class="ans">抵抗</td><td class="ans">含水</td><td class="ans">仕様書</td><td class="ans">施工者</td>
+    </tr>
+  </table>
+  <p class="small">💡 品質規定方式＝品質を仕様書に明示し、工法は施工者に任せる。「契約書」「発注者」のひっかけに注意。</p>
+
+  <h3>【問題7】レディーミクストコンクリートの受入れ検査（穴埋め）</h3>
+  <table class="fillin">
+    <tr><th>(イ)</th><th>(ロ)</th><th>(ハ)</th><th>(ニ)</th><th>(ホ)</th></tr>
+    <tr>
+      <td class="ans">荷卸</td><td class="ans">スランプ</td><td class="ans">4.5</td><td class="ans">塩化物</td><td class="ans">3</td>
+    </tr>
+  </table>
+  <p class="small">💡 受入れ検査の数値セット：スランプ8〜18cm→±2.5cm／空気量 普通4.5%（±1.5%）／塩化物イオン0.3kg/m³以下／強度は3本の平均。丸ごと暗記推奨。</p>
+
+  <div class="footer">
+    <span>選択問題(1) 問題6・7 / R7 2級土木</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+<!-- ========== 選択問題(2) 問題8・問題9 ========== -->
+<div class="page">
+  <h2>【選択問題(2)】問題8・問題9（うち1問選択）</h2>
+  <p class="small">本番では1問のみ解答。本書では両方の模範解答を掲載しています。</p>
+
+  <h3>【問題8】移動式クレーン作業の留意点（2つ記述）</h3>
+  <ol class="num-list">
+    <li><div class="ans">アウトリガーを最大限に張り出し、地盤が軟弱な場合は鉄板等を敷いて、移動式クレーンの転倒を防止する。</div></li>
+    <li><div class="ans">上部旋回体との接触のおそれがある箇所や、つり上げた荷の下に労働者を立ち入らせない。</div></li>
+  </ol>
+  <p class="small">💡 ほかに「定格荷重を超えない」「合図者を指名し一定の合図を定める」「強風時は作業中止」「作業開始前に巻過防止装置等を点検」でも可。主語が「事業者」になる書き方で。玉掛け作業は除外指定なので書かないこと。</p>
+
+  <h3>【問題9】重力式擁壁の工程表と全所要日数</h3>
+  <table class="koutei">
+    <tr><th>工種（施工手順）</th><th>実施日</th></tr>
+    <tr><td class="ans">床掘工（6日）</td><td class="ans">1日目〜6日目</td></tr>
+    <tr><td class="ans">基礎工（3日）</td><td class="ans">5日目〜7日目（床掘工と2日重複）</td></tr>
+    <tr><td class="ans">型枠組立工（3日）</td><td class="ans">8日目〜10日目</td></tr>
+    <tr><td class="ans">コンクリート打込み工（2日）</td><td class="ans">11日目〜12日目</td></tr>
+    <tr><td class="ans">養生工（7日）</td><td class="ans">13日目〜19日目</td></tr>
+    <tr><td class="ans">型枠取外し工（1日）</td><td class="ans">20日目</td></tr>
+    <tr><td class="ans">埋戻し工（2日）</td><td class="ans">21日目〜22日目</td></tr>
+  </table>
+  <div style="display:flex; align-items:baseline; gap:3mm; margin-top:3mm;">
+    <strong>全所要日数：</strong>
+    <span style="display:inline-block; min-width:30mm; border-bottom:1px solid #000; text-align:center; color:#1a3a7a; font-weight:bold; font-size:12pt;">22</span>
+    <strong>日</strong>
+  </div>
+  <p class="small" style="margin-top:2mm;">💡 単純合計24日−重複2日＝22日。「重複を引き忘れて24日」が最多のNGパターンです。</p>
+
+  <div class="footer">
+    <span>選択問題(2) 問題8・9 / R7 2級土木</span>
+    <span class="logo"><img src="../profile-icon.png" alt="">土木のトリセツ</span>
+  </div>
+</div>
+
+</body>
+</html>
