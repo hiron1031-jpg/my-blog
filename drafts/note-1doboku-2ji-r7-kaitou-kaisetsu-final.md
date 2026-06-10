@@ -25,7 +25,7 @@
 - **1級造園施工管理技士**
 - **2級造園施工管理技士**
 
-すべて **独学一発合格**。ブログ「[土木のトリセツ](https://doboku-no-torisetsu.com)」運営。
+すべて **独学一発合格**。ブログ「[土木のトリセツ](https://doboku-torisetsu.com)」運営。
 
 ---
 
@@ -48,10 +48,10 @@
 
 経験記述の書き方・合格文例はブログで無料公開しています。
 
-👉 [経験記述の書き方【合格文例3テーマ付き】](https://doboku-no-torisetsu.com/posts/doboku-keiken-kijutsu)
-👉 [経験記述 環境対策の例文【R6・R7対応】](https://doboku-no-torisetsu.com/posts/doboku-keiken-kijutsu-kankyo)
-👉 [経験記述 安全管理の例文【3パターン】](https://doboku-no-torisetsu.com/posts/doboku-keiken-kijutsu-anzen)
-👉 [経験記述 品質管理の例文【3パターン】](https://doboku-no-torisetsu.com/posts/doboku-keiken-kijutsu-hinshitsu)
+👉 [経験記述の書き方【合格文例3テーマ付き】](https://doboku-torisetsu.com/posts/doboku-keiken-kijutsu)
+👉 [経験記述 環境対策の例文【R6・R7対応】](https://doboku-torisetsu.com/posts/doboku-keiken-kijutsu-kankyo)
+👉 [経験記述 安全管理の例文【3パターン】](https://doboku-torisetsu.com/posts/doboku-keiken-kijutsu-anzen)
+👉 [経験記述 品質管理の例文【3パターン】](https://doboku-torisetsu.com/posts/doboku-keiken-kijutsu-hinshitsu)
 
 ---
 
@@ -568,9 +568,9 @@
 ### 🆓 無料で使えます
 
 - **【無料】R7 解答用紙（練習用）PDF** ← 別記事で配布中
-- [過去問チャレンジ（無料Webクイズ R4〜R7）](https://doboku-no-torisetsu.com/quiz)
-- [過去問PDFダウンロード（H24〜R7 全14年分）](https://doboku-no-torisetsu.com/pastproblems)
-- [1級土木 独学勉強法ロードマップ](https://doboku-no-torisetsu.com/posts/doboku-1kyu-benkyoho)
+- [過去問チャレンジ（無料Webクイズ R4〜R7）](https://doboku-torisetsu.com/quiz)
+- [過去問PDFダウンロード（H24〜R7 全14年分）](https://doboku-torisetsu.com/pastproblems)
+- [1級土木 独学勉強法ロードマップ](https://doboku-torisetsu.com/posts/doboku-1kyu-benkyoho)
 
 ### 💴 有料コンテンツ
 

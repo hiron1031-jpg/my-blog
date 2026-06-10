@@ -40,6 +40,41 @@ const CONFIGS: Record<string, Config> = {
     label: "現場のリアル",
     beaverCol: 3, beaverRow: 0, // 重機オペレーター
   },
+  "1級土木": {
+    from: "#1e3a5f", to: "#2d5a8e",
+    label: "1級土木",
+    beaverCol: 0, beaverRow: 0, // スコップ掘削
+  },
+  "2級土木": {
+    from: "#2d5a8e", to: "#3a7cb8",
+    label: "2級土木",
+    beaverCol: 3, beaverRow: 0, // 重機オペレーター
+  },
+  "1級造園": {
+    from: "#1a5c38", to: "#2d8a57",
+    label: "1級造園",
+    beaverCol: 4, beaverRow: 1, // 完成！
+  },
+  "2級造園": {
+    from: "#2d8a57", to: "#40a96c",
+    label: "2級造園",
+    beaverCol: 1, beaverRow: 1,
+  },
+  土木共通: {
+    from: "#3d5a80", to: "#5c7cae",
+    label: "土木共通",
+    beaverCol: 2, beaverRow: 0, // 指差呼称・安全パトロール
+  },
+  造園共通: {
+    from: "#40916c", to: "#5cb185",
+    label: "造園共通",
+    beaverCol: 0, beaverRow: 1,
+  },
+  共通: {
+    from: "#c94f1c", to: "#e8622a",
+    label: "共通",
+    beaverCol: 4, beaverRow: 0, // 図面確認・PC
+  },
 };
 
 const DEFAULT_CONFIG: Config = {
