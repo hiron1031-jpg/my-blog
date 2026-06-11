@@ -246,16 +246,32 @@ function getBenkyohoSlug(examId: string): string | null {
   }
 }
 
-// ---- Note links (1級土木のみ。商品はR7第二次検定向けのため全年度ページで最新R7を案内) ----
-function getNoteLinks(examId: string): { label: string; url: string; price: string }[] {
+// ---- Note links (商品はR7第二次検定向けのため全年度ページで最新R7を案内) ----
+type NoteInfo = {
+  heading: string;
+  links: { label: string; url: string; price: string }[];
+};
+
+function getNoteInfo(examId: string): NoteInfo | null {
   if (examId === "1doboku") {
-    return [
-      { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nc8cc72e51116", price: "無料" },
-      { label: "【500円】R7 解答解説 全10問（問題2〜11）", url: "https://note.com/dobokutorisetsu/n/n051d4898f173", price: "500円" },
-      { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nb501fa18250f", price: "300円" },
-    ];
+    return {
+      heading: "📝 令和7年度（最新）1級土木 第二次検定の解答解説・解答用紙（note）",
+      links: [
+        { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nc8cc72e51116", price: "無料" },
+        { label: "【500円】R7 解答解説 全10問（問題2〜11）", url: "https://note.com/dobokutorisetsu/n/n051d4898f173", price: "500円" },
+        { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nb501fa18250f", price: "300円" },
+      ],
+    };
   }
-  return [];
+  if (examId === "2doboku") {
+    return {
+      heading: "📝 令和7年度（最新）2級土木 第二次検定の解答解説（note）",
+      links: [
+        { label: "【500円】R7 解答解説 全8問（問題2〜9・図表つき）", url: "https://note.com/dobokutorisetsu/n/n0e58e6ebd207", price: "500円" },
+      ],
+    };
+  }
+  return null;
 }
 
 // ---- Related articles (exam-specific) ----
@@ -311,7 +327,7 @@ export default async function Page({ params }: PageProps) {
   const hinshutsuSlug = getHinshutsuSlug(exam);
   const keikenSlug = getKeikenSlug(exam);
   const recommendedBook = getRecommendedBook(exam);
-  const noteLinks = getNoteLinks(exam);
+  const noteInfo = getNoteInfo(exam);
   const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
@@ -393,17 +409,17 @@ export default async function Page({ params }: PageProps) {
         </p>
       </section>
 
-      {/* note 解答解説バナー（1級土木のみ・R7商品を案内） */}
-      {noteLinks.length > 0 && (
+      {/* note 解答解説バナー（土木のみ・R7商品を案内） */}
+      {noteInfo && (
         <section className="mb-10 bg-amber-50 border border-amber-200 rounded-xl p-5">
           <h2 className="text-sm font-bold text-amber-900 mb-2">
-            📝 令和7年度（最新）1級土木 第二次検定の解答解説・解答用紙（note）
+            {noteInfo.heading}
           </h2>
           <p className="text-xs text-amber-800 mb-3">
-            自己採点や記述式の答え合わせに。本番形式の解答用紙と、独学合格者による全問解説をnoteで公開しています。
+            自己採点や記述式の答え合わせに。独学合格者による想定解答・採点ポイント付きの全問解説をnoteで公開しています。
           </p>
           <div className="flex flex-col gap-2">
-            {noteLinks.map((n) => (
+            {noteInfo.links.map((n) => (
               <a
                 key={n.url}
                 href={n.url}
