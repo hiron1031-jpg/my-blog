@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { margin:0; background:#fff; font-family:"Yu Gothic","Meiryo",sans-serif; }
+</style>
+</head>
+<body>
+<svg width="900" height="1240" viewBox="0 0 900 1240" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="900" height="1240" fill="#fff"/>
+
+  <!-- ===== ① バーチャート ===== -->
+  <text x="40" y="48" font-size="26" font-weight="bold">① バーチャート（横線式工程表）</text>
+  <!-- 枠 -->
+  <rect x="60" y="70" width="780" height="290" fill="none" stroke="#000" stroke-width="2"/>
+  <!-- 縦軸ラベル（工種） -->
+  <text x="70" y="125" font-size="20">準備工</text>
+  <text x="70" y="185" font-size="20">土工</text>
+  <text x="70" y="245" font-size="20">基礎工</text>
+  <text x="70" y="305" font-size="20">舗装工</text>
+  <line x1="180" y1="70" x2="180" y2="360" stroke="#000" stroke-width="1.5"/>
+  <!-- 横軸（日数） -->
+  <line x1="60" y1="330" x2="840" y2="330" stroke="#000" stroke-width="0"/>
+  <text x="380" y="352" font-size="18" fill="#444">→ 日数（暦日）</text>
+  <!-- バー -->
+  <rect x="195" y="105" width="130" height="26" fill="#9db8d6" stroke="#000" stroke-width="1.5"/>
+  <rect x="280" y="165" width="260" height="26" fill="#9db8d6" stroke="#000" stroke-width="1.5"/>
+  <rect x="470" y="225" width="200" height="26" fill="#9db8d6" stroke="#000" stroke-width="1.5"/>
+  <rect x="620" y="285" width="190" height="26" fill="#9db8d6" stroke="#000" stroke-width="1.5"/>
+  <text x="200" y="395" font-size="18" fill="#333">特徴：作成が容易で各作業の期間が一目で分かる／作業相互の関連は不明</text>
+
+  <!-- ===== ② グラフ式工程表 ===== -->
+  <text x="40" y="470" font-size="26" font-weight="bold">② グラフ式工程表</text>
+  <rect x="100" y="495" width="700" height="280" fill="none" stroke="#000" stroke-width="2"/>
+  <!-- 縦軸 -->
+  <text x="20" y="620" font-size="18">出来高</text>
+  <text x="34" y="644" font-size="18">(%)</text>
+  <text x="62" y="512" font-size="17">100</text>
+  <text x="80" y="780" font-size="17">0</text>
+  <!-- 横軸 -->
+  <text x="400" y="800" font-size="18" fill="#444">→ 日数</text>
+  <!-- 各工種の斜線 -->
+  <line x1="130" y1="775" x2="300" y2="500" stroke="#000" stroke-width="2.5"/>
+  <text x="225" y="560" font-size="18">準備工</text>
+  <line x1="240" y1="775" x2="530" y2="500" stroke="#000" stroke-width="2.5" stroke-dasharray="8,5"/>
+  <text x="540" y="525" font-size="18">土工</text>
+  <line x1="450" y1="775" x2="780" y2="500" stroke="#000" stroke-width="2.5"/>
+  <text x="680" y="620" font-size="18">舗装工</text>
+  <text x="200" y="830" font-size="18" fill="#333">特徴：工種ごとの予定と実績の対比が視覚的に分かる／作業相互の関連は不明</text>
+
+  <!-- ===== ③ 出来高累計曲線 ===== -->
+  <text x="40" y="905" font-size="26" font-weight="bold">③ 出来高累計曲線</text>
+  <rect x="100" y="930" width="700" height="240" fill="none" stroke="#000" stroke-width="2"/>
+  <text x="14" y="1040" font-size="18">出来高</text>
+  <text x="14" y="1064" font-size="18">累計(%)</text>
+  <text x="62" y="947" font-size="17">100</text>
+  <text x="80" y="1175" font-size="17">0</text>
+  <text x="400" y="1195" font-size="18" fill="#444">→ 工期</text>
+  <!-- バナナ曲線（上方・下方限界 破線） -->
+  <path d="M 110 1165 C 280 1140, 380 960, 780 938" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="9,6"/>
+  <path d="M 110 1168 C 480 1160, 620 1060, 785 940" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="9,6"/>
+  <text x="280" y="1015" font-size="17" fill="#666">上方許容限界</text>
+  <text x="560" y="1130" font-size="17" fill="#666">下方許容限界</text>
+  <!-- S字カーブ本体 -->
+  <path d="M 110 1167 C 350 1155, 480 1010, 783 939" fill="none" stroke="#000" stroke-width="3.5"/>
+  <text x="455" y="1075" font-size="19" font-weight="bold">予定工程（S字カーブ）</text>
+  <text x="200" y="1225" font-size="18" fill="#333">特徴：工事全体の進捗が一目で分かる（バナナ曲線で管理）／個々の作業管理は不可</text>
+</svg>
+</body>
+</html>
