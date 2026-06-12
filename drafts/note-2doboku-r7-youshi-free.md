@@ -32,8 +32,9 @@ https://doboku-torisetsu.com/pastproblems/2doboku/R7
 
 **自己採点に使える「答え」が欲しい方へ：**
 
-- 📝 [【500円】R7 解答解説 全8問（問題2〜9）] ※公開後にリンクを設定
-- ✅ [【300円】R7 模範解答入り解答用紙 PDF] ※公開後にリンクを設定
+- 📝 【500円】R7 解答解説 全8問（問題2〜9・図表つき）
+  https://note.com/dobokutorisetsu/n/n0e58e6ebd207
+- ✅ 【300円】R7 模範解答入り解答用紙 PDF（※300円記事の公開後、この行にリンクを設定してください）
 
 経験記述の書き方・合格文例はブログで**無料公開**しています👇
 https://doboku-torisetsu.com/posts/doboku-keiken-kijutsu
