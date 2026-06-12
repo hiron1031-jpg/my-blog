@@ -265,8 +265,9 @@ function getNoteInfo(examId: string): NoteInfo | null {
   }
   if (examId === "2doboku") {
     return {
-      heading: "📝 令和7年度（最新）2級土木 第二次検定の解答解説（note）",
+      heading: "📝 令和7年度（最新）2級土木 第二次検定の解答解説・解答用紙（note）",
       links: [
+        { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/ne3a94a016790", price: "無料" },
         { label: "【500円】R7 解答解説 全8問（問題2〜9・図表つき）", url: "https://note.com/dobokutorisetsu/n/n0e58e6ebd207", price: "500円" },
       ],
     };
