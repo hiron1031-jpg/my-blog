@@ -49,6 +49,8 @@ function mdToHtml(text) {
 
   function inlineFormat(s) {
     s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    // むき出しのURLもリンク化（すでに <a href="..."> になっているものは除外）
+    s = s.replace(/(^|[^"'>=\]])(https?:\/\/[^\s<>"）]+)/g, '$1<a href="$2">$2</a>');
     s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
     return s;
