@@ -11,14 +11,15 @@ let fontJP: ArrayBuffer | null = null;
 let fontLatin: ArrayBuffer | null = null;
 let beaverBase64: string | null = null;
 
-async function loadFonts() {
+async function loadFonts(origin: string) {
   if (!fontJP) {
-    fontJP = await fetch(
-      new URL("./noto-jp-700.woff2", import.meta.url)
-    ).then((r) => r.arrayBuffer());
-    fontLatin = await fetch(
-      new URL("./noto-latin-700.woff2", import.meta.url)
-    ).then((r) => r.arrayBuffer());
+    // satori(next/og)はwoff2非対応のためwoff形式を使用
+    fontJP = await fetch(`${origin}/fonts/noto-jp-700.woff`).then((r) =>
+      r.arrayBuffer()
+    );
+    fontLatin = await fetch(`${origin}/fonts/noto-latin-700.woff`).then((r) =>
+      r.arrayBuffer()
+    );
   }
 }
 
@@ -45,8 +46,9 @@ const CATEGORY_GRADIENTS: Record<string, [string, string]> = {
 const DEFAULT_GRADIENT: [string, string] = ["#1e3a5f", "#e8622a"];
 
 export async function GET(request: NextRequest) {
+  const origin = new URL(request.url).origin;
   try {
-    await loadFonts();
+    await loadFonts(origin);
     loadBeaverIcon();
   } catch {
     // Font loading failed; continue without custom font
