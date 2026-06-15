@@ -6,18 +6,19 @@ import type { NextRequest } from "next/server";
 export const runtime = "nodejs";
 
 // Font cache (loaded once per serverless instance)
-let fontJP: Buffer | null = null;
-let fontLatin: Buffer | null = null;
+// フォントはogルートに同梱し import.meta.url 経由で読み込む（Vercelで500になる問題の対策）
+let fontJP: ArrayBuffer | null = null;
+let fontLatin: ArrayBuffer | null = null;
 let beaverBase64: string | null = null;
 
-function loadFonts() {
+async function loadFonts() {
   if (!fontJP) {
-    const base = join(
-      process.cwd(),
-      "node_modules/@fontsource/noto-sans-jp/files"
-    );
-    fontJP = readFileSync(join(base, "noto-sans-jp-japanese-700-normal.woff2"));
-    fontLatin = readFileSync(join(base, "noto-sans-jp-latin-700-normal.woff2"));
+    fontJP = await fetch(
+      new URL("./noto-jp-700.woff2", import.meta.url)
+    ).then((r) => r.arrayBuffer());
+    fontLatin = await fetch(
+      new URL("./noto-latin-700.woff2", import.meta.url)
+    ).then((r) => r.arrayBuffer());
   }
 }
 
@@ -45,7 +46,7 @@ const DEFAULT_GRADIENT: [string, string] = ["#1e3a5f", "#e8622a"];
 
 export async function GET(request: NextRequest) {
   try {
-    loadFonts();
+    await loadFonts();
     loadBeaverIcon();
   } catch {
     // Font loading failed; continue without custom font
