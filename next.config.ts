@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // OG画像生成(/api/og)で使うフォントファイルをサーバー関数に確実に含める（500防止）
+  outputFileTracingIncludes: {
+    "/api/og": ["./node_modules/@fontsource/noto-sans-jp/files/*.woff2"],
+  },
   async redirects() {
     return [
       {

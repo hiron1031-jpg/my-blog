@@ -16,6 +16,9 @@ interface PageProps {
   params: Promise<{ category: string }>;
 }
 
+// 登録済みのカテゴリのみ存在させ、旧カテゴリ等は404を返す（500防止）
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllCategories().map((cat) => ({
     category: cat.name,

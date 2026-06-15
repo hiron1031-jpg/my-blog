@@ -11,6 +11,9 @@ interface PageProps {
   params: Promise<{ tag: string }>;
 }
 
+// 登録済みのタグのみ存在させ、削除・存在しないタグは404を返す（500防止）
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllTags().map((t) => ({ tag: t.name }));
 }
