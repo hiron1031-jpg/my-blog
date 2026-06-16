@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<style>
+ body{margin:0;background:#fff;font-family:"Yu Gothic","Meiryo",sans-serif;}
+ .wrap{padding:20px;width:640px;}
+ h3{font-size:20px;margin:6px 0 12px;}
+ .cap{font-size:15px;color:#555;margin-top:8px;}
+</style></head>
+<body>
+<div class="wrap">
+<h3>問題1(3)(ハ) 芝の植付け方法（略図・平面図）</h3>
+<svg width="560" height="430" viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg">
+ <style>
+  .shiba{fill:#cfe3c0;stroke:#5a7a48;stroke-width:1.5;}
+  .dim{stroke:#333;stroke-width:1;}
+  .dt{font-size:15px;text-anchor:middle;}
+ </style>
+ <!-- 3x3 grid of sods with gaps (目地) -->
+ <!-- cell size 100, gap 16 ; origin x=120,y=70 -->
+ <!-- columns x: 120, 236, 352 ; rows y:70,186,302 -->
+ <g>
+  <rect class="shiba" x="120" y="70" width="100" height="100"/>
+  <rect class="shiba" x="236" y="70" width="100" height="100"/>
+  <rect class="shiba" x="352" y="70" width="100" height="100"/>
+  <rect class="shiba" x="120" y="186" width="100" height="100"/>
+  <rect class="shiba" x="236" y="186" width="100" height="100"/>
+  <rect class="shiba" x="352" y="186" width="100" height="100"/>
+  <rect class="shiba" x="120" y="302" width="100" height="100"/>
+  <rect class="shiba" x="236" y="302" width="100" height="100"/>
+  <rect class="shiba" x="352" y="302" width="100" height="100"/>
+ </g>
+ <text x="286" y="240" class="dt" font-size="16">芝</text>
+ <!-- top dims: 40 (gap) and 360 (sod) -->
+ <line class="dim" x1="220" y1="40" x2="236" y2="40"/>
+ <text class="dt" x="228" y="34">40</text>
+ <line class="dim" x1="236" y1="40" x2="336" y2="40"/>
+ <text class="dt" x="286" y="34">360</text>
+ <!-- left dims: 280 (sod) and 40 (gap) -->
+ <line class="dim" x1="90" y1="70" x2="90" y2="170"/>
+ <text class="dt" x="70" y="125">280</text>
+ <line class="dim" x1="90" y1="170" x2="90" y2="186"/>
+ <text class="dt" x="70" y="182">40</text>
+ <text x="500" y="415" font-size="14" fill="#555" text-anchor="end">（数値の単位はmm）</text>
+</svg>
+<p class="cap">芝(切芝)を一定の目地（すき間）をあけて張る配置。すき間に目土を入れて広がりを待つ張り方です。</p>
+</div>
+</body></html>
