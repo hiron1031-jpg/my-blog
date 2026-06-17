@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FiShield, FiDownload, FiAlertCircle, FiBookOpen, FiHelpCircle, FiArrowRight } from "react-icons/fi";
+import { FiShield, FiDownload, FiAlertCircle, FiBookOpen, FiHelpCircle, FiArrowRight, FiFileText } from "react-icons/fi";
 import PastProblemsClient from "@/components/pastproblems/PastProblemsClient";
 import LearningCycle from "@/components/home/LearningCycle";
 import BeaverMascot from "@/components/layout/BeaverMascot";
 import JsonLd from "@/components/JsonLd";
+import { CATEGORIES } from "@/lib/pastproblems-data";
 
 export const metadata: Metadata = {
-  title: "施工管理技士 過去問 無料ダウンロード【14年分 PDF】",
+  title: "施工管理技士 過去問 無料ダウンロード【1級・2級 土木／造園 14年分PDF】",
   description:
-    "1級・2級 土木施工管理技士・造園施工管理技士の過去問を無料でPDFダウンロード。全国建設研修センター許諾済み。H24〜R7年度（14年分）の問題・解答を一覧提供。印刷して使える形式で独学合格をサポートします。",
+    "2級土木施工管理技士・1級土木施工管理技士・造園施工管理技士の過去問を無料でPDFダウンロード。全国建設研修センター許諾済み。H24〜R7年度（14年分）の問題・解答を登録不要・印刷OKで提供。独学合格をサポートします。",
   keywords: "施工管理技士 過去問,過去問 pdf,過去問 ダウンロード,1級土木 過去問,2級土木 過去問,1級造園 過去問,2級造園 過去問,第一次検定 過去問,第二次検定 過去問",
   alternates: {
     canonical: "/pastproblems",
@@ -200,6 +201,42 @@ export default function PastProblemsPage() {
 
       {/* ── Download sections (client) ── */}
       <PastProblemsClient />
+
+      {/* ── 資格別 過去問インデックス（静的・SEO/内部リンク用） ── */}
+      <section className="mt-12 mb-10">
+        <div className="flex items-center gap-2 mb-2">
+          <FiBookOpen size={20} className="text-primary" />
+          <h2 className="text-lg md:text-xl font-bold text-gray-800">資格別 過去問インデックス（全年度）</h2>
+        </div>
+        <p className="text-sm text-gray-600 mb-6">
+          受験する資格をクリックすると、その年度の問題・解答PDFのダウンロードページへ移動します。
+        </p>
+
+        <div className="space-y-8">
+          {CATEGORIES.map((cat) => (
+            <div key={cat.id} className="bg-white border border-border rounded-xl p-5 md:p-6 shadow-sm">
+              <h3 className="text-base md:text-lg font-bold mb-1" style={{ color: cat.hex }}>
+                {cat.name} 過去問【問題・解答PDF無料ダウンロード】
+              </h3>
+              <p className="text-xs text-gray-500 mb-4">
+                {cat.name}の過去問を平成24年度〜令和7年度まで掲載。各年度ページから無料でPDFをダウンロードできます。
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {cat.years.map((y) => (
+                  <Link
+                    key={y.key}
+                    href={`/pastproblems/${cat.id}/${y.key}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border text-sm hover:border-primary hover:bg-surface transition"
+                  >
+                    <FiFileText size={13} style={{ color: cat.hex }} />
+                    {y.label} {cat.shortName} 過去問
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ── FAQ ── */}
       <section className="mt-12 mb-10 bg-white border border-border rounded-xl p-6 md:p-8 shadow-sm">
