@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FiCheckCircle, FiHelpCircle, FiArrowRight, FiDownload } from "react-icons/fi";
+import { FiCheckCircle, FiHelpCircle, FiArrowRight, FiDownload, FiBookOpen } from "react-icons/fi";
 import QuizClient from "@/components/quiz/QuizClient";
 import JsonLd from "@/components/JsonLd";
 import questionsData from "@/data/quiz/questions.json";
@@ -164,6 +164,43 @@ export default function QuizPage() {
 
       {/* Quiz */}
       <QuizClient yearQuestions={yearQuestions} />
+
+      {/* クイズ直後：意欲が高まった層への収益・対策導線 */}
+      <section className="mt-10 mb-10 rounded-xl border-2 border-primary/30 bg-primary/5 p-5 md:p-6">
+        <h2 className="flex items-center gap-2 text-base md:text-lg font-bold text-gray-800 mb-2">
+          <FiBookOpen size={20} className="text-primary" />
+          間違えた分野は、次の一手で固めよう
+        </h2>
+        <p className="text-sm text-gray-600 mb-4">
+          クイズで取りこぼした分野は、参考書で基礎から固めるのが合格への近道。受験する資格のおすすめテキストはこちらです。
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+          {[
+            { label: "1級土木 おすすめ参考書ランキング", href: "/posts/doboku-1kyu-sankosho-ranking" },
+            { label: "2級土木 おすすめ参考書ランキング", href: "/posts/doboku-2kyu-sankosho-ranking" },
+            { label: "1級造園 おすすめ参考書ランキング", href: "/posts/zouen-1kyu-sankosho-ranking" },
+            { label: "2級造園 おすすめ参考書ランキング", href: "/posts/zouen-2kyu-sankosho-ranking" },
+          ].map((b) => (
+            <Link
+              key={b.href}
+              href={b.href}
+              className="flex items-center gap-2 bg-white border border-border rounded-lg p-3 text-sm font-medium text-gray-800 hover:border-primary hover:shadow-sm transition"
+            >
+              <FiBookOpen size={15} className="text-primary flex-shrink-0" />
+              {b.label}
+            </Link>
+          ))}
+        </div>
+        <div className="rounded-lg bg-amber-50 border border-amber-200 p-3">
+          <p className="text-sm text-amber-900">
+            📝 <strong>第二次検定（記述）対策</strong>は、独学合格者による <strong>R7 解答解説</strong> も活用できます（土木）。
+            <Link href="/pastproblems/1doboku/R7" className="text-primary underline hover:no-underline ml-1">1級土木 R7</Link>
+            ・
+            <Link href="/pastproblems/2doboku/R7" className="text-primary underline hover:no-underline">2級土木 R7</Link>
+            の過去問ページから確認できます。
+          </p>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="mt-12 mb-10 bg-white border border-border rounded-xl p-6 md:p-8 shadow-sm">
