@@ -411,6 +411,52 @@ export default async function Page({ params }: PageProps) {
         </p>
       </section>
 
+      {/* DL直下：去る前に次の行動へ誘導（最注目ゾーン） */}
+      <section className="mb-10 rounded-xl border-2 border-primary/30 bg-primary/5 p-5">
+        <h2 className="flex items-center gap-2 text-sm font-bold text-gray-800 mb-3">
+          <FiDownload size={16} className="text-primary" />
+          ダウンロードした方へ：次の一歩
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          {noteInfo && (
+            <a
+              href={noteInfo.links[0].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-2 bg-white border border-border rounded-lg p-3 hover:border-primary hover:shadow-sm transition"
+            >
+              <span className="text-lg leading-none" aria-hidden>📝</span>
+              <span>
+                <span className="block text-sm font-bold text-gray-800">答え合わせ・解説</span>
+                <span className="block text-xs text-gray-500 mt-0.5">想定解答＋採点ポイント（note）</span>
+              </span>
+            </a>
+          )}
+          <Link
+            href="/quiz"
+            className="flex items-start gap-2 bg-white border border-border rounded-lg p-3 hover:border-primary hover:shadow-sm transition"
+          >
+            <span className="text-lg leading-none" aria-hidden>📱</span>
+            <span>
+              <span className="block text-sm font-bold text-gray-800">スキマ時間に復習</span>
+              <span className="block text-xs text-gray-500 mt-0.5">過去問チャレンジ（無料クイズ）</span>
+            </span>
+          </Link>
+          {hinshutsuSlug && (
+            <Link
+              href={`/posts/${hinshutsuSlug}`}
+              className="flex items-start gap-2 bg-white border border-border rounded-lg p-3 hover:border-primary hover:shadow-sm transition"
+            >
+              <span className="text-lg leading-none" aria-hidden>📚</span>
+              <span>
+                <span className="block text-sm font-bold text-gray-800">苦手分野を補強</span>
+                <span className="block text-xs text-gray-500 mt-0.5">{category.shortName} 頻出分野と対策</span>
+              </span>
+            </Link>
+          )}
+        </div>
+      </section>
+
       {/* note 解答解説バナー（土木のみ・R7商品を案内） */}
       {noteInfo && (
         <section className="mb-10 bg-amber-50 border border-amber-200 rounded-xl p-5">
