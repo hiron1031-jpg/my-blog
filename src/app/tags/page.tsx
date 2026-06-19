@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tags",
   },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "タグ一覧",
     description:

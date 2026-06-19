@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `/tags/${encodeURIComponent(name)}`,
     },
+    robots: { index: false, follow: true },
     openGraph: {
       title: `#${name} の記事一覧`,
       description,
