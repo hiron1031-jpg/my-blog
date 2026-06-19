@@ -69,6 +69,12 @@ export const CATEGORIES: ExamCategory[] = [
     borderAccent: "border-primary",
     hex: "#e8622a",
     years: [
+      { key:"R8",  label:"令和8年度", note:"前期 第一次検定（最新）",
+        files:[
+          q("前期 第一次検定","/pastproblems/2doboku/R8_1_gakka.pdf"),
+          a("前期 解答","/pastproblems/2doboku/R8_1_kaitou.pdf"),
+        ]
+      },
       { key:"R7",  label:"令和7年度", note:"土木／塗装／薬液 種別あり",
         files:[
           q("前期 学科（土木）","/pastproblems/2doboku/R7_1_gakka.pdf"),
@@ -216,6 +222,12 @@ export const CATEGORIES: ExamCategory[] = [
     borderAccent: "border-amber-600",
     hex: "#d97706",
     years: [
+      { key:"R8", label:"令和8年度", note:"前期 第一次検定（最新）",
+        files:[
+          q("前期 第一次検定","/pastproblems/2zou/R8_zenki.pdf"),
+          a("前期 解答","/pastproblems/2zou/R8_zenki_kaitou.pdf"),
+        ]
+      },
       { key:"R7", label:"令和7年度",
         files:[
           q("前期 学科","/pastproblems/2zou/R7_zenki.pdf"),
