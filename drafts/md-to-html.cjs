@@ -68,7 +68,14 @@ function mdToHtml(text) {
       flushTable();
     }
 
-    if (/^####\s+(.+)$/.test(line)) {
+    if (/画像を挿入：([A-Za-z0-9_-]+\.png)/.test(line)) {
+      flushList();
+      const file = RegExp.$1;
+      out.push('<figure style="margin:16px 0;text-align:center;">'
+        + '<img src="../note-assets/figures/' + file + '" alt="' + file + '" style="max-width:100%;border:1px solid #ddd;border-radius:6px;">'
+        + '<figcaption style="font-size:12px;color:#c0392b;margin-top:4px;">▲ noteにはこの画像（' + file + '）を挿入してください</figcaption>'
+        + '</figure>');
+    } else if (/^####\s+(.+)$/.test(line)) {
       flushList();
       out.push('<h4>' + inlineFormat(RegExp.$1) + '</h4>');
     } else if (/^###\s+(.+)$/.test(line)) {
