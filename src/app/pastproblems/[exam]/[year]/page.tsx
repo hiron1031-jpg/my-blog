@@ -278,6 +278,7 @@ function getNoteInfo(examId: string): NoteInfo | null {
       heading: "📝 令和7年度（最新）1級造園 第二次検定の解答解説・解答用紙（note）",
       links: [
         { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nd58fb8b0dc66", price: "無料" },
+        { label: "【500円】R7 解答解説 全問・図表完全収録", url: "https://note.com/dobokutorisetsu/n/n77af23ad86bb", price: "500円" },
         { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nb4729f913dec", price: "300円" },
       ],
     };
