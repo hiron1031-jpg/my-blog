@@ -275,9 +275,11 @@ function getNoteInfo(examId: string): NoteInfo | null {
   }
   if (examId === "2zou") {
     return {
-      heading: "📝 令和7年度（最新）2級造園 第二次検定の解答解説（note）",
+      heading: "📝 令和7年度（最新）2級造園 第二次検定の解答解説・解答用紙（note）",
       links: [
+        { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/n182d32f7df17", price: "無料" },
         { label: "【500円】R7 解答解説 全問・図表完全収録", url: "https://note.com/dobokutorisetsu/n/n5dbb382823d4", price: "500円" },
+        { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nf2b089e7550b", price: "300円" },
       ],
     };
   }
