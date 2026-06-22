@@ -273,6 +273,14 @@ function getNoteInfo(examId: string): NoteInfo | null {
       ],
     };
   }
+  if (examId === "1zou") {
+    return {
+      heading: "📝 令和7年度（最新）1級造園 第二次検定の解答解説・解答用紙（note）",
+      links: [
+        { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nd58fb8b0dc66", price: "無料" },
+      ],
+    };
+  }
   if (examId === "2zou") {
     return {
       heading: "📝 令和7年度（最新）2級造園 第二次検定の解答解説・解答用紙（note）",
