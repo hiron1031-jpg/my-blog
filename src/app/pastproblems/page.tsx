@@ -97,12 +97,12 @@ export default function PastProblemsPage() {
               無料ダウンロード
             </span>
             <h1 className="text-2xl md:text-4xl font-bold mb-3 leading-snug">
-              施工管理技士<br className="md:hidden" /> 過去問ダウンロード
+              施工管理技士 過去問<br className="md:hidden" /> 無料ダウンロード
             </h1>
             <p className="text-white/80 text-sm md:text-base max-w-xl">
-              1級・2級 土木施工管理技士、1級・2級 造園施工管理技士の
-              過去問（問題・解答）を全て無料でダウンロードできます。
-              平成24年度〜令和7年度分を掲載。
+              <strong>2級土木施工管理技士</strong>・1級土木施工管理技士・1級・2級 造園施工管理技士の
+              過去問（問題・解答PDF）を、登録不要・全て無料でダウンロードできます。
+              平成24年度〜令和7年度（14年分）を掲載。印刷して本番形式で演習できます。
             </p>
           </div>
           <BeaverMascot preset="schedule" size={100} className="drop-shadow-lg self-end md:self-auto flex-shrink-0" />
