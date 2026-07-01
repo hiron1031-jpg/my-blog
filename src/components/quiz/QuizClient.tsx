@@ -129,6 +129,26 @@ function getScoreKey(examKey: string, year: string, section: string, playMode: P
   return `year-${examKey}-${year}-${section}-${playMode}-${count}`;
 }
 
+// 結果画面に表示するnote解答解説（二次検定）への案内
+const NOTE_KAISETSU: Record<string, { url: string; label: string }> = {
+  "doboku-1kyu": {
+    url: "https://note.com/dobokutorisetsu/n/n051d4898f173",
+    label: "1級土木 R7二次検定の全問解説",
+  },
+  "doboku-2kyu": {
+    url: "https://note.com/dobokutorisetsu/n/n0e58e6ebd207",
+    label: "2級土木 R7二次検定の全問解説",
+  },
+  "zouen-1kyu": {
+    url: "https://note.com/dobokutorisetsu/n/n77af23ad86bb",
+    label: "1級造園 R7二次検定の全問解説",
+  },
+  "zouen-2kyu": {
+    url: "https://note.com/dobokutorisetsu/n/n5dbb382823d4",
+    label: "2級造園 R7二次検定の全問解説",
+  },
+};
+
 // ---- Main Component ----
 export default function QuizClient({
   yearQuestions,
@@ -508,6 +528,25 @@ export default function QuizClient({
                   </span>
                 </div>
               ))}
+            </div>
+          )}
+
+          {NOTE_KAISETSU[selectedExam] && (
+            <div className="bg-surface border border-border rounded-xl p-4 mb-6 text-left">
+              <p className="text-sm font-bold text-secondary mb-1">
+                🎉 お疲れさまでした！
+              </p>
+              <p className="text-sm text-secondary/80 mb-2 leading-relaxed">
+                一次の知識が固まってきたら、次は二次検定の準備。R7二次の全問解説（500円）を用意しています。
+              </p>
+              <a
+                href={NOTE_KAISETSU[selectedExam].url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-bold text-primary hover:underline"
+              >
+                {NOTE_KAISETSU[selectedExam].label}を見てみる →
+              </a>
             </div>
           )}
 
