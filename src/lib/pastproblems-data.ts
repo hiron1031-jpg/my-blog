@@ -246,10 +246,8 @@ export const CATEGORIES: ExamCategory[] = [
           s("第二次検定","/pastproblems/2zou/R6_jissi.pdf"),
         ]
       },
-      { key:"R5", label:"令和5年度",
+      { key:"R5", label:"令和5年度", note:"前期は未掲載",
         files:[
-          q("前期 学科","/pastproblems/2zou/R5_zenki.pdf"),
-          a("前期 解答","/pastproblems/2zou/R5_zenki_kaitou.pdf"),
           q("後期 学科","/pastproblems/2zou/R5_kouki.pdf"),
           a("後期 解答","/pastproblems/2zou/R5_kouki_kaitou.pdf"),
           s("第二次検定","/pastproblems/2zou/R5_jissi.pdf"),
@@ -287,13 +285,6 @@ export const CATEGORIES: ExamCategory[] = [
           q("後期 学科","/pastproblems/2zou/R1_kouki.pdf"),
           a("後期 解答","/pastproblems/2zou/R1_kouki_kaitou.pdf"),
           s("実地","/pastproblems/2zou/R1_jissi.pdf"),
-        ]
-      },
-      { key:"H30", label:"平成30年度",
-        files:[
-          q("学科","/pastproblems/2zou/H30_gakka.pdf"),
-          a("解答","/pastproblems/2zou/H30_kaitou.pdf"),
-          s("実地","/pastproblems/2zou/H30_jissi.pdf"),
         ]
       },
       { key:"H29", label:"平成29年度",
