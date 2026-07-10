@@ -109,3 +109,24 @@ console.log("照合数: "+checked);
 console.log("キー未整備(スキップ): "+(nokey.length?nokey.join(" , "):"なし"));
 console.log("不一致: "+mismatches.length+" 件");
 for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.stored+"  公式="+m.off);
+
+// ===== 2級土木 欠番復元10問（2026-07-11追加） =====
+// 解答PDF（種別:土木）から転記し、全問を自力計算でも検算済み（計算値＝公式解答 9/9一致＋知識問題1問）。
+// 既存Kの同番号エントリは未照合セルだったため誤記あり→PDF原本の値で上書きする。
+(function () {
+  const fix = (yr, sec, n, v) => {
+    K["doboku-2kyu"][yr] = K["doboku-2kyu"][yr] || {};
+    K["doboku-2kyu"][yr][sec] = K["doboku-2kyu"][yr][sec] || {};
+    K["doboku-2kyu"][yr][sec][n] = v;
+  };
+  fix("R4", "前期", 43, 3);
+  fix("R4", "後期", 43, 3);
+  fix("R5", "前期", 43, 4);
+  fix("R5", "後期", 43, 3);
+  fix("R6", "前期", 48, 3);
+  fix("R6", "後期", 48, 3);
+  fix("R7", "前期", 48, 3);
+  fix("R7", "前期", 61, 1);
+  fix("R7", "後期", 48, 1);
+  fix("R8", "前期", 48, 2);
+})();
