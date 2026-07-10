@@ -202,6 +202,62 @@ export default function PastProblemsPage() {
       {/* ── Download sections (client) ── */}
       <PastProblemsClient />
 
+      {/* ── 過去問を解いたら次はこれ（note・参考書導線） ── */}
+      <section className="mt-12 mb-10">
+        <div className="flex items-center gap-2 mb-2">
+          <FiArrowRight size={20} className="text-primary" />
+          <h2 className="text-lg md:text-xl font-bold text-gray-800">過去問をダウンロードしたら、次はこれ</h2>
+        </div>
+        <p className="text-sm text-gray-600 mb-6">
+          印刷して解く用の解答用紙（無料）と、二次検定の対策コンテンツ、参考書選びのガイドを用意しています。
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* 無料解答用紙 */}
+          <a
+            href="https://note.com/dobokutorisetsu/n/nc8cc72e51116"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white border border-border rounded-xl p-5 shadow-sm hover:border-primary hover:shadow-md transition-all group"
+          >
+            <span className="inline-block bg-emerald-500 text-white text-[11px] font-bold px-2 py-1 rounded-lg mb-3">
+              無料
+            </span>
+            <h3 className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors mb-2">
+              印刷して使える 練習用解答用紙PDF
+            </h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              本番形式の演習に。二次検定（経験記述）の練習用解答用紙を無料配布中です。
+            </p>
+          </a>
+          {/* 二次全問解説 */}
+          <div className="bg-white border border-border rounded-xl p-5 shadow-sm">
+            <span className="inline-block bg-orange-500 text-white text-[11px] font-bold px-2 py-1 rounded-lg mb-3">
+              500円
+            </span>
+            <h3 className="text-sm font-bold text-gray-800 mb-2">R7二次検定の全問解説</h3>
+            <ul className="text-xs space-y-1.5">
+              <li><a href="https://note.com/dobokutorisetsu/n/n051d4898f173" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">1級土木 全問解説 →</a></li>
+              <li><a href="https://note.com/dobokutorisetsu/n/n0e58e6ebd207" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2級土木 全問解説 →</a></li>
+              <li><a href="https://note.com/dobokutorisetsu/n/n77af23ad86bb" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">1級造園 全問解説 →</a></li>
+              <li><a href="https://note.com/dobokutorisetsu/n/n5dbb382823d4" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2級造園 全問解説 →</a></li>
+            </ul>
+          </div>
+          {/* 参考書ランキング */}
+          <div className="bg-white border border-border rounded-xl p-5 shadow-sm">
+            <span className="inline-block bg-secondary text-white text-[11px] font-bold px-2 py-1 rounded-lg mb-3">
+              参考書選び
+            </span>
+            <h3 className="text-sm font-bold text-gray-800 mb-2">資格別 参考書ランキング</h3>
+            <ul className="text-xs space-y-1.5">
+              <li><Link href="/posts/doboku-1kyu-sankosho-ranking" className="text-primary hover:underline">1級土木の参考書ランキング →</Link></li>
+              <li><Link href="/posts/doboku-2kyu-sankosho-ranking" className="text-primary hover:underline">2級土木の参考書ランキング →</Link></li>
+              <li><Link href="/posts/zouen-1kyu-sankosho-ranking" className="text-primary hover:underline">1級造園の参考書ランキング →</Link></li>
+              <li><Link href="/posts/zouen-2kyu-sankosho-ranking" className="text-primary hover:underline">2級造園の参考書ランキング →</Link></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* ── 資格別 過去問インデックス（静的・SEO/内部リンク用） ── */}
       <section className="mt-12 mb-10">
         <div className="flex items-center gap-2 mb-2">

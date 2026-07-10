@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import BeaverMascot from "@/components/layout/BeaverMascot";
 
 // ---- Types ----
@@ -147,6 +148,14 @@ const NOTE_KAISETSU: Record<string, { url: string; label: string }> = {
     url: "https://note.com/dobokutorisetsu/n/n5dbb382823d4",
     label: "2級造園 R7二次検定の全問解説",
   },
+};
+
+// 結果画面に表示する復習用の内部リンク（頻出記事・参考書ランキング）
+const NEXT_STEP_LINKS: Record<string, { name: string; hinshutu: string; sankosho: string }> = {
+  "doboku-1kyu": { name: "1級土木", hinshutu: "/posts/doboku-1kyu-hinshutu", sankosho: "/posts/doboku-1kyu-sankosho-ranking" },
+  "doboku-2kyu": { name: "2級土木", hinshutu: "/posts/doboku-2kyu-hinshutu", sankosho: "/posts/doboku-2kyu-sankosho-ranking" },
+  "zouen-1kyu": { name: "1級造園", hinshutu: "/posts/zouen-1kyu-hinshutu", sankosho: "/posts/zouen-1kyu-sankosho-ranking" },
+  "zouen-2kyu": { name: "2級造園", hinshutu: "/posts/zouen-2kyu-hinshutu", sankosho: "/posts/zouen-2kyu-sankosho-ranking" },
 };
 
 // ---- Main Component ----
@@ -528,6 +537,20 @@ export default function QuizClient({
                   </span>
                 </div>
               ))}
+            </div>
+          )}
+
+          {NEXT_STEP_LINKS[selectedExam] && (
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-left">
+              <p className="text-xs font-bold text-blue-700 mb-2">📖 間違えた分野はここで復習</p>
+              <div className="flex flex-col gap-1.5 text-sm">
+                <Link href={NEXT_STEP_LINKS[selectedExam].hinshutu} className="text-primary font-medium hover:underline">
+                  {NEXT_STEP_LINKS[selectedExam].name}の頻出分野まとめを読む →
+                </Link>
+                <Link href={NEXT_STEP_LINKS[selectedExam].sankosho} className="text-primary font-medium hover:underline">
+                  {NEXT_STEP_LINKS[selectedExam].name}の参考書ランキングを見る →
+                </Link>
+              </div>
             </div>
           )}
 
