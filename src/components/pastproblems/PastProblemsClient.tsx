@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiDownload, FiFileText, FiCheckSquare, FiExternalLink } from "react-icons/fi";
-import { CATEGORIES, type ExamFile, type YearEntry } from "@/lib/pastproblems-data";
+import { CATEGORIES, pdfUrl, type ExamFile, type YearEntry } from "@/lib/pastproblems-data";
 
 
 // ---- Sub-components ----
@@ -16,7 +16,7 @@ const variantStyles = {
 function DownloadButton({ file }: { file: ExamFile }) {
   return (
     <a
-      href={file.path}
+      href={pdfUrl(file.path)}
       download
       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${variantStyles[file.variant]}`}
     >

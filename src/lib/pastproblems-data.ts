@@ -34,6 +34,15 @@ function s(label: string, path: string): ExamFile {
   return { label, path, variant: "second" };
 }
 
+// PDF配信元の切替。環境変数 NEXT_PUBLIC_PDF_BASE_URL を設定すると、
+// PDFはそのURL（例: Cloudflare R2 の公開URL）から配信される。
+// 未設定（空）なら従来どおり同一ドメイン（Vercel）から配信する。
+// ※R2側は public/pastproblems フォルダをそのまま（pastproblems/1doboku/… の構造で）アップロードする前提。
+const PDF_BASE = (process.env.NEXT_PUBLIC_PDF_BASE_URL ?? "").replace(/\/+$/, "");
+export function pdfUrl(path: string): string {
+  return PDF_BASE + path;
+}
+
 export const CATEGORIES: ExamCategory[] = [
   {
     id: "1doboku",

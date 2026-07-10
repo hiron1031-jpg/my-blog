@@ -18,6 +18,7 @@ import {
   getYearEntry,
   getAllExamYearParams,
   yearKeyToWestern,
+  pdfUrl,
   type ExamFile,
 } from "@/lib/pastproblems-data";
 
@@ -417,7 +418,7 @@ export default async function Page({ params }: PageProps) {
           {entry.files.map((f) => (
             <a
               key={f.path}
-              href={f.path}
+              href={pdfUrl(f.path)}
               download
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-sm font-medium transition-colors ${variantStyles[f.variant]}`}
             >
