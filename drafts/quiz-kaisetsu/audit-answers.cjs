@@ -130,3 +130,24 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("R7", "後期", 48, 1);
   fix("R8", "前期", 48, 2);
 })();
+
+// ===== 1級土木・造園 欠番復元11問（2026-07-11追加） =====
+// 各解答PDFから転記。計算問題は自力計算でも検算し全問一致を確認済み。
+(function () {
+  const fix = (ex, yr, sec, n, v) => {
+    K[ex][yr] = K[ex][yr] || {};
+    K[ex][yr][sec] = K[ex][yr][sec] || {};
+    K[ex][yr][sec][n] = v;
+  };
+  fix("doboku-1kyu", "R8", "1次B", 19, 4);
+  fix("doboku-1kyu", "R8", "1次B", 27, 4);
+  fix("zouen-1kyu", "R5", "1次A", 15, 2);
+  fix("zouen-1kyu", "R6", "1次B", 9, 3);
+  fix("zouen-1kyu", "R7", "1次A", 15, 3);
+  fix("zouen-1kyu", "R7", "1次A", 25, 4);
+  fix("zouen-1kyu", "R7", "1次B", 10, 2);
+  fix("zouen-2kyu", "R7", "前期", 29, 3);
+  fix("zouen-2kyu", "R7", "後期", 29, 1);
+  fix("zouen-2kyu", "R8", "前期", 17, 4);
+  fix("zouen-2kyu", "R8", "前期", 25, 2);
+})();
