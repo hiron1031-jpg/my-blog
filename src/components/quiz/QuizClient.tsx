@@ -15,6 +15,8 @@ export interface QuizQuestion {
   options: string[];
   correctIndex: number;
   explanation: string;
+  /** 図問題の場合、切り抜いた図の画像パス（例: /images/quiz/doboku-2kyu/xxx.png）。任意 */
+  imageUrl?: string;
 }
 
 // セクション付き年度別データ構造
@@ -625,9 +627,18 @@ export default function QuizClient({
         <span className="inline-block text-xs font-medium bg-surface border border-border text-secondary px-2 py-0.5 rounded-full mb-3">
           {currentQuestion.category}
         </span>
-        <p className="text-secondary font-medium text-base leading-relaxed">
+        <p className="text-secondary font-medium text-base leading-relaxed whitespace-pre-line">
           {currentQuestion.question}
         </p>
+        {currentQuestion.imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={currentQuestion.imageUrl}
+            alt="問題の図"
+            loading="lazy"
+            className="mt-4 w-full max-w-md mx-auto rounded-lg border border-border bg-white"
+          />
+        )}
       </div>
 
       {/* Options */}

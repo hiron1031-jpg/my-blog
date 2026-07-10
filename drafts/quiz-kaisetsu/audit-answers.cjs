@@ -151,3 +151,16 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("zouen-2kyu", "R8", "前期", 17, 4);
   fix("zouen-2kyu", "R8", "前期", 25, 2);
 })();
+
+// ===== 図問題 第1バッチ 2級土木R8前期・R7前期5問（2026-07-11、画像付き） =====
+// 解答PDF原本から再抽出（Kの旧値に誤りがあったため上書き）。ネットワークは図から自力検算し一致。
+(function () {
+  const fix = (ex, yr, sec, n, v) => {
+    K[ex][yr] = K[ex][yr] || {}; K[ex][yr][sec] = K[ex][yr][sec] || {}; K[ex][yr][sec][n] = v;
+  };
+  fix("doboku-2kyu", "R8", "前期", 50, 1);
+  fix("doboku-2kyu", "R8", "前期", 62, 3);
+  fix("doboku-2kyu", "R7", "前期", 16, 4);
+  fix("doboku-2kyu", "R7", "前期", 50, 3);
+  fix("doboku-2kyu", "R7", "前期", 62, 1);
+})();
