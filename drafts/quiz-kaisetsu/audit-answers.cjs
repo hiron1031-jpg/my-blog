@@ -232,3 +232,9 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("zouen-2kyu","R7","後期",9,3); fix("zouen-2kyu","R7","後期",16,1); fix("zouen-2kyu","R7","後期",17,4); fix("zouen-2kyu","R7","後期",20,3);
   fix("zouen-2kyu","R7","後期",22,4); fix("zouen-2kyu","R7","後期",24,1); fix("zouen-2kyu","R7","後期",27,3); fix("zouen-2kyu","R7","後期",28,4);
 })();
+
+// ===== 図問題 2級造園 第3バッチ R7前期 3問（2026-07-11、画像付き・2級造園完） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("zouen-2kyu","R7","前期",19,4); fix("zouen-2kyu","R7","前期",20,3); fix("zouen-2kyu","R7","前期",26,4);
+})();
