@@ -199,3 +199,9 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("doboku-2kyu","R4","前期",45,3); fix("doboku-2kyu","R4","前期",57,1);
   fix("doboku-2kyu","R4","後期",25,3); fix("doboku-2kyu","R4","後期",45,3); fix("doboku-2kyu","R4","後期",57,2);
 })();
+
+// ===== 図問題 1級土木 第1バッチ R8 1次B 3問（2026-07-11、画像付き） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("doboku-1kyu","R8","1次B",3,3); fix("doboku-1kyu","R8","1次B",6,4); fix("doboku-1kyu","R8","1次B",7,1);
+})();
