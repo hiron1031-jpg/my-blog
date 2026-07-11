@@ -178,3 +178,10 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("doboku-2kyu", "R7", "後期", 50, 1);
   fix("doboku-2kyu", "R7", "後期", 62, 2);
 })();
+
+// ===== 図問題 第3バッチ 2級土木R6前期3問・R6後期4問（2026-07-11、画像付き） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("doboku-2kyu","R6","前期",50,1); fix("doboku-2kyu","R6","前期",62,1); fix("doboku-2kyu","R6","前期",65,2);
+  fix("doboku-2kyu","R6","後期",22,2); fix("doboku-2kyu","R6","後期",30,2); fix("doboku-2kyu","R6","後期",50,1); fix("doboku-2kyu","R6","後期",62,4);
+})();
