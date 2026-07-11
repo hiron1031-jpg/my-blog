@@ -205,3 +205,9 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
   fix("doboku-1kyu","R8","1次B",3,3); fix("doboku-1kyu","R8","1次B",6,4); fix("doboku-1kyu","R8","1次B",7,1);
 })();
+
+// ===== 図問題 1級土木 第2バッチ R7 1次A No.25・1次B No.3,6（2026-07-11、画像付き） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("doboku-1kyu","R7","1次A",25,2); fix("doboku-1kyu","R7","1次B",3,2); fix("doboku-1kyu","R7","1次B",6,3);
+})();
