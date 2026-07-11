@@ -219,3 +219,9 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("doboku-1kyu","R5","1次A",20,1); fix("doboku-1kyu","R5","1次B",3,1); fix("doboku-1kyu","R5","1次B",6,2);
   fix("doboku-1kyu","R4","1次B",3,3); fix("doboku-1kyu","R4","1次B",6,1);
 })();
+
+// ===== 図問題 2級造園 第1バッチ R8前期 5問（2026-07-11、画像付き） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("zouen-2kyu","R8","前期",13,2); fix("zouen-2kyu","R8","前期",19,4); fix("zouen-2kyu","R8","前期",20,1); fix("zouen-2kyu","R8","前期",21,1); fix("zouen-2kyu","R8","前期",27,2);
+})();
