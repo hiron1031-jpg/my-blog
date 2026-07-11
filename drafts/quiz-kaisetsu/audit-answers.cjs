@@ -246,3 +246,12 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("zouen-1kyu","R6","1次A",26,2); fix("zouen-1kyu","R6","1次A",32,4);
   fix("zouen-1kyu","R5","1次A",26,1); fix("zouen-1kyu","R5","1次A",32,1);
 })();
+
+// ===== 図問題 1級造園 第2バッチ 1次B 8問（2026-07-11、画像付き・全図問題完） =====
+// 正解は解答PDF原本から再抽出（当初メモに複数の誤記あり→訂正）。ネットワークは拡大＋自力検算。
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("zouen-1kyu","R5","1次B",2,2); fix("zouen-1kyu","R5","1次B",3,3); fix("zouen-1kyu","R5","1次B",4,4);
+  fix("zouen-1kyu","R6","1次B",3,3); fix("zouen-1kyu","R6","1次B",4,1); fix("zouen-1kyu","R6","1次B",10,2);
+  fix("zouen-1kyu","R6","1次B",12,2); fix("zouen-1kyu","R6","1次B",19,3);
+})();
