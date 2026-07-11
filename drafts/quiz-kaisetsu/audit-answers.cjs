@@ -164,3 +164,17 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("doboku-2kyu", "R7", "前期", 50, 3);
   fix("doboku-2kyu", "R7", "前期", 62, 1);
 })();
+
+// ===== 図問題 第2バッチ 2級土木R7後期6問（2026-07-11、画像付き） =====
+// 解答PDF（種別:土木）原本から抽出。計算・ネットワークは自力検算で一致確認済み。
+(function () {
+  const fix = (ex, yr, sec, n, v) => {
+    K[ex][yr] = K[ex][yr] || {}; K[ex][yr][sec] = K[ex][yr][sec] || {}; K[ex][yr][sec][n] = v;
+  };
+  fix("doboku-2kyu", "R7", "後期", 3, 4);
+  fix("doboku-2kyu", "R7", "後期", 4, 4);
+  fix("doboku-2kyu", "R7", "後期", 5, 2);
+  fix("doboku-2kyu", "R7", "後期", 36, 4);
+  fix("doboku-2kyu", "R7", "後期", 50, 1);
+  fix("doboku-2kyu", "R7", "後期", 62, 2);
+})();
