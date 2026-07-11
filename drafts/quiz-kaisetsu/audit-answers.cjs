@@ -192,3 +192,10 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   fix("doboku-2kyu","R5","前期",12,2); fix("doboku-2kyu","R5","前期",31,4); fix("doboku-2kyu","R5","前期",45,3); fix("doboku-2kyu","R5","前期",57,2);
   fix("doboku-2kyu","R5","後期",45,4); fix("doboku-2kyu","R5","後期",57,1);
 })();
+
+// ===== 図問題 第5バッチ 2級土木R4前期2問・R4後期3問（2026-07-11、画像付き・2級土木完） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("doboku-2kyu","R4","前期",45,3); fix("doboku-2kyu","R4","前期",57,1);
+  fix("doboku-2kyu","R4","後期",25,3); fix("doboku-2kyu","R4","後期",45,3); fix("doboku-2kyu","R4","後期",57,2);
+})();
