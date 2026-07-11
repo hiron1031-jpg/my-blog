@@ -211,3 +211,11 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
   fix("doboku-1kyu","R7","1次A",25,2); fix("doboku-1kyu","R7","1次B",3,2); fix("doboku-1kyu","R7","1次B",6,3);
 })();
+
+// ===== 図問題 1級土木 第3バッチ R6/R5/R4 7問（2026-07-11、画像付き・1級土木完） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("doboku-1kyu","R6","1次B",3,3); fix("doboku-1kyu","R6","1次B",6,2);
+  fix("doboku-1kyu","R5","1次A",20,1); fix("doboku-1kyu","R5","1次B",3,1); fix("doboku-1kyu","R5","1次B",6,2);
+  fix("doboku-1kyu","R4","1次B",3,3); fix("doboku-1kyu","R4","1次B",6,1);
+})();
