@@ -238,3 +238,11 @@ for(const m of mismatches) console.log("  "+m.id+"  No."+m.num+"  クイズ="+m.
   const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
   fix("zouen-2kyu","R7","前期",19,4); fix("zouen-2kyu","R7","前期",20,3); fix("zouen-2kyu","R7","前期",26,4);
 })();
+
+// ===== 図問題 1級造園 第1バッチ 1次A 6問（R5/R6/R7 No.26,32）（2026-07-11、画像付き） =====
+(function () {
+  const fix = (ex, yr, sec, n, v) => { K[ex][yr]=K[ex][yr]||{}; K[ex][yr][sec]=K[ex][yr][sec]||{}; K[ex][yr][sec][n]=v; };
+  fix("zouen-1kyu","R7","1次A",26,1); fix("zouen-1kyu","R7","1次A",32,2);
+  fix("zouen-1kyu","R6","1次A",26,2); fix("zouen-1kyu","R6","1次A",32,4);
+  fix("zouen-1kyu","R5","1次A",26,1); fix("zouen-1kyu","R5","1次A",32,1);
+})();
