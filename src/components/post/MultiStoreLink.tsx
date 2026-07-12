@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   buildAmazonUrl,
+  buildAmazonAnyUrl,
   buildRakutenUrl,
   buildYahooUrl,
 } from "@/lib/affiliate";
@@ -14,20 +15,24 @@ declare global {
 }
 
 interface MultiStoreLinkProps {
-  /** Amazon商品のASIN */
-  asin: string;
+  /** Amazon商品のASIN（書籍向け。省略時はamazonQueryまたはtitleでAmazon検索リンクになる） */
+  asin?: string;
   /** 書籍・商品タイトル（楽天・Yahooの検索クエリにも使用） */
   title: string;
   /** サブタイトル・補足（任意） */
   subtitle?: string;
   /** 筆者コメント・選定理由（任意） */
   comment?: string;
+  /** Amazon検索クエリを上書き（任意・asin未指定時に使用。デフォルトはtitle） */
+  amazonQuery?: string;
   /** 楽天検索クエリを上書き（任意・デフォルトはtitle） */
   rakutenQuery?: string;
   /** Yahoo検索クエリを上書き（任意・デフォルトはtitle） */
   yahooQuery?: string;
-  /** 書影画像URL（任意・指定時は優先表示）。未指定の場合はASINから自動推測 */
+  /** 書影画像URL（任意・指定時は優先表示）。未指定の場合はASINから自動推測（ASINなしなら画像非表示） */
   imageUrl?: string;
+  /** カードの見出しラベル（任意・デフォルトは書籍向け） */
+  label?: string;
 }
 
 /**
@@ -52,16 +57,25 @@ export default function MultiStoreLink({
   title,
   subtitle,
   comment,
+  amazonQuery,
   rakutenQuery,
   yahooQuery,
   imageUrl,
+  label,
 }: MultiStoreLinkProps) {
-  const amazonUrl = buildAmazonUrl(asin);
+  // ASINがあれば商品ページへ、無ければAmazon検索結果へ（型番切れの心配がない）
+  const amazonUrl = asin
+    ? buildAmazonUrl(asin)
+    : buildAmazonAnyUrl(
+        `https://www.amazon.co.jp/s?k=${encodeURIComponent(amazonQuery || title)}`,
+      );
   const rakutenUrl = buildRakutenUrl(rakutenQuery || title);
   const yahooUrl = buildYahooUrl(yahooQuery || title);
-  // 書影URL：明示指定があればそれを使用、無ければISBN-13に変換してOpenBD APIで取得
-  const bookImageUrl = imageUrl ?? `https://cover.openbd.jp/${toIsbn13(asin)}.jpg`;
+  // 書影URL：明示指定があればそれを使用、ASINがあればISBN-13に変換してOpenBD APIで取得、どちらも無ければ非表示
+  const bookImageUrl =
+    imageUrl ?? (asin ? `https://cover.openbd.jp/${toIsbn13(asin)}.jpg` : undefined);
   const [imgError, setImgError] = useState(false);
+  const showImage = !!bookImageUrl && !imgError;
 
   const trackClick = (storeName: string, url: string) => {
     if (
@@ -82,10 +96,10 @@ export default function MultiStoreLink({
 
   return (
     <div className="my-6 border-2 border-border rounded-lg p-5 bg-surface">
-      <div className="text-xs text-secondary mb-3">📚 筆者のおすすめ書籍</div>
+      <div className="text-xs text-secondary mb-3">{label ?? "📚 筆者のおすすめ書籍"}</div>
       <div className="flex gap-4 items-start">
         {/* 書影画像 */}
-        {!imgError && (
+        {showImage && (
           // eslint-disable-next-line @next/next/no-img-element
           <a
             href={amazonUrl}
