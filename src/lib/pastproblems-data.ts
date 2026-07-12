@@ -53,6 +53,7 @@ export const CATEGORIES: ExamCategory[] = [
     borderAccent: "border-secondary",
     hex: "#1e3a5f",
     years: [
+      { key:"R8",  label:"令和8年度",  note:"第一次検定（最新）", files:[ q("第一次検定A","/pastproblems/1doboku/R8_A.pdf"), q("第一次検定B","/pastproblems/1doboku/R8_B.pdf"), a("解答","/pastproblems/1doboku/R8_kaitou.pdf") ] },
       { key:"R7",  label:"令和7年度",  files:[ q("第一次検定A","/pastproblems/1doboku/R7_A.pdf"), q("第一次検定B","/pastproblems/1doboku/R7_B.pdf"), s("第二次検定","/pastproblems/1doboku/R7_jitti.pdf"), a("解答","/pastproblems/1doboku/R7_kaitou.pdf") ] },
       { key:"R6",  label:"令和6年度",  files:[ q("第一次検定A","/pastproblems/1doboku/R6_A.pdf"), q("第一次検定B","/pastproblems/1doboku/R6_B.pdf"), s("第二次検定","/pastproblems/1doboku/R6_jitti.pdf"), a("解答","/pastproblems/1doboku/R6_kaitou.pdf") ] },
       { key:"R5",  label:"令和5年度",  files:[ q("第一次検定A","/pastproblems/1doboku/R5_A.pdf"), q("第一次検定B","/pastproblems/1doboku/R5_B.pdf"), s("第二次検定","/pastproblems/1doboku/R5_jitti.pdf"), a("解答","/pastproblems/1doboku/R5_kaitou.pdf") ] },
