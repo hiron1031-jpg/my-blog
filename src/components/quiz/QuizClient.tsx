@@ -160,6 +160,20 @@ const NEXT_STEP_LINKS: Record<string, { name: string; hinshutu: string; sankosho
   "zouen-2kyu": { name: "2級造園", hinshutu: "/posts/zouen-2kyu-hinshutu", sankosho: "/posts/zouen-2kyu-sankosho-ranking" },
 };
 
+// 得点連動CTA用：講座比較記事と二次検定対策記事
+const SCHOOL_LINKS: Record<string, string> = {
+  "doboku-1kyu": "/posts/school-hikaku-doboku",
+  "doboku-2kyu": "/posts/school-hikaku-doboku",
+  "zouen-1kyu": "/posts/school-hikaku-zouen",
+  "zouen-2kyu": "/posts/school-hikaku-zouen",
+};
+const NIJI_LINKS: Record<string, string> = {
+  "doboku-1kyu": "/posts/doboku-1kyu-2ji-kijutsu",
+  "doboku-2kyu": "/posts/doboku-2kyu-2ji-kijutsu",
+  "zouen-1kyu": "/posts/zouen-1kyu-2ji-kijutsu",
+  "zouen-2kyu": "/posts/zouen-2kyu-2ji-kijutsu",
+};
+
 // ---- Main Component ----
 export default function QuizClient({
   yearQuestions,
@@ -556,13 +570,29 @@ export default function QuizClient({
             </div>
           )}
 
-          {NOTE_KAISETSU[selectedExam] && (
+          {/* 得点連動CTA：正答率で「次の一手」を出し分ける */}
+          {pct < 50 && SCHOOL_LINKS[selectedExam] && (
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left">
+              <p className="text-sm font-bold text-secondary mb-1">🛠 立て直しのヒント</p>
+              <p className="text-sm text-secondary/80 mb-2 leading-relaxed">
+                まずは苦手カテゴリを頻出記事で復習するのが近道。独学のペース管理が不安なら、添削や映像講義つきの講座で立て直す手もあります。
+              </p>
+              <Link
+                href={SCHOOL_LINKS[selectedExam]}
+                className="text-sm font-bold text-primary hover:underline"
+              >
+                {NEXT_STEP_LINKS[selectedExam]?.name}に対応した講座を比較する →
+              </Link>
+            </div>
+          )}
+
+          {pct >= 50 && pct < 80 && NOTE_KAISETSU[selectedExam] && (
             <div className="bg-surface border border-border rounded-xl p-4 mb-6 text-left">
               <p className="text-sm font-bold text-secondary mb-1">
-                🎉 お疲れさまでした！
+                🎉 あと一歩で合格圏！
               </p>
               <p className="text-sm text-secondary/80 mb-2 leading-relaxed">
-                一次の知識が固まってきたら、次は二次検定の準備。R7二次の全問解説（500円）を用意しています。
+                間違えた分野を上のリンクで潰しつつ、一次が固まってきたら二次検定の準備も視野に。R7二次の全問解説（500円）を用意しています。
               </p>
               <a
                 href={NOTE_KAISETSU[selectedExam].url}
@@ -572,6 +602,32 @@ export default function QuizClient({
               >
                 {NOTE_KAISETSU[selectedExam].label}を見てみる →
               </a>
+            </div>
+          )}
+
+          {pct >= 80 && NOTE_KAISETSU[selectedExam] && (
+            <div className="bg-surface border border-border rounded-xl p-4 mb-6 text-left">
+              <p className="text-sm font-bold text-secondary mb-1">
+                🏆 一次はかなり仕上がっています！
+              </p>
+              <p className="text-sm text-secondary/80 mb-2 leading-relaxed">
+                次のヤマは第二次検定（経験記述）。準備に時間がかかるので、一次の合格発表を待たずに始めるのが鉄則です。
+              </p>
+              <div className="flex flex-col gap-1.5 text-sm">
+                {NIJI_LINKS[selectedExam] && (
+                  <Link href={NIJI_LINKS[selectedExam]} className="font-bold text-primary hover:underline">
+                    {NEXT_STEP_LINKS[selectedExam]?.name} 二次検定の対策まとめを読む →
+                  </Link>
+                )}
+                <a
+                  href={NOTE_KAISETSU[selectedExam].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-primary hover:underline"
+                >
+                  {NOTE_KAISETSU[selectedExam].label}（500円）を見てみる →
+                </a>
+              </div>
             </div>
           )}
 
