@@ -210,6 +210,9 @@ export default function PastProblemsPage() {
         </div>
         <p className="text-sm text-gray-600 mb-6">
           印刷して解く用の解答用紙（無料）と、二次検定の対策コンテンツ、参考書選びのガイドを用意しています。
+          試験を受けた直後の方は
+          <Link href="/posts/kaitou-sokuhou" className="text-primary font-medium hover:underline">解答速報・自己採点まとめ</Link>
+          へどうぞ。
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* 無料解答用紙 */}

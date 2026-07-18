@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "施工管理技士 過去問チャレンジ【無料Web問題集】| 土木のトリセツ",
     description:
-      "1級・2級 土木/造園施工管理技士の過去問を4択Webクイズで演習。R4〜R8年度別過去問モード（1,200問超）搭載。スマホ対応・解説付き・完全無料。",
+      "1級・2級 土木/造園施工管理技士の過去問を4択Webクイズで演習。R4〜R8年度別過去問モード（1,350問超）搭載。スマホ対応・解説付き・完全無料。",
     url: "/quiz",
   },
   keywords: "施工管理技士 過去問 アプリ,施工管理技士 過去問 無料,過去問 webアプリ,1級土木 練習問題,2級土木 クイズ,1級造園 問題集,2級造園 クイズ,第一次検定 対策,過去問チャレンジ",
@@ -145,7 +145,7 @@ export default function QuizPage() {
           </li>
           <li className="flex gap-2">
             <FiCheckCircle size={18} className="text-primary flex-shrink-0 mt-0.5" />
-            <div><strong>R4〜R8年度の本試験問題を収録</strong>：最新の出題傾向を反映した合計1,200問超。</div>
+            <div><strong>R4〜R8年度の本試験問題を収録</strong>：最新の出題傾向を反映した合計1,350問超（全1,357問）。</div>
           </li>
           <li className="flex gap-2">
             <FiCheckCircle size={18} className="text-primary flex-shrink-0 mt-0.5" />
