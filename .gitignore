@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IndexNow key (public by design, but no need to track)
+.indexnow-key
