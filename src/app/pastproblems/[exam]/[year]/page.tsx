@@ -487,6 +487,17 @@ export default async function Page({ params }: PageProps) {
           <p className="text-xs text-amber-800 mb-3">
             自己採点や記述式の答え合わせに。独学合格者による想定解答・採点ポイント付きの全問解説をnoteで公開しています。
           </p>
+          {exam === "1doboku" && (
+            <a
+              href="https://note.com/dobokutorisetsu/m/m64d6358b6c04"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between px-3 py-3 mb-2 bg-primary/10 border border-primary rounded-lg text-sm hover:bg-primary/15 transition"
+            >
+              <span className="font-bold text-primary">💰 まとめてお得：解説＋模範解答＋解答用紙＋キットの「合格パック」</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-primary text-white whitespace-nowrap">1,980円</span>
+            </a>
+          )}
           <div className="flex flex-col gap-2">
             {noteInfo.links.map((n) => (
               <a
