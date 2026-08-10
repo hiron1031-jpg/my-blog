@@ -9,6 +9,7 @@ import CalloutBox from "./CalloutBox";
 import CharacterDialog from "./CharacterDialog";
 import SchoolCard from "./SchoolCard";
 import MultiStoreLink from "./MultiStoreLink";
+import PackCta from "./PackCta";
 
 const components = {
   h2: ({ children, id }: { children: React.ReactNode; id?: string }) => (
@@ -85,6 +86,7 @@ const components = {
   CalloutBox,
   CharacterDialog,
   SchoolCard,
+  PackCta,
   MultiStoreLink,
 };
 
