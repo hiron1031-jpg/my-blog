@@ -104,7 +104,7 @@ const EXAM_META: Record<string, ExamMeta> = {
     overview:
       "2級土木施工管理技士は、主任技術者として土木工事の現場を担当できる国家資格です。1級のステップアップ前提で取得する方が多く、19歳以上から受験できる「第一次検定のみ」の新制度により受験者数が増加傾向。前期（6月）・後期（10月）の年2回チャンスがあります。",
     difficulty: "1級に比べると難易度は抑えめ。ただし第二次検定の経験記述は1級同様、添削を受けておくと安心。",
-    passRateFirst: "令和6年度(前期) 43.0%（公式発表）",
+    passRateFirst: "令和7年度(前期) 51.8%（公式発表）",
     passRateSecond: "令和6年度 35.0%（公式発表）",
     passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン（国土交通省発表）",
     scopeFirst: [
@@ -258,8 +258,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const meta = EXAM_META[exam];
   if (!cat || !meta) return {};
 
-  const title = `${cat.name}とは｜難易度・合格率・勉強法・過去問まとめ`;
-  const description = `${cat.name}の難易度、合格率、試験範囲、独学勉強法、過去問PDFダウンロードをまとめた総合ガイド。${meta.tagline}`;
+  // 公式発表の確定値がある資格のみ、合格率をタイトルに出す（概数・目安は出さない）
+  const isOfficialRate = meta.passRateFirst.includes("公式発表");
+  const passRateShort = isOfficialRate
+    ? meta.passRateFirst.match(/[\d.]+%/)?.[0] ?? ""
+    : "";
+  const title = passRateShort
+    ? `${cat.name}｜第一次検定の合格率${passRateShort}を独学で突破する方法`
+    : `${cat.name}｜合格率・難易度と独学で突破する勉強法`;
+  const description = `${cat.name}に独学一発合格した現役監督が、合格率・難易度・試験範囲・勉強法を実体験で解説。過去問PDF（14年分・無料）と1,357問の一問一答クイズもすべて無料で使えます。${meta.tagline}`;
 
   return {
     title,
@@ -267,7 +274,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: `${cat.name},${cat.shortName},${cat.shortName} 難易度,${cat.shortName} 合格率,${cat.shortName} 勉強法,${cat.shortName} 過去問,${cat.shortName} 独学`,
     alternates: { canonical: `/shikaku/${exam}` },
     openGraph: {
-      title: `${cat.name}｜難易度・合格率・勉強法・過去問｜土木のトリセツ`,
+      title: `${title}｜土木のトリセツ`,
       description,
       type: "article",
     },
