@@ -95,6 +95,45 @@ const variantStyles: Record<ExamFile["variant"], string> = {
   second: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100",
 };
 
+// ---- 年度別の独自解説（実績のある年度のみ。事実ベースで記述） ----
+type YearNote = { heading: string; body: string; points: string[] };
+
+const YEAR_NOTES: Record<string, YearNote> = {
+  "1doboku-R7": {
+    heading: "令和7年度 1級土木 第一次検定はどんな試験だったか",
+    body:
+      "令和7年度の第一次検定は、受検者47,715人・合格者20,547人で合格率43.1%でした。これは過去10年で最も低い水準です。出題形式も変更され、全101問中70問を解答する方式（必須問題40問・選択問題30問）となり、問題Aでは「工学基礎知識（土質工学・構造力学・水理学）」が必須問題として追加されました。",
+    points: [
+      "合格率43.1%は過去10年で最低水準。難化傾向が続いている",
+      "全101問から70問を解答（必須40問＋選択30問）",
+      "問題Aに工学基礎（土質・構造力学・水理学）が必須で追加",
+      "受検資格の緩和により25歳未満の合格比率が18.1%まで上昇",
+    ],
+  },
+  "2doboku-R7": {
+    heading: "令和7年度 2級土木 第一次検定（前期）はどんな試験だったか",
+    body:
+      "令和7年度前期の第一次検定は、受検者14,030人・合格者7,274人で合格率51.8%でした。前年度の43.0%から8.8ポイント上昇し、約半数が合格する水準に戻っています。2級土木は前期（6月）・後期（10月）の年2回実施され、後期は第一次・第二次を同日に受検できます。",
+    points: [
+      "前期の合格率51.8%（前年比＋8.8pt）と大きく改善",
+      "受検者数も前年から約430人増加し、志願者は増加傾向",
+      "年2回受検可能（前期6月／後期10月）",
+      "後期は第一次・第二次の同日受検が可能",
+    ],
+  },
+  "1zou-R7": {
+    heading: "令和7年度 1級造園 第一次検定はどんな試験だったか",
+    body:
+      "令和7年度の第一次検定は合格率52.1%で、前年比＋6.7ポイント・9年ぶりに50%を超えました。難関とされてきた1級造園にとっては追い風の年度です。なお第二次検定は令和6年度から経験記述が廃止され、施工管理法の必須4問という構成に変わっています。",
+    points: [
+      "合格率52.1%は9年ぶりの50%超え（前年比＋6.7pt）",
+      "第二次検定はR6から経験記述が廃止され技術記述のみに",
+      "植栽基盤・移植・支柱・品質規格が二次の頻出4本柱",
+      "ネットワーク工程表の計算は毎年出題される得点源",
+    ],
+  },
+};
+
 // ---- Exam summary (合格率・基準・出題範囲) ----
 type ExamSummary = {
   passRateFirst: string;
@@ -351,6 +390,7 @@ export default async function Page({ params }: PageProps) {
   const keikenSlug = getKeikenSlug(exam);
   const recommendedBook = getRecommendedBook(exam);
   const noteInfo = getNoteInfo(exam);
+  const yearNote = YEAR_NOTES[`${exam}-${year}`];
   const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
@@ -431,6 +471,24 @@ export default async function Page({ params }: PageProps) {
           出典：一般財団法人 全国建設研修センター（掲載許諾済み）
         </p>
       </section>
+
+      {/* 年度別の独自解説（データがある年度のみ表示） */}
+      {yearNote && (
+        <section className="mb-10 bg-white border border-border rounded-xl p-6 md:p-8 shadow-sm">
+          <h2 className="text-lg font-bold text-gray-800 mb-4 pb-2 border-b-2" style={{ borderColor: category.hex }}>
+            {yearNote.heading}
+          </h2>
+          <p className="text-[15px] text-secondary leading-relaxed mb-4">{yearNote.body}</p>
+          <ul className="space-y-2">
+            {yearNote.points.map((p) => (
+              <li key={p} className="flex items-start gap-2 text-[15px] text-secondary">
+                <span className="mt-1 shrink-0" style={{ color: category.hex }}>▸</span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* DL直下：去る前に次の行動へ誘導（最注目ゾーン） */}
       <section className="mb-10 rounded-xl border-2 border-primary/30 bg-primary/5 p-5">
