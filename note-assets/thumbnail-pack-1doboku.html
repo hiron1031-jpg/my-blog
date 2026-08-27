@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1280px; height:670px; }
+  body {
+    font-family: "Yu Gothic", "Hiragino Sans", "Meiryo", sans-serif;
+    width:1280px; height:670px; overflow:hidden;
+    background: linear-gradient(135deg, #E8551B 0%, #D9430A 100%);
+    position:relative; color:#fff;
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 0 62px;
+  }
+  /* 斜めストライプの飾り */
+  .deco { position:absolute; inset:0; opacity:0.08;
+    background: repeating-linear-gradient(60deg, #fff 0 3px, transparent 3px 42px); }
+  .badge-top {
+    display:inline-block; background:#F6C445; color:#7a3b00;
+    font-weight:900; font-size:34px; letter-spacing:0.04em;
+    padding:10px 30px; border-radius:999px; margin-bottom:22px; width:fit-content;
+    box-shadow:0 4px 0 rgba(0,0,0,0.15);
+  }
+  .title { font-weight:900; line-height:1.08; letter-spacing:0.01em;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.18); }
+  .title .l1 { font-size:56px; }
+  .title .l2 { font-size:118px; display:flex; align-items:baseline; gap:10px; }
+  .title .l2 .pack { color:#FFE9A8; }
+  .sub { margin-top:26px; font-size:33px; font-weight:700; line-height:1.5;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.15); }
+  .price-badge {
+    position:absolute; right:54px; bottom:54px;
+    background:#fff; color:#D9430A; border-radius:18px;
+    padding:20px 30px; text-align:center; box-shadow:0 8px 18px rgba(0,0,0,0.22);
+    transform: rotate(4deg);
+  }
+  .price-badge .n { font-size:64px; font-weight:900; line-height:1; }
+  .price-badge .n small { font-size:30px; }
+  .price-badge .strike { font-size:24px; color:#888; text-decoration:line-through; margin-top:4px; }
+</style>
+</head>
+<body>
+  <div class="deco"></div>
+  <div class="badge-top">令和7年度 ／ 第二次検定</div>
+  <div class="title">
+    <div class="l1">1級土木施工管理技士</div>
+    <div class="l2">合格<span class="pack">パック</span></div>
+  </div>
+  <div class="sub">解答解説 ＋ 模範解答 ＋ 解答用紙<br>＋ 直前キット ＋ 経験記述 例文集</div>
+  <div class="price-badge">
+    <div class="n">¥1,980</div>
+    <div class="strike">単品 ¥2,780</div>
+  </div>
+</body>
+</html>
