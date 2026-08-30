@@ -10,6 +10,7 @@ import CharacterDialog from "./CharacterDialog";
 import SchoolCard from "./SchoolCard";
 import MultiStoreLink from "./MultiStoreLink";
 import PackCta from "./PackCta";
+import ZouenKeikenNotice from "./ZouenKeikenNotice";
 
 const components = {
   h2: ({ children, id }: { children: React.ReactNode; id?: string }) => (
@@ -87,6 +88,7 @@ const components = {
   CharacterDialog,
   SchoolCard,
   PackCta,
+  ZouenKeikenNotice,
   MultiStoreLink,
 };
 
