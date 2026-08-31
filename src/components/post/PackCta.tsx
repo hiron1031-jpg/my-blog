@@ -26,8 +26,7 @@ const PACKS: Record<PackKey, Pack> = {
     listPrice: "2,780円",
   },
   "2doboku": {
-    // TODO: マガジン公開後にURLを設定する（それまでカードは表示されない）
-    url: "",
+    url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
     defaultLead: "2級土木の二次検定（10月25日）を受ける方へ",
     body: "解答解説（全8問）＋模範解答入り解答用紙＋直前キット＋経験記述の例文集16例。一次の発表を待たずに二次の準備を始められます。",
     price: "1,480円",

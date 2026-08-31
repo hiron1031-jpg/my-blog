@@ -173,9 +173,18 @@ const NIJI_LINKS: Record<string, string> = {
   "zouen-1kyu": "/posts/zouen-1kyu-2ji-kijutsu",
   "zouen-2kyu": "/posts/zouen-2kyu-2ji-kijutsu",
 };
-// 二次検定 合格パック（買い切りマガジン）。現状は1級土木のみ販売中
-const PACK_LINKS: Record<string, string> = {
-  "doboku-1kyu": "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
+// 二次検定 合格パック（買い切りマガジン）。造園は未販売
+const PACK_LINKS: Record<string, { url: string; price: string; save: string }> = {
+  "doboku-1kyu": {
+    url: "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
+    price: "1,980円",
+    save: "800円",
+  },
+  "doboku-2kyu": {
+    url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
+    price: "1,480円",
+    save: "800円",
+  },
 };
 
 // ---- Main Component ----
@@ -625,12 +634,14 @@ export default function QuizClient({
                 )}
                 {PACK_LINKS[selectedExam] ? (
                   <a
-                    href={PACK_LINKS[selectedExam]}
+                    href={PACK_LINKS[selectedExam].url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-bold text-primary hover:underline"
                   >
-                    二次対策の教材をまとめた「合格パック」（1,980円・単品より800円お得）→
+                    二次対策の教材をまとめた「合格パック」（
+                    {PACK_LINKS[selectedExam].price}・単品より
+                    {PACK_LINKS[selectedExam].save}お得）→
                   </a>
                 ) : (
                   <a

@@ -96,6 +96,18 @@ const variantStyles: Record<ExamFile["variant"], string> = {
 };
 
 // ---- 年度別の独自解説（実績のある年度のみ。事実ベースで記述） ----
+// 二次検定 合格パック（noteの買い切りマガジン）。造園は未販売
+const PACKS: Record<string, { url: string; price: string }> = {
+  "1doboku": {
+    url: "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
+    price: "1,980円",
+  },
+  "2doboku": {
+    url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
+    price: "1,480円",
+  },
+};
+
 type YearNote = { heading: string; body: string; points: string[] };
 
 const YEAR_NOTES: Record<string, YearNote> = {
@@ -545,15 +557,15 @@ export default async function Page({ params }: PageProps) {
           <p className="text-xs text-amber-800 mb-3">
             自己採点や記述式の答え合わせに。独学合格者による想定解答・採点ポイント付きの全問解説をnoteで公開しています。
           </p>
-          {exam === "1doboku" && (
+          {PACKS[exam] && (
             <a
-              href="https://note.com/dobokutorisetsu/m/m64d6358b6c04"
+              href={PACKS[exam].url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-between px-3 py-3 mb-2 bg-primary/10 border border-primary rounded-lg text-sm hover:bg-primary/15 transition"
             >
-              <span className="font-bold text-primary">💰 まとめてお得：解説＋模範解答＋解答用紙＋キットの「合格パック」</span>
-              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-primary text-white whitespace-nowrap">1,980円</span>
+              <span className="font-bold text-primary">💰 まとめてお得：解説＋模範解答＋直前キットの「合格パック」</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-primary text-white whitespace-nowrap">{PACKS[exam].price}</span>
             </a>
           )}
           <div className="flex flex-col gap-2">

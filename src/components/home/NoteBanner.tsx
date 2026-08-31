@@ -44,8 +44,12 @@ const EXAMS: Exam[] = [
     free: "ne3a94a016790",
     kaisetsu: "n0e58e6ebd207",
     model: "nbe4ef1799e5a",
-    // TODO: マガジン公開後にURLを設定する（それまでパック行は表示されない）
-    pack: null,
+    pack: {
+      url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
+      price: "1,480円",
+      listPrice: "2,280円",
+      note: "＋直前キット・経験記述の例文集16例",
+    },
   },
   {
     key: "1zouen",
