@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import BeaverMascot from "@/components/layout/BeaverMascot";
+import MobileHandoff from "@/components/MobileHandoff";
 
 // ---- Types ----
 export interface QuizQuestion {
@@ -435,6 +436,9 @@ export default function QuizClient({
   if (phase === "start") {
     return (
       <div className="max-w-2xl mx-auto space-y-8">
+        {/* PCで見ている読者をスマホへ（このサイトは7割超がPCからの閲覧） */}
+        <MobileHandoff target="quiz" />
+
         {CATEGORY_CONFIGS.map((category) => {
           const hasData = category.exams.some(
             (e) => yearQuestions[e.examKey] && Object.keys(yearQuestions[e.examKey]).length > 0

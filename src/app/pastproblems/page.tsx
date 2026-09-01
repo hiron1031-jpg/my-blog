@@ -5,6 +5,7 @@ import PastProblemsClient from "@/components/pastproblems/PastProblemsClient";
 import LearningCycle from "@/components/home/LearningCycle";
 import BeaverMascot from "@/components/layout/BeaverMascot";
 import JsonLd from "@/components/JsonLd";
+import MobileHandoff from "@/components/MobileHandoff";
 import { CATEGORIES } from "@/lib/pastproblems-data";
 
 export const metadata: Metadata = {
@@ -108,6 +109,9 @@ export default function PastProblemsPage() {
           <BeaverMascot preset="schedule" size={100} className="drop-shadow-lg self-end md:self-auto flex-shrink-0" />
         </div>
       </div>
+
+      {/* PCで見ている読者をスマホへ（このサイトは7割超がPCからの閲覧） */}
+      <MobileHandoff target="pastproblems" className="mb-10" />
 
       {/* ── Permission notice ── */}
       <div className="mb-10 bg-white border-2 border-secondary/30 rounded-xl p-5 md:p-6 shadow-sm">
