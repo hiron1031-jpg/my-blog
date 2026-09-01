@@ -23,14 +23,45 @@
 
 ---
 
-## フェーズ2：公式PDFが出たら（9/8〜9/12ごろ）
+## フェーズ2：公式PDFが出たら（**9/7(月) 以降**）
 
-公式ページ：https://www.jctc.jp/exam/zouen-1/ の「試験問題・合格基準」
+公式の掲載先：**https://www.jctc.jp/mondai/** （「試験問題/正答肢」ページ。ここに全資格がまとまっている）
+
+### PDFのURL規則（2026-09-02にJCTCのページを調査して判明）
+
+```
+https://www.jctc.jp/wjctcp/wp-content/uploads/YYYY/MM/YYYYMMDD{資格}_{種別}.pdf
+```
+
+- `YYYYMMDD` は **試験日の翌日（月曜）** で統一されている
+  （例：R8 1級土木＝試験7/5(日) → `20260706d_...`／R8 2級土木前期＝6/7(日) → `20260608d_...`）
+- 資格コード：`d`＝土木、`z`＝造園、`k`＝管工事、`e`＝電気工事
+- 種別：`mondaia`＝問題A、`mondaib`＝問題B、`mondai`＝問題（A/B分割なし）、`seitou`＝正答肢
+- 第二次検定は `mondai` のみで `seitou` は無い（記述式のため正答非公開）
+
+### 今回（1級造園 R8）の想定URL
+
+試験日 9/6(日) → 翌日 9/7(月) 付。おそらく以下：
+
+```
+https://www.jctc.jp/wjctcp/wp-content/uploads/2026/09/20260907z_mondaia.pdf
+https://www.jctc.jp/wjctcp/wp-content/uploads/2026/09/20260907z_mondaib.pdf
+https://www.jctc.jp/wjctcp/wp-content/uploads/2026/09/20260907z_seitou.pdf
+```
+
+※ 過去に `_seitou-1.pdf` `_seitou-2.pdf` のように連番が付いた例もあるため、
+**推測URLを直打ちせず、必ず https://www.jctc.jp/mondai/ を開いて実際のリンクを取得すること。**
 
 ### ⚠️ ここだけは監督にしかできない作業があります
 
 PDFは**Cloudflare R2から配信**しています（`pub-4c110a6010144a5db375ef2fb80338cd.r2.dev`）。
 リポジトリに置くだけでは本番に出ません。**R2へのアップロードは監督の作業**です。
+
+**行き方**：Cloudflareダッシュボード → 左メニュー「ストレージとデータベース」→「R2オブジェクトストレージ」
+→ バケット **`doboku-pdf`** → `pastproblems/1zou/` を開いてアップロード
+
+⚠️ 必ず `1zou` フォルダの**中に入ってから**アップすること。バケット直下に置くとサイトから見つからない。
+ファイル名は渡されたものを**変更しない**（サイトがその名前で探しにいく）。
 
 ### 手順
 
