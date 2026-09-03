@@ -174,6 +174,25 @@ const NIJI_LINKS: Record<string, string> = {
   "zouen-1kyu": "/posts/zouen-1kyu-2ji-kijutsu",
   "zouen-2kyu": "/posts/zouen-2kyu-2ji-kijutsu",
 };
+// クイズ結果画面のCTAクリックを計測する。
+// クイズはサイト最長の滞在（約515秒）だが、これまで計測が無く
+// 「クイズが収益につながっているか」が全く分からなかった。
+function trackQuizCta(
+  label: string,
+  exam: string,
+  pct: number,
+  url: string
+) {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "affiliate_click", {
+      event_category: "quiz_result",
+      event_label: `${exam}-${label}`,
+      score_band: pct >= 80 ? "80+" : pct >= 50 ? "50-79" : "0-49",
+      link_url: url,
+    });
+  }
+}
+
 // 二次検定 合格パック（買い切りマガジン）。造園は未販売
 const PACK_LINKS: Record<string, { url: string; price: string; save: string }> = {
   "doboku-1kyu": {
@@ -596,6 +615,9 @@ export default function QuizClient({
               </p>
               <Link
                 href={SCHOOL_LINKS[selectedExam]}
+                onClick={() =>
+                  trackQuizCta("school", selectedExam, pct, SCHOOL_LINKS[selectedExam])
+                }
                 className="text-sm font-bold text-primary hover:underline"
               >
                 {NEXT_STEP_LINKS[selectedExam]?.name}に対応した講座を比較する →
@@ -615,6 +637,9 @@ export default function QuizClient({
                 href={NOTE_KAISETSU[selectedExam].url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackQuizCta("kaisetsu", selectedExam, pct, NOTE_KAISETSU[selectedExam].url)
+                }
                 className="text-sm font-bold text-primary hover:underline"
               >
                 {NOTE_KAISETSU[selectedExam].label}を見てみる →
@@ -628,11 +653,19 @@ export default function QuizClient({
                 🏆 一次はかなり仕上がっています！
               </p>
               <p className="text-sm text-secondary/80 mb-2 leading-relaxed">
-                次のヤマは第二次検定（経験記述）。準備に時間がかかるので、一次の合格発表を待たずに始めるのが鉄則です。
+                {selectedExam.startsWith("zouen")
+                  ? "次のヤマは第二次検定です。造園はR6から経験記述が出題されなくなり、全問必須の技術記述に変わりました。工事経験の暗記は不要なので、用語と数値の対策に集中しましょう。"
+                  : "次のヤマは第二次検定（経験記述）。準備に時間がかかるので、一次の合格発表を待たずに始めるのが鉄則です。"}
               </p>
               <div className="flex flex-col gap-1.5 text-sm">
                 {NIJI_LINKS[selectedExam] && (
-                  <Link href={NIJI_LINKS[selectedExam]} className="font-bold text-primary hover:underline">
+                  <Link
+                    href={NIJI_LINKS[selectedExam]}
+                    onClick={() =>
+                      trackQuizCta("niji", selectedExam, pct, NIJI_LINKS[selectedExam])
+                    }
+                    className="font-bold text-primary hover:underline"
+                  >
                     {NEXT_STEP_LINKS[selectedExam]?.name} 二次検定の対策まとめを読む →
                   </Link>
                 )}
@@ -641,6 +674,9 @@ export default function QuizClient({
                     href={PACK_LINKS[selectedExam].url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackQuizCta("pack", selectedExam, pct, PACK_LINKS[selectedExam].url)
+                    }
                     className="font-bold text-primary hover:underline"
                   >
                     二次対策の教材をまとめた「合格パック」（
@@ -652,6 +688,9 @@ export default function QuizClient({
                     href={NOTE_KAISETSU[selectedExam].url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackQuizCta("kaisetsu", selectedExam, pct, NOTE_KAISETSU[selectedExam].url)
+                    }
                     className="font-bold text-primary hover:underline"
                   >
                     {NOTE_KAISETSU[selectedExam].label}（500円）を見てみる →
