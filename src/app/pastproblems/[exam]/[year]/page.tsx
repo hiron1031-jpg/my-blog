@@ -13,6 +13,7 @@ import {
 import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import MultiStoreLink from "@/components/post/MultiStoreLink";
+import DownloadWithPrompt from "@/components/pastproblems/DownloadWithPrompt";
 import {
   CATEGORIES,
   getYearEntry,
@@ -463,22 +464,13 @@ export default async function Page({ params }: PageProps) {
           <FiFileText size={20} style={{ color: category.hex }} />
           問題・解答 PDF ダウンロード
         </h2>
-        {entry.note && (
-          <p className="text-xs text-gray-500 mb-3">※ {entry.note}</p>
-        )}
-        <div className="flex flex-wrap gap-2">
-          {entry.files.map((f) => (
-            <a
-              key={f.path}
-              href={pdfUrl(f.path)}
-              download
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-sm font-medium transition-colors ${variantStyles[f.variant]}`}
-            >
-              <FiDownload size={14} className="flex-shrink-0" />
-              {f.label}
-            </a>
-          ))}
-        </div>
+        <DownloadWithPrompt
+          files={entry.files}
+          urls={entry.files.map((f) => pdfUrl(f.path))}
+          exam={exam}
+          examShortName={category.shortName}
+          note={entry.note}
+        />
         <p className="text-xs text-gray-400 mt-4">
           出典：一般財団法人 全国建設研修センター（掲載許諾済み）
         </p>
