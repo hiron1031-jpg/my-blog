@@ -205,6 +205,11 @@ const PACK_LINKS: Record<string, { url: string; price: string; save: string }> =
     price: "1,480円",
     save: "800円",
   },
+  "zouen-1kyu": {
+    url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",
+    price: "1,480円",
+    save: "800円",
+  },
 };
 
 // ---- Main Component ----

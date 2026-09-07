@@ -33,8 +33,7 @@ const PACKS: Record<PackKey, Pack> = {
     listPrice: "2,280円",
   },
   "1zouen": {
-    // TODO: マガジン公開後にURLを設定する（それまでカードは表示されない）
-    url: "",
+    url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",
     defaultLead: "1級造園の二次検定（12月6日）を受ける方へ",
     body: "解答解説（全4問）＋模範解答入り解答用紙＋直前キット。造園はR6から経験記述が出題されないので、対策は技術記述に集中できます。",
     price: "1,480円",
