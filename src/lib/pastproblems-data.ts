@@ -194,6 +194,9 @@ export const CATEGORIES: ExamCategory[] = [
     borderAccent: "border-green-700",
     hex: "#1a5c38",
     years: [
+      { key:"R8", label:"令和8年度", note:"第一次検定（最新）。第二次検定は令和8年12月6日実施のため、終了後に追加します。",
+        files:[ q("第一次検定A","/pastproblems/1zou/R8_A.pdf"), q("第一次検定B","/pastproblems/1zou/R8_B.pdf"), a("解答","/pastproblems/1zou/R8_kaitou.pdf") ]
+      },
       { key:"R7", label:"令和7年度",
         files:[ q("第一次検定A","/pastproblems/1zou/R7_A.pdf"), q("第一次検定B","/pastproblems/1zou/R7_B.pdf"), s("第二次検定","/pastproblems/1zou/R7_jitti.pdf"), a("解答","/pastproblems/1zou/R7_kaitou.pdf") ]
       },
