@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-type PackKey = "1doboku" | "2doboku";
+type PackKey = "1doboku" | "2doboku" | "1zouen";
 
 interface Pack {
   /** noteの買い切りマガジンURL。未公開のうちは空文字にしておく（カードは非表示になる） */
@@ -29,6 +29,14 @@ const PACKS: Record<PackKey, Pack> = {
     url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
     defaultLead: "2級土木の二次検定（10月25日）を受ける方へ",
     body: "解答解説（全8問）＋模範解答入り解答用紙＋直前キット＋経験記述の例文集16例。一次の発表を待たずに二次の準備を始められます。",
+    price: "1,480円",
+    listPrice: "2,280円",
+  },
+  "1zouen": {
+    // TODO: マガジン公開後にURLを設定する（それまでカードは表示されない）
+    url: "",
+    defaultLead: "1級造園の二次検定（12月6日）を受ける方へ",
+    body: "解答解説（全4問）＋模範解答入り解答用紙＋直前キット。造園はR6から経験記述が出題されないので、対策は技術記述に集中できます。",
     price: "1,480円",
     listPrice: "2,280円",
   },
