@@ -17,7 +17,10 @@ function DownloadButton({ file }: { file: ExamFile }) {
   return (
     <a
       href={pdfUrl(file.path)}
-      download
+      // PDFはR2（別オリジン）にあるため download 属性が効かない。
+      // 同じタブで開くとサイトから離脱してしまうので別タブにする。
+      target="_blank"
+      rel="noopener noreferrer"
       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${variantStyles[file.variant]}`}
     >
       <FiDownload size={12} className="flex-shrink-0" />

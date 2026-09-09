@@ -19,6 +19,14 @@ const variantStyles: Record<ExamFile["variant"], string> = {
 };
 
 /** 二次検定 合格パック（noteの買い切りマガジン）。造園は未販売 */
+// 参考書ランキング（もしもアフィリ）。GA4の実測で成果率15〜18%と最も高い導線
+const RANKING: Record<string, string> = {
+  "1doboku": "/posts/doboku-1kyu-sankosho-ranking",
+  "2doboku": "/posts/doboku-2kyu-sankosho-ranking",
+  "1zou": "/posts/zouen-1kyu-sankosho-ranking",
+  "2zou": "/posts/zouen-2kyu-sankosho-ranking",
+};
+
 const PACKS: Record<string, { url: string; price: string; label: string }> = {
   "1doboku": {
     url: "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
@@ -86,7 +94,11 @@ export default function DownloadWithPrompt({
           <a
             key={f.path}
             href={urls[i]}
-            download
+            // PDFはR2（別オリジン）にあるため download 属性が効かず、同じタブで
+            // PDFビューアに遷移してしまう＝下のカードが誰にも見られなかった。
+            // 別タブで開いて元のページを残す。
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => handleDownload(f.label)}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-sm font-medium transition-colors ${variantStyles[f.variant]}`}
           >
@@ -131,6 +143,22 @@ export default function DownloadWithPrompt({
               <p className="hidden md:block text-xs text-secondary">
                 左のQRをスマホのカメラで読み取ると、通勤中や現場の休憩中にそのまま続けられます。
               </p>
+
+              {/* 参考書ランキングは実測で成果率15〜18%と最も高い導線。
+                  過去問DLページは月6,500人が来るのに成果ほぼゼロだったため、ここから送る。 */}
+              {RANKING[exam] && (
+                <p className="text-xs text-secondary pt-1">
+                  テキストがまだの方は{" "}
+                  <Link
+                    href={RANKING[exam]}
+                    onClick={() => track("prompt_sankosho_click")}
+                    className="font-bold text-primary underline underline-offset-2"
+                  >
+                    {examShortName}の参考書ランキング
+                  </Link>{" "}
+                  もどうぞ（独学合格者が実際に使った本だけ）。
+                </p>
+              )}
 
               {pack && (
                 <p className="text-xs text-secondary pt-1">

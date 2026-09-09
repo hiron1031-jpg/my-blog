@@ -601,10 +601,23 @@ export default function QuizClient({
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-left">
               <p className="text-xs font-bold text-blue-700 mb-2">📖 間違えた分野はここで復習</p>
               <div className="flex flex-col gap-1.5 text-sm">
-                <Link href={NEXT_STEP_LINKS[selectedExam].hinshutu} className="text-primary font-medium hover:underline">
+                <Link
+                  href={NEXT_STEP_LINKS[selectedExam].hinshutu}
+                  onClick={() =>
+                    trackQuizCta("hinshutu", selectedExam, pct, NEXT_STEP_LINKS[selectedExam].hinshutu)
+                  }
+                  className="text-primary font-medium hover:underline"
+                >
                   {NEXT_STEP_LINKS[selectedExam].name}の頻出分野まとめを読む →
                 </Link>
-                <Link href={NEXT_STEP_LINKS[selectedExam].sankosho} className="text-primary font-medium hover:underline">
+                {/* 参考書ランキングは実測で成果率15〜18%と最も高い導線。必ず計測する */}
+                <Link
+                  href={NEXT_STEP_LINKS[selectedExam].sankosho}
+                  onClick={() =>
+                    trackQuizCta("sankosho", selectedExam, pct, NEXT_STEP_LINKS[selectedExam].sankosho)
+                  }
+                  className="text-primary font-medium hover:underline"
+                >
                   {NEXT_STEP_LINKS[selectedExam].name}の参考書ランキングを見る →
                 </Link>
               </div>
