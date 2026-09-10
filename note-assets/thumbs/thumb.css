@@ -1,0 +1,61 @@
+/* 記事サムネイル共通スタイル（1672x941・既存サムネと同寸法） */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1672px; height: 941px; }
+body {
+  font-family: "Yu Gothic", "Hiragino Sans", "Meiryo", sans-serif;
+  width: 1672px; height: 941px; overflow: hidden;
+  position: relative; display: flex; align-items: center;
+  padding: 0 90px;
+}
+
+/* 斜めストライプの飾り */
+.deco {
+  position: absolute; inset: 0; opacity: 0.07;
+  background: repeating-linear-gradient(60deg, #fff 0 4px, transparent 4px 54px);
+}
+
+.left { position: relative; z-index: 2; width: 980px; }
+
+.badge {
+  display: inline-block; font-weight: 900; font-size: 40px;
+  padding: 14px 36px; border-radius: 999px; margin-bottom: 30px;
+  letter-spacing: 0.04em; box-shadow: 0 5px 0 rgba(0,0,0,0.15);
+}
+
+.title {
+  font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: 0.01em;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.22);
+}
+.title .sub { font-size: 58px; display: block; margin-bottom: 8px; }
+.title .main { font-size: 118px; display: block; }
+.title em { font-style: normal; }
+
+.tags { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 36px; }
+.tags span {
+  background: rgba(255,255,255,0.16);
+  border: 3px solid rgba(255,255,255,0.45);
+  border-radius: 16px; padding: 14px 24px;
+  font-size: 31px; font-weight: 700; color: #fff;
+}
+
+/* 右側のマスコット。素材は背景が白のため円形に切り抜いて使う */
+.mascot {
+  position: absolute; right: 96px; top: 50%;
+  transform: translateY(-50%);
+  width: 560px; height: 560px; z-index: 1;
+  border-radius: 50%; overflow: hidden;
+  border: 12px solid rgba(255,255,255,0.9);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.3);
+}
+.mascot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* 右下のバッジ（数量など） */
+.count {
+  position: absolute; right: 60px; bottom: 56px; z-index: 3;
+  background: #fff; border-radius: 26px; padding: 22px 32px;
+  text-align: center; box-shadow: 0 10px 22px rgba(0,0,0,0.28);
+  transform: rotate(-4deg);
+}
+.count .n { font-size: 76px; font-weight: 900; line-height: 1; }
+.count .n small { font-size: 34px; }
+.count .cap { font-size: 26px; color: #666; margin-top: 8px; font-weight: 700; }
