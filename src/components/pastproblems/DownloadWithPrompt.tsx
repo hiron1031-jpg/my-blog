@@ -18,15 +18,7 @@ const variantStyles: Record<ExamFile["variant"], string> = {
   second: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100",
 };
 
-/** 二次検定 合格パック（noteの買い切りマガジン）。造園は未販売 */
-// 参考書ランキング（もしもアフィリ）。GA4の実測で成果率15〜18%と最も高い導線
-const RANKING: Record<string, string> = {
-  "1doboku": "/posts/doboku-1kyu-sankosho-ranking",
-  "2doboku": "/posts/doboku-2kyu-sankosho-ranking",
-  "1zou": "/posts/zouen-1kyu-sankosho-ranking",
-  "2zou": "/posts/zouen-2kyu-sankosho-ranking",
-};
-
+/** 二次検定 合格パック（noteの買い切りマガジン）。2級造園は未販売 */
 const PACKS: Record<string, { url: string; price: string; label: string }> = {
   "1doboku": {
     url: "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
@@ -37,6 +29,11 @@ const PACKS: Record<string, { url: string; price: string; label: string }> = {
     url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
     price: "1,480円",
     label: "2級土木 二次検定 合格パック",
+  },
+  "1zou": {
+    url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",
+    price: "1,480円",
+    label: "1級造園 二次検定 合格パック",
   },
 };
 
@@ -144,21 +141,8 @@ export default function DownloadWithPrompt({
                 左のQRをスマホのカメラで読み取ると、通勤中や現場の休憩中にそのまま続けられます。
               </p>
 
-              {/* 参考書ランキングは実測で成果率15〜18%と最も高い導線。
-                  過去問DLページは月6,500人が来るのに成果ほぼゼロだったため、ここから送る。 */}
-              {RANKING[exam] && (
-                <p className="text-xs text-secondary pt-1">
-                  テキストがまだの方は{" "}
-                  <Link
-                    href={RANKING[exam]}
-                    onClick={() => track("prompt_sankosho_click")}
-                    className="font-bold text-primary underline underline-offset-2"
-                  >
-                    {examShortName}の参考書ランキング
-                  </Link>{" "}
-                  もどうぞ（独学合格者が実際に使った本だけ）。
-                </p>
-              )}
+              {/* 参考書への誘導はここ（4,137表示で1クリック）では効かなかったので、
+                  年度ページ側でDLボタン直下に本の画像つきカードとして常時表示する。 */}
 
               {pack && (
                 <p className="text-xs text-secondary pt-1">

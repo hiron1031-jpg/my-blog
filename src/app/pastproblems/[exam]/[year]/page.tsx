@@ -480,6 +480,36 @@ export default async function Page({ params }: PageProps) {
         </p>
       </section>
 
+      {/* おすすめ参考書：DLボタンの直下に置く。
+          以前はページ下部にあり、平均滞在22秒の読者には届かなかった。
+          DL後に出す小さな文字リンクも4,137表示で1クリック。
+          参考書ランキング記事は着地すれば23%が成果になるため、
+          本の画像つきで最初から見える位置に1冊だけ出す。 */}
+      {recommendedBook && (
+        <section className="mb-10 rounded-xl border-2 border-primary/30 bg-primary/5 p-5">
+          <h2 className="flex items-center gap-2 text-base font-bold text-gray-800 mb-2">
+            <FiBookOpen size={18} className="text-primary" />
+            {category.shortName}の過去問と一緒に使う定番テキスト
+          </h2>
+          <p className="text-sm text-gray-700 leading-relaxed mb-1">
+            過去問で間違えた分野を、図解で原理から押さえ直すための1冊。独学合格者が実際に使った本だけ選んでいます。
+          </p>
+          <MultiStoreLink
+            asin={recommendedBook.asin}
+            title={recommendedBook.title}
+            subtitle={recommendedBook.subtitle}
+            comment={recommendedBook.comment}
+            imageUrl={recommendedBook.imageUrl}
+          />
+          <p className="text-sm">
+            <Link href={`/posts/${recommendedBook.rankingSlug}`} className="inline-flex items-center gap-1.5 font-bold text-primary hover:underline">
+              <FiArrowRight size={14} />
+              {category.shortName}の参考書ランキング（2位以下も見る）
+            </Link>
+          </p>
+        </section>
+      )}
+
       {/* 年度別の独自解説（データがある年度のみ表示） */}
       {yearNote && (
         <section className="mb-10 bg-white border border-border rounded-xl p-6 md:p-8 shadow-sm">
@@ -617,33 +647,6 @@ export default async function Page({ params }: PageProps) {
           </li>
         </ol>
       </section>
-
-      {/* おすすめ参考書（過去問とセットで使う教材） */}
-      {recommendedBook && (
-        <section className="mb-10">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-gray-800 mb-3">
-            <FiBookOpen size={20} className="text-primary" />
-            過去問とセットで使うなら（{category.shortName} 独学の定番テキスト）
-          </h2>
-          <p className="text-sm text-gray-700 leading-relaxed mb-1">
-            過去問を解いて「解説がもっと欲しい」「苦手分野を基礎から固めたい」と感じたら、
-            図解付きのテキストを1冊持っておくと効率が一気に上がります。
-          </p>
-          <MultiStoreLink
-            asin={recommendedBook.asin}
-            title={recommendedBook.title}
-            subtitle={recommendedBook.subtitle}
-            comment={recommendedBook.comment}
-            imageUrl={recommendedBook.imageUrl}
-          />
-          <p className="text-sm">
-            <Link href={`/posts/${recommendedBook.rankingSlug}`} className="inline-flex items-center gap-1.5 text-primary hover:underline">
-              <FiArrowRight size={14} />
-              {category.shortName}のおすすめテキスト・参考書ランキングをもっと見る
-            </Link>
-          </p>
-        </section>
-      )}
 
       {/* 試験情報（合格率・基準・出題構成） */}
       {summary && (
