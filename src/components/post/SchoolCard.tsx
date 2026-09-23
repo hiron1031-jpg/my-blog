@@ -25,6 +25,8 @@ interface SchoolCardProps {
   comment?: string;
   /** CTAボタン文言（任意・デフォルト「公式サイトを見る →」） */
   ctaText?: string;
+  /** カード上部の小見出し（任意）。転職エージェント等、講座以外にも使えるように */
+  badge?: string;
 }
 
 /**
@@ -43,6 +45,7 @@ export default function SchoolCard({
   recommendedFor,
   comment,
   ctaText = "公式サイトを見る →",
+  badge = "🎓 おすすめ講座",
 }: SchoolCardProps) {
   return (
     <div className="my-8 border-2 border-primary/30 rounded-xl overflow-hidden bg-card shadow-sm">
@@ -64,7 +67,7 @@ export default function SchoolCard({
             />
           )}
           <div className="flex-1 min-w-0">
-            <div className="text-xs text-secondary mb-1">🎓 おすすめ講座</div>
+            <div className="text-xs text-secondary mb-1">{badge}</div>
             <div className="font-bold text-heading text-lg leading-tight">
               {name}
             </div>
