@@ -359,7 +359,7 @@ function getRelatedArticles(examId: string): { label: string; href: string }[] {
     case "1doboku":
       return [
         { label: "1級土木 第一次検定 頻出分野と対策", href: "/posts/doboku-1kyu-hinshutu" },
-        { label: "1級土木 試験当日の持ち物・タイムスケジュール", href: "/posts/doboku-1kyu-tojitsu" },
+        { label: "1級土木 試験当日【101問から70問を選ぶ】", href: "/posts/doboku-1kyu-tojitsu" },
         { label: "1級土木 第二次検定 記述問題対策", href: "/posts/doboku-1kyu-2ji-kijutsu" },
         { label: "土木施工管理技士 経験記述の書き方", href: "/posts/keiken-kijutsu-kakikata" },
       ];
@@ -372,7 +372,7 @@ function getRelatedArticles(examId: string): { label: string; href: string }[] {
     case "1zou":
       return [
         { label: "1級造園 第一次検定 頻出分野と対策", href: "/posts/zouen-1kyu-hinshutu" },
-        { label: "1級造園 試験当日の持ち物・タイムスケジュール", href: "/posts/zouen-1kyu-tojitsu" },
+        { label: "1級造園 試験当日【12月の防寒と図面対策】", href: "/posts/zouen-1kyu-tojitsu" },
         { label: "1級造園 第二次検定 記述問題対策", href: "/posts/zouen-1kyu-2ji-kijutsu" },
         { label: "造園施工管理技士 経験記述の書き方", href: "/posts/zouen-keiken-kijutsu" },
       ];
