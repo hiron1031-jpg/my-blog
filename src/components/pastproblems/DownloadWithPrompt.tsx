@@ -18,7 +18,7 @@ const variantStyles: Record<ExamFile["variant"], string> = {
   second: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100",
 };
 
-/** 二次検定 合格パック（noteの買い切りマガジン）。2級造園は未販売 */
+/** 二次検定 合格パック（noteの買い切りマガジン）。4資格すべて販売中 */
 const PACKS: Record<string, { url: string; price: string; label: string }> = {
   "1doboku": {
     url: "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
@@ -34,6 +34,11 @@ const PACKS: Record<string, { url: string; price: string; label: string }> = {
     url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",
     price: "1,480円",
     label: "1級造園 二次検定 合格パック",
+  },
+  "2zou": {
+    url: "https://note.com/dobokutorisetsu/m/m9e7c69b00d2d",
+    price: "1,480円",
+    label: "2級造園 合格パック（一次・二次）",
   },
 };
 

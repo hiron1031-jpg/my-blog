@@ -72,7 +72,12 @@ const EXAMS: Exam[] = [
     free: "n182d32f7df17",
     kaisetsu: "n5dbb382823d4",
     model: "nf2b089e7550b",
-    pack: null,
+    pack: {
+      url: "https://note.com/dobokutorisetsu/m/m9e7c69b00d2d",
+      price: "1,480円",
+      listPrice: "2,280円",
+      note: "＋パック限定の直前総仕上げキット（一次・二次 両対応）",
+    },
   },
 ];
 

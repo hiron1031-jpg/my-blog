@@ -111,6 +111,10 @@ const PACKS: Record<string, { url: string; price: string }> = {
     url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",
     price: "1,480円",
   },
+  "2zou": {
+    url: "https://note.com/dobokutorisetsu/m/m9e7c69b00d2d",
+    price: "1,480円",
+  },
 };
 
 type YearNote = { heading: string; body: string; points: string[] };

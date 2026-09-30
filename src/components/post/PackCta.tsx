@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-type PackKey = "1doboku" | "2doboku" | "1zouen";
+type PackKey = "1doboku" | "2doboku" | "1zouen" | "2zouen";
 
 interface Pack {
   /** noteの買い切りマガジンURL。未公開のうちは空文字にしておく（カードは非表示になる） */
@@ -36,6 +36,13 @@ const PACKS: Record<PackKey, Pack> = {
     url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",
     defaultLead: "1級造園の二次検定（12月6日）を受ける方へ",
     body: "解答解説（全4問）＋模範解答入り解答用紙＋直前キット。造園はR6から経験記述が出題されないので、対策は技術記述に集中できます。",
+    price: "1,480円",
+    listPrice: "2,280円",
+  },
+  "2zouen": {
+    url: "https://note.com/dobokutorisetsu/m/m9e7c69b00d2d",
+    defaultLead: "2級造園（11月15日・一次と二次が同日）を受ける方へ",
+    body: "解答解説＋模範解答入り解答用紙＋直前キット。キットは一次と二次の両方で使える暗記シートと、当日1日の動き方つきです。造園はR6から経験記述が出題されません。",
     price: "1,480円",
     listPrice: "2,280円",
   },
