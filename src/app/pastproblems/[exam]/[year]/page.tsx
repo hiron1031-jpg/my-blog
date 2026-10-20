@@ -316,7 +316,7 @@ type NoteInfo = {
 function getNoteInfo(examId: string): NoteInfo | null {
   if (examId === "1doboku") {
     return {
-      heading: "📝 令和7年度（最新）1級土木 第二次検定の解答解説・解答用紙（note）",
+      heading: "📝 令和7年度 1級土木 第二次検定の解答解説・解答用紙（note）",
       links: [
         { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nc8cc72e51116", price: "無料" },
         { label: "【500円】R7 解答解説 全10問（問題2〜11）", url: "https://note.com/dobokutorisetsu/n/n051d4898f173", price: "500円" },
