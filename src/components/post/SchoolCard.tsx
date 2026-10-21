@@ -17,8 +17,14 @@ interface SchoolCardProps {
   imageUrl?: string;
   /** 価格帯・料金目安（任意） */
   price?: string;
-  /** 特徴を箇条書きで表示（任意） */
+  /**
+   * 特徴を箇条書きで表示（任意）。
+   * ⚠️ MDXから配列で渡すと値が届かない（next-mdx-remote v6 が {...} 形式の属性を落とすため）。
+   * MDXからは featuresText に「｜」区切りの文字列で渡すこと。この配列版はTSXから使う場合のみ有効。
+   */
   features?: string[];
+  /** 特徴を「｜」区切りの文字列で渡す（MDX用）。featuresより優先される */
+  featuresText?: string;
   /** こんな人におすすめ（任意） */
   recommendedFor?: string;
   /** 筆者コメント（任意） */
@@ -27,6 +33,11 @@ interface SchoolCardProps {
   ctaText?: string;
   /** カード上部の小見出し（任意）。転職エージェント等、講座以外にも使えるように */
   badge?: string;
+  /**
+   * 表示計測用の1x1画像URL（任意）。もしも/A8が「原稿取得」で発行するimpressionタグのsrc。
+   * これを入れておくと管理画面で「表示回数」が取れ、CTR（＝文言が刺さっているか）を判断できる。
+   */
+  impressionUrl?: string;
 }
 
 /**
@@ -46,9 +57,29 @@ export default function SchoolCard({
   comment,
   ctaText = "公式サイトを見る →",
   badge = "🎓 おすすめ講座",
+  impressionUrl,
+  featuresText,
 }: SchoolCardProps) {
+  const featureList = featuresText
+    ? featuresText.split("｜").map((s) => s.trim()).filter(Boolean)
+    : features;
+
   return (
     <div className="my-8 border-2 border-primary/30 rounded-xl overflow-hidden bg-card shadow-sm">
+      {/* 表示計測（1x1）。ASPの管理画面で表示回数を取るためのもの */}
+      {impressionUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={impressionUrl}
+          alt=""
+          width={1}
+          height={1}
+          loading="lazy"
+          aria-hidden="true"
+          style={{ border: "none", position: "absolute" }}
+        />
+      )}
+
       {/* PR ラベル */}
       <div className="bg-primary/10 px-4 py-1 text-[10px] font-medium text-primary-dark/70 border-b border-primary/20">
         [PR]
@@ -83,9 +114,9 @@ export default function SchoolCard({
         </div>
 
         {/* 特徴リスト */}
-        {features && features.length > 0 && (
+        {featureList && featureList.length > 0 && (
           <ul className="my-3 space-y-1">
-            {features.map((f, i) => (
+            {featureList.map((f, i) => (
               <li key={i} className="text-sm text-secondary flex gap-2">
                 <span className="text-primary shrink-0">✓</span>
                 <span>{f}</span>
