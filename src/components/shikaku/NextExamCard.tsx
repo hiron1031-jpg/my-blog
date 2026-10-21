@@ -3,25 +3,23 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiCalendar } from "react-icons/fi";
-import { getNextExamFor, todayJst, daysBetween, type ExamEvent } from "@/lib/exam-schedule";
+import { todayJst, daysBetween, type ExamEvent } from "@/lib/exam-schedule";
 
-// 資格ページも静的生成されるため、試験が終わったあとも古い日付が
-// 残らないよう、閲覧者のブラウザで判定する。
-export default function NextExamCard({ examId }: { examId: string }) {
-  const [exam, setExam] = useState<ExamEvent | null>(null);
-  const [daysLeft, setDaysLeft] = useState(0);
+// 日付はサーバー側で描画してHTMLに含める（「2級土木 試験日」等で検索されるため、
+// 検索エンジンに読ませたい）。試験が終わったあとの非表示と「あと○日」のバッジだけ、
+// 閲覧者のブラウザで判定する。
+export default function NextExamCard({ exam }: { exam: ExamEvent }) {
+  // null = 未判定（サーバー描画直後）。数値 = 判定済み。
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
 
   useEffect(() => {
-    const next = getNextExamFor(examId);
-    if (next) {
-      setExam(next);
-      setDaysLeft(daysBetween(todayJst(), next.date));
-    }
-  }, [examId]);
+    setDaysLeft(daysBetween(todayJst(), exam.date));
+  }, [exam.date]);
 
-  if (!exam) return null;
+  // 試験日を過ぎていたら消す（ビルドしていなくても自動で消える）
+  if (daysLeft !== null && daysLeft < 0) return null;
 
-  const isUrgent = daysLeft <= 30;
+  const isUrgent = daysLeft !== null && daysLeft <= 30;
 
   return (
     <section className="mb-8">

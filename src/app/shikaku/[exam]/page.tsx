@@ -15,6 +15,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import MultiStoreLink from "@/components/post/MultiStoreLink";
 import { CATEGORIES, getCategory } from "@/lib/pastproblems-data";
 import NextExamCard from "@/components/shikaku/NextExamCard";
+import { getNextExamFor } from "@/lib/exam-schedule";
 
 // ---- Static params ----
 export function generateStaticParams() {
@@ -291,6 +292,7 @@ export default async function ShikakuHubPage({ params }: PageProps) {
 
   const latestYears = cat.years.slice(0, 3);
   const otherExams = CATEGORIES.filter((c) => c.id !== exam);
+  const nextExam = getNextExamFor(exam);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.com";
 
@@ -364,7 +366,7 @@ export default async function ShikakuHubPage({ params }: PageProps) {
         </div>
 
         {/* 次の試験日（日付は src/lib/exam-schedule.ts。試験が終われば自動で消える） */}
-        <NextExamCard examId={exam} />
+        {nextExam && <NextExamCard exam={nextExam} />}
 
         {/* 概要 */}
         <section className="mb-10">
