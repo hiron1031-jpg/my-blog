@@ -347,10 +347,7 @@ export default async function ShikakuHubPage({ params }: PageProps) {
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         <Breadcrumb
-          items={[
-            { label: "ホーム", href: "/" },
-            { label: cat.name },
-          ]}
+          items={[{ label: cat.name }]}
         />
 
         {/* Hero */}
