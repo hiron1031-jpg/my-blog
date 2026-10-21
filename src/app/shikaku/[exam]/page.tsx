@@ -14,6 +14,7 @@ import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import MultiStoreLink from "@/components/post/MultiStoreLink";
 import { CATEGORIES, getCategory } from "@/lib/pastproblems-data";
+import NextExamCard from "@/components/shikaku/NextExamCard";
 
 // ---- Static params ----
 export function generateStaticParams() {
@@ -361,6 +362,9 @@ export default async function ShikakuHubPage({ params }: PageProps) {
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">{cat.name}</h1>
           <p className="text-base opacity-95 leading-relaxed">{meta.tagline}</p>
         </div>
+
+        {/* 次の試験日（日付は src/lib/exam-schedule.ts。試験が終われば自動で消える） */}
+        <NextExamCard examId={exam} />
 
         {/* 概要 */}
         <section className="mb-10">

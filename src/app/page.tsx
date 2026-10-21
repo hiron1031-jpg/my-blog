@@ -4,6 +4,7 @@ import PostGrid from "@/components/home/PostGrid";
 import CategoryBanner from "@/components/home/CategoryBanner";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import HomeHero from "@/components/home/HomeHero";
+import ExamCountdownBanner from "@/components/home/ExamCountdownBanner";
 import ExamSelector from "@/components/home/ExamSelector";
 import FreeTools from "@/components/home/FreeTools";
 import NoteBanner from "@/components/home/NoteBanner";
@@ -91,6 +92,9 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-12">
       <JsonLd schema={jsonLd} />
+
+      {/* 0. 試験直前バナー（試験30日前〜当日に自動表示。日付は src/lib/exam-schedule.ts） */}
+      <ExamCountdownBanner />
 
       {/* 1. Welcome Hero */}
       <HomeHero />
