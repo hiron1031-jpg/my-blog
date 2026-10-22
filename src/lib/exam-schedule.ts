@@ -26,6 +26,13 @@ export type ExamEvent = {
   href: string;
   /** リンクの文言 */
   linkLabel: string;
+  /**
+   * 試験当日だけ飛ばす先（持ち物・タイムスケジュールの記事）。
+   * 当日の朝に「直前対策の6週間プラン」を見せても意味がないため。
+   */
+  hrefOnExamDay?: string;
+  /** 試験当日のリンク文言 */
+  linkLabelOnExamDay?: string;
   /** 合格発表（分かっている場合） */
   results?: { label: string; date: string }[];
 };
@@ -39,6 +46,8 @@ export const EXAM_EVENTS: ExamEvent[] = [
     dateLabel: "令和8年10月25日（日）",
     href: "/posts/doboku-2kyu-r8-kouki-chokuzen",
     linkLabel: "直前対策を見る",
+    hrefOnExamDay: "/posts/doboku-2kyu-tojitsu",
+    linkLabelOnExamDay: "持ち物と当日の流れ",
     results: [
       { label: "第一次検定", date: "令和8年12月2日（水）" },
       { label: "第二次検定", date: "令和9年2月3日（水）" },
@@ -52,6 +61,8 @@ export const EXAM_EVENTS: ExamEvent[] = [
     dateLabel: "令和8年11月15日（日）",
     href: "/posts/zouen-2kyu-r8-chokuzen",
     linkLabel: "直前対策を見る",
+    hrefOnExamDay: "/posts/zouen-2kyu-tojitsu",
+    linkLabelOnExamDay: "持ち物と当日の流れ",
     results: [
       { label: "第一次検定（後期）", date: "令和9年1月5日（火）" },
       { label: "第二次検定", date: "令和9年3月3日（水）" },
@@ -64,6 +75,8 @@ export const EXAM_EVENTS: ExamEvent[] = [
     dateLabel: "令和8年12月6日（日）",
     href: "/posts/zouen-1kyu-2ji-oikomi",
     linkLabel: "追い込み対策を見る",
+    hrefOnExamDay: "/posts/zouen-1kyu-tojitsu",
+    linkLabelOnExamDay: "持ち物と当日の流れ",
     results: [{ label: "第二次検定", date: "令和9年3月3日（水）" }],
   },
 ];

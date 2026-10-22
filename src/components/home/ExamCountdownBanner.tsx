@@ -23,10 +23,15 @@ export default function ExamCountdownBanner() {
     ? `今日は${exam.name}の試験日です`
     : `${exam.name}まで あと${daysLeft}日`;
 
+  // 当日は「持ち物・タイムスケジュール」の記事へ。直前対策の勉強プランを見せても意味がない。
+  const href = (isToday && exam.hrefOnExamDay) || exam.href;
+  const linkLabel =
+    (isToday && (exam.linkLabelOnExamDay ?? "持ち物と当日の流れ")) || exam.linkLabel;
+
   return (
     <section className="mb-5 sm:mb-6">
       <Link
-        href={exam.href}
+        href={href}
         className={[
           "group flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5",
           "border-2 shadow-sm transition hover:shadow-md",
@@ -52,7 +57,7 @@ export default function ExamCountdownBanner() {
         </span>
 
         <span className="ml-auto shrink-0 text-xs sm:text-sm font-bold text-primary group-hover:underline">
-          {isToday ? "持ち物と当日の流れ" : exam.linkLabel} →
+          {linkLabel} →
         </span>
       </Link>
     </section>

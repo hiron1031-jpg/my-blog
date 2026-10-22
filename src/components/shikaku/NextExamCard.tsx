@@ -20,6 +20,12 @@ export default function NextExamCard({ exam }: { exam: ExamEvent }) {
   if (daysLeft !== null && daysLeft < 0) return null;
 
   const isUrgent = daysLeft !== null && daysLeft <= 30;
+  const isToday = daysLeft === 0;
+
+  // 当日は「持ち物・タイムスケジュール」の記事へ
+  const href = (isToday && exam.hrefOnExamDay) || exam.href;
+  const linkLabel =
+    (isToday && (exam.linkLabelOnExamDay ?? "持ち物と当日の流れ")) || exam.linkLabel;
 
   return (
     <section className="mb-8">
@@ -60,10 +66,10 @@ export default function NextExamCard({ exam }: { exam: ExamEvent }) {
         )}
 
         <Link
-          href={exam.href}
+          href={href}
           className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-bold text-white shadow transition hover:bg-primary-dark"
         >
-          {exam.linkLabel} →
+          {linkLabel} →
         </Link>
 
         <p className="mt-2 text-xs text-secondary">
