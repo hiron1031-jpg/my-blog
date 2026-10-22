@@ -412,6 +412,10 @@ export default async function Page({ params }: PageProps) {
   const recommendedBook = getRecommendedBook(exam);
   const noteInfo = getNoteInfo(exam);
   const yearNote = YEAR_NOTES[`${exam}-${year}`];
+  // 第二次検定（旧:実地）がある年度か。正答が公表されないのはこの区分だけ。
+  const hasSecondExam = entry.files.some((f) => f.variant === "second");
+  // noteで売っている解説はR7のもの。同じ年度ならそのまま案内できる。
+  const noteYearMatches = entry.key === "R7";
   const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
@@ -483,6 +487,80 @@ export default async function Page({ params }: PageProps) {
           出典：一般財団法人 全国建設研修センター（掲載許諾済み）
         </p>
       </section>
+
+      {/* 「解答例」で検索して来た人の受け皿。
+          GSC実測（2026-10-22）：「解答例」を含む検索が28日で178クリックあり、
+          うち127クリック（71%）がこのページ群に着地していた。
+          しかし第二次検定の正答は公表されないため、PDFには入っていない。
+          探しているものが無いまま帰る人が月100人以上いたので、
+          DLボタンの直下で事情を説明し、解説（note）へ案内する。 */}
+      {hasSecondExam && noteInfo && (
+        <section className="mb-10 rounded-xl border-2 border-amber-400 bg-amber-50 p-5">
+          <h2 className="flex items-center gap-2 text-base font-bold text-amber-900 mb-2">
+            <FiFileText size={18} />
+            第二次検定の「解答例」をお探しの方へ
+          </h2>
+
+          <p className="text-sm text-amber-900 leading-relaxed mb-3">
+            <strong>第二次検定の正答は公表されていません。</strong>
+            記述式のため、試験センターは模範解答を出していません（これは年度・資格を問わず毎年同じです）。
+            上のPDFに入っているのは<strong>問題</strong>と、
+            <strong>第一次検定の正答</strong>だけです。
+          </p>
+
+          <p className="text-sm text-amber-900 leading-relaxed mb-4">
+            そのため「どう書けば点になるのか」は、
+            {noteYearMatches ? (
+              <>合格者の<strong>想定解答と採点ポイント</strong>で確認するのが現実的です。この年度（{entry.label}）の全問解説をnoteで公開しています。</>
+            ) : (
+              <>合格者の<strong>想定解答と採点ポイント</strong>で確認するのが現実的です。最新の令和7年度版をnoteで公開しているので、書き方の基準として使えます。</>
+            )}
+          </p>
+
+          <div className="flex flex-col gap-2">
+            {noteInfo.links.map((n) => (
+              <a
+                key={n.url}
+                href={n.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between gap-3 px-4 py-3 bg-white border border-amber-300 rounded-lg text-sm font-medium hover:bg-amber-100 transition"
+              >
+                <span className="text-amber-900">{n.label}</span>
+                <span
+                  className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${
+                    n.price === "無料"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-amber-200 text-amber-900"
+                  }`}
+                >
+                  {n.price}
+                </span>
+              </a>
+            ))}
+          </div>
+
+          {PACKS[exam] && (
+            <a
+              href={PACKS[exam].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between gap-3 mt-2 px-4 py-3 bg-primary/10 border border-primary rounded-lg text-sm hover:bg-primary/15 transition"
+            >
+              <span className="font-bold text-primary">
+                💰 3つまとめて：解説＋模範解答＋直前キットの「合格パック」
+              </span>
+              <span className="shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-primary text-white">
+                {PACKS[exam].price}
+              </span>
+            </a>
+          )}
+
+          <p className="text-xs text-amber-800/80 mt-3">
+            ※ まずは<strong>無料の練習用解答用紙</strong>だけでも、本番の記述量がつかめます。
+          </p>
+        </section>
+      )}
 
       {/* おすすめ参考書：DLボタンの直下に置く。
           以前はページ下部にあり、平均滞在22秒の読者には届かなかった。
@@ -578,8 +656,10 @@ export default async function Page({ params }: PageProps) {
         </div>
       </section>
 
-      {/* note 解答解説バナー（土木のみ・R7商品を案内） */}
-      {noteInfo && (
+      {/* note 解答解説バナー（土木のみ・R7商品を案内）。
+          第二次検定がある年度は上の「解答例をお探しの方へ」で同じリンクを出しているので、
+          ここは第一次しかない年度（＝上が出ない年度）の受け皿としてだけ残す。 */}
+      {noteInfo && !hasSecondExam && (
         <section className="mb-10 bg-amber-50 border border-amber-200 rounded-xl p-5">
           <h2 className="text-sm font-bold text-amber-900 mb-2">
             {noteInfo.heading}
