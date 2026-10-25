@@ -10,8 +10,17 @@ interface TableOfContentsProps {
 
 export default function TableOfContents({ headings }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
+  // スマホでは畳んだ状態で始める。項目が多い記事だと目次だけで1画面を占めてしまい、
+  // 本文の冒頭（速報記事なら「いまの状況」）に辿り着く前に離脱されるため。
+  // パソコンは画面が広いので開いたまま。
   const [open, setOpen] = useState<boolean>(true);
   const visibleIds = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) {
+      setOpen(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (headings.length === 0) return;

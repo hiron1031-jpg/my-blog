@@ -84,7 +84,7 @@ export default async function PostPage({ params }: PageProps) {
         "headline": post.frontmatter.title,
         "description": post.frontmatter.description,
         "datePublished": post.frontmatter.date,
-        "dateModified": post.frontmatter.date,
+        "dateModified": post.frontmatter.updated ?? post.frontmatter.date,
         "author": {
           "@type": "Person",
           "name": post.frontmatter.author,
@@ -145,10 +145,18 @@ export default async function PostPage({ params }: PageProps) {
               {post.frontmatter.title}
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-secondary/70">
-              <span className="flex items-center gap-1.5">
-                <FiCalendar size={14} />
-                {formatDate(post.frontmatter.date)}
-              </span>
+              {/* 更新日があるときはそちらを主役にする。速報系の記事は鮮度が信頼に直結するため */}
+              {post.frontmatter.updated ? (
+                <span className="flex items-center gap-1.5 font-bold text-primary">
+                  <FiCalendar size={14} />
+                  {formatDate(post.frontmatter.updated)} 更新
+                </span>
+              ) : (
+                <span className="flex items-center gap-1.5">
+                  <FiCalendar size={14} />
+                  {formatDate(post.frontmatter.date)}
+                </span>
+              )}
               <span className="flex items-center gap-1.5">
                 <FiClock size={14} />
                 {post.readingTime}で読めます
