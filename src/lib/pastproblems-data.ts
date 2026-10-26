@@ -79,10 +79,17 @@ export const CATEGORIES: ExamCategory[] = [
     borderAccent: "border-primary",
     hex: "#e8622a",
     years: [
-      { key:"R8",  label:"令和8年度", note:"前期 第一次検定（最新）",
+      { key:"R8",  label:"令和8年度", note:"最新。後期（10/25実施）の問題・正答を掲載しました。土木／塗装／薬液 種別あり",
         files:[
           q("前期 第一次検定","/pastproblems/2doboku/R8_1_gakka.pdf"),
           a("前期 解答","/pastproblems/2doboku/R8_1_kaitou.pdf"),
+          q("後期 第一次検定","/pastproblems/2doboku/R8_2_gakka.pdf"),
+          a("後期 解答","/pastproblems/2doboku/R8_2_kaitou.pdf"),
+          s("後期 第二次検定","/pastproblems/2doboku/R8_jitti.pdf"),
+          q("塗装 第一次","/pastproblems/2doboku/R8_tosou_gakka.pdf"),
+          s("塗装 第二次","/pastproblems/2doboku/R8_tosou_jitti.pdf"),
+          q("薬液 第一次","/pastproblems/2doboku/R8_yaku_gakka.pdf"),
+          s("薬液 第二次","/pastproblems/2doboku/R8_yaku_jitti.pdf"),
         ]
       },
       { key:"R7",  label:"令和7年度", note:"土木／塗装／薬液 種別あり",
