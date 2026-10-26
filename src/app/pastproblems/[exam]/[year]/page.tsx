@@ -525,9 +525,19 @@ export default async function Page({ params }: PageProps) {
             {noteYearMatches ? (
               <>合格者の<strong>想定解答と採点ポイント</strong>で確認するのが現実的です。この年度（{entry.label}）の全問解説をnoteで公開しています。</>
             ) : (
-              <>合格者の<strong>想定解答と採点ポイント</strong>で確認するのが現実的です。最新の令和7年度版をnoteで公開しているので、書き方の基準として使えます。</>
+              <>合格者の<strong>想定解答と採点ポイント</strong>で確認するのが現実的です。</>
             )}
           </p>
+
+          {!noteYearMatches && (
+            <p className="text-sm text-amber-900 leading-relaxed mb-4">
+              <strong>※ {entry.label}の解説はまだありません。</strong>
+              下にあるのは<strong>令和7年度</strong>の解説です。
+              出題される問題は年度ごとに変わりますが、
+              <strong>「課題 → 検討 → 対応処置 → 評価」という書き方の型と、どこで点が入るか</strong>
+              は年度が変わっても同じです。次回に向けて書き方の基準をつかむ用途でお使いください。
+            </p>
+          )}
 
           <div className="flex flex-col gap-2">
             {noteInfo.links.map((n) => (
