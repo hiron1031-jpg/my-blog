@@ -42,7 +42,7 @@ const EXAMS: Exam[] = [
     name: "2級土木",
     timing: "第二次検定 10/25",
     free: "ne3a94a016790",
-    kaisetsu: "n0e58e6ebd207",
+    kaisetsu: "n3d9dd6dde248",
     model: "nbe4ef1799e5a",
     pack: {
       url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",

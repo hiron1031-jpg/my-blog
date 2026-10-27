@@ -244,7 +244,7 @@ export default function PastProblemsPage() {
             <h3 className="text-sm font-bold text-gray-800 mb-2">R7二次検定の全問解説</h3>
             <ul className="text-xs space-y-1.5">
               <li><a href="https://note.com/dobokutorisetsu/n/n051d4898f173" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">1級土木 全問解説 →</a></li>
-              <li><a href="https://note.com/dobokutorisetsu/n/n0e58e6ebd207" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2級土木 全問解説 →</a></li>
+              <li><a href="https://note.com/dobokutorisetsu/n/n3d9dd6dde248" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2級土木 全問解説 →</a></li>
               <li><a href="https://note.com/dobokutorisetsu/n/n77af23ad86bb" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">1級造園 全問解説 →</a></li>
               <li><a href="https://note.com/dobokutorisetsu/n/n5dbb382823d4" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2級造園 全問解説 →</a></li>
             </ul>

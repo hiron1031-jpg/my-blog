@@ -319,9 +319,11 @@ function getBenkyohoSlug(examId: string): string | null {
   }
 }
 
-// ---- Note links (商品はR7第二次検定向けのため全年度ページで最新R7を案内) ----
+// ---- Note links（第二次検定の解答解説。資格ごとに「解説がある年度」が違う） ----
 type NoteInfo = {
   heading: string;
+  /** その資格で解説を出している年度キー（例 "R8"）。年度ページと一致したら「この年度の解説です」と出す */
+  solutionYear: string;
   links: { label: string; url: string; price: string }[];
 };
 
@@ -329,6 +331,7 @@ function getNoteInfo(examId: string): NoteInfo | null {
   if (examId === "1doboku") {
     return {
       heading: "📝 令和7年度 1級土木 第二次検定の解答解説・解答用紙（note）",
+      solutionYear: "R7",
       links: [
         { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nc8cc72e51116", price: "無料" },
         { label: "【500円】R7 解答解説 全10問（問題2〜11）", url: "https://note.com/dobokutorisetsu/n/n051d4898f173", price: "500円" },
@@ -338,10 +341,12 @@ function getNoteInfo(examId: string): NoteInfo | null {
   }
   if (examId === "2doboku") {
     return {
-      heading: "📝 令和7年度（最新）2級土木 第二次検定の解答解説・解答用紙（note）",
+      heading: "📝 2級土木 第二次検定の解答解説・解答用紙（note）",
+      solutionYear: "R8",
       links: [
-        { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/ne3a94a016790", price: "無料" },
+        { label: "【500円】R8 解答解説 全8問（問題2〜9）※最新", url: "https://note.com/dobokutorisetsu/n/n3d9dd6dde248", price: "500円" },
         { label: "【500円】R7 解答解説 全8問（問題2〜9・図表つき）", url: "https://note.com/dobokutorisetsu/n/n0e58e6ebd207", price: "500円" },
+        { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/ne3a94a016790", price: "無料" },
         { label: "【300円】R7 模範解答入り解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nbe4ef1799e5a", price: "300円" },
       ],
     };
@@ -349,6 +354,7 @@ function getNoteInfo(examId: string): NoteInfo | null {
   if (examId === "1zou") {
     return {
       heading: "📝 令和7年度（最新）1級造園 第二次検定の解答解説・解答用紙（note）",
+      solutionYear: "R7",
       links: [
         { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/nd58fb8b0dc66", price: "無料" },
         { label: "【500円】R7 解答解説 全問・図表完全収録", url: "https://note.com/dobokutorisetsu/n/n77af23ad86bb", price: "500円" },
@@ -359,6 +365,7 @@ function getNoteInfo(examId: string): NoteInfo | null {
   if (examId === "2zou") {
     return {
       heading: "📝 令和7年度（最新）2級造園 第二次検定の解答解説・解答用紙（note）",
+      solutionYear: "R7",
       links: [
         { label: "【無料】R7 練習用解答用紙 PDF", url: "https://note.com/dobokutorisetsu/n/n182d32f7df17", price: "無料" },
         { label: "【500円】R7 解答解説 全問・図表完全収録", url: "https://note.com/dobokutorisetsu/n/n5dbb382823d4", price: "500円" },
@@ -427,7 +434,9 @@ export default async function Page({ params }: PageProps) {
   // 第二次検定（旧:実地）がある年度か。正答が公表されないのはこの区分だけ。
   const hasSecondExam = entry.files.some((f) => f.variant === "second");
   // noteで売っている解説はR7のもの。同じ年度ならそのまま案内できる。
-  const noteYearMatches = entry.key === "R7";
+  // その資格で解説を出している年度と、いま見ている年度が一致するか。
+  // 一致すれば「この年度の解説があります」、しなければ「この年度の解説はまだありません」と出し分ける。
+  const noteYearMatches = noteInfo?.solutionYear === entry.key;
   const relatedArticles = getRelatedArticles(exam);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
@@ -532,7 +541,12 @@ export default async function Page({ params }: PageProps) {
           {!noteYearMatches && (
             <p className="text-sm text-amber-900 leading-relaxed mb-4">
               <strong>※ {entry.label}の解説はまだありません。</strong>
-              下にあるのは<strong>令和7年度</strong>の解説です。
+              下にあるのは
+              <strong>
+                {category.years.find((y) => y.key === noteInfo.solutionYear)?.label ??
+                  noteInfo.solutionYear}
+              </strong>
+              の解説です。
               出題される問題は年度ごとに変わりますが、
               <strong>「課題 → 検討 → 対応処置 → 評価」という書き方の型と、どこで点が入るか</strong>
               は年度が変わっても同じです。次回に向けて書き方の基準をつかむ用途でお使いください。
