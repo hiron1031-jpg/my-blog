@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#fff; }
+  .card {
+    width:1536px; height:816px;
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg,#1b5897 0%,#2a6fb8 55%,#1f5f9f 100%);
+    font-family:"Noto Sans JP",sans-serif;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 96px;
+  }
+  /* 斜めのストライプ */
+  .card::before{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(115deg,
+      rgba(255,255,255,.045) 0 3px, rgba(255,255,255,0) 3px 26px);
+  }
+  .inner{ position:relative; z-index:1; }
+
+  .badge{
+    display:inline-block;
+    background:#e0a93b; color:#143a63;
+    font-weight:900; font-size:34px; letter-spacing:.02em;
+    padding:13px 30px; border-radius:10px; margin-bottom:34px;
+  }
+  .exam{
+    color:#fff; font-weight:700; font-size:50px;
+    letter-spacing:.02em; margin-bottom:6px;
+  }
+  .title{
+    font-weight:900; font-size:116px; line-height:1.05;
+    letter-spacing:.01em; margin-bottom:38px;
+    text-shadow:0 4px 14px rgba(0,0,0,.28);
+  }
+  .title .w{ color:#fff; }
+  .title .g{ color:#f0b847; }
+
+  .contents{
+    color:#eaf3fb; font-weight:700; font-size:37px; line-height:1.62;
+  }
+  .contents b{ color:#ffd98a; font-weight:900; }
+
+  .price{
+    position:absolute; right:96px; bottom:92px; text-align:right; z-index:1;
+  }
+  .price .yen{
+    color:#f0b847; font-weight:900; font-size:96px; line-height:1;
+    text-shadow:0 4px 14px rgba(0,0,0,.3);
+  }
+  .price .was{
+    color:#c7dcef; font-size:30px; font-weight:700; margin-top:10px;
+    text-decoration:line-through; text-decoration-thickness:3px;
+  }
+  /* 上下の黒帯（noteの表示枠に合わせた余白） */
+  .bar{ height:0; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="inner">
+      <span class="badge">解答解説 2年分 収録（R7・R8）</span>
+      <div class="exam">2級土木施工管理技士 第二次検定</div>
+      <div class="title"><span class="w">合格</span><span class="g">パック</span></div>
+      <div class="contents">
+        <b>R7・R8 解答解説</b>（各 全8問）＋ 模範解答入り解答用紙<br />
+        ＋ 直前総仕上げキット ＋ 経験記述 例文集16例
+      </div>
+    </div>
+    <div class="price">
+      <div class="yen">¥1,480</div>
+      <div class="was">単品合計 ¥2,780</div>
+    </div>
+  </div>
+</body>
+</html>
