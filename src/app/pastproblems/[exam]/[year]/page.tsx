@@ -180,7 +180,7 @@ function getExamSummary(examId: string): ExamSummary | null {
   switch (examId) {
     case "1doboku":
       return {
-        passRateFirst: "令和7年度 43.1%（公式発表）",
+        passRateFirst: "令和8年度 49.8%（公式発表）",
         passRateSecond: "令和7年度 38.9%（公式発表）",
         passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン",
         studyHours: "400〜500時間程度（一般的な目安）",
@@ -194,8 +194,8 @@ function getExamSummary(examId: string): ExamSummary | null {
       };
     case "2doboku":
       return {
-        passRateFirst: "令和7年度(前期) 51.8%（公式発表）",
-        passRateSecond: "令和6年度 35.0%（公式発表）",
+        passRateFirst: "令和8年度(前期) 47.8%（公式発表）",
+        passRateSecond: "令和7年度 53.7%（公式発表）",
         passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン",
         studyHours: "200〜300時間程度（一般的な目安）",
         scopeFields: [
@@ -208,8 +208,8 @@ function getExamSummary(examId: string): ExamSummary | null {
       };
     case "1zou":
       return {
-        passRateFirst: "令和7年度 52.1%（公式発表）",
-        passRateSecond: "令和6年度 40.0%（公式発表）",
+        passRateFirst: "令和8年度 49.4%（公式発表）",
+        passRateSecond: "令和7年度 45.0%（公式発表）",
         passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン",
         studyHours: "300〜400時間程度（一般的な目安）",
         scopeFields: [
@@ -222,7 +222,7 @@ function getExamSummary(examId: string): ExamSummary | null {
       };
     case "2zou":
       return {
-        passRateFirst: "令和6年度 51.1%（前期）・51.5%（後期）（公式発表）",
+        passRateFirst: "令和8年度(前期) 61.7%（公式発表）",
         passRateSecond: "令和7年度 50.4%（公式発表）",
         passCriteria: "第一次・第二次ともに得点率60%以上が合格ライン",
         studyHours: "150〜250時間程度（一般的な目安）",
