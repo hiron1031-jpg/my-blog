@@ -2,6 +2,8 @@ import ContactForm from "./ContactForm";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import type { Metadata } from "next";
 
+const CONTACT_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("お問い合わせ")}`;
+
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
@@ -14,6 +16,11 @@ export const metadata: Metadata = {
     description:
       "記事内容に関するご質問・ご意見・取材依頼などはこちらから。通常2〜3営業日以内に返信いたします。",
     url: "/contact",
+    images: [{ url: CONTACT_OG_IMAGE, width: 1200, height: 630, alt: "お問い合わせ" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [CONTACT_OG_IMAGE],
   },
 };
 

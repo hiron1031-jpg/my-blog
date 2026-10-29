@@ -1,6 +1,8 @@
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import type { Metadata } from "next";
 
+const DISCLOSURE_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("広告表記")}`;
+
 export const metadata: Metadata = {
   title: "広告表記",
   description:
@@ -11,6 +13,11 @@ export const metadata: Metadata = {
     description:
       "参加アフィリエイトプログラムと、ステマ規制に基づく広告リンクの明示方針について。",
     url: "/disclosure",
+    images: [{ url: DISCLOSURE_OG_IMAGE, width: 1200, height: 630, alt: "広告表記" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [DISCLOSURE_OG_IMAGE],
   },
 };
 

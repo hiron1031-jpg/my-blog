@@ -4,6 +4,8 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 
+const CATEGORIES_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("カテゴリ一覧")}`;
+
 export const metadata: Metadata = {
   title: "カテゴリ一覧",
   description:
@@ -16,6 +18,11 @@ export const metadata: Metadata = {
     description:
       "土木施工管理技士・造園施工管理技士・試験対策の3カテゴリから記事を探せます。",
     url: "/categories",
+    images: [{ url: CATEGORIES_OG_IMAGE, width: 1200, height: 630, alt: "カテゴリ一覧" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [CATEGORIES_OG_IMAGE],
   },
 };
 

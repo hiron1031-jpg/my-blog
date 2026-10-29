@@ -8,6 +8,8 @@ import JsonLd from "@/components/JsonLd";
 import MobileHandoff from "@/components/MobileHandoff";
 import { CATEGORIES } from "@/lib/pastproblems-data";
 
+const PASTPROBLEMS_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("施工管理技士 過去問 無料ダウンロード")}&category=${encodeURIComponent("14年分 PDF")}`;
+
 export const metadata: Metadata = {
   title: "施工管理技士 過去問 無料ダウンロード【1級・2級 土木／造園 14年分PDF】",
   description:
@@ -21,6 +23,11 @@ export const metadata: Metadata = {
     description:
       "1級・2級 土木施工管理技士・造園施工管理技士の過去問を無料でPDFダウンロード。H24〜R7年度（14年分）の問題・解答を一覧提供。",
     url: "/pastproblems",
+    images: [{ url: PASTPROBLEMS_OG_IMAGE, width: 1200, height: 630, alt: "施工管理技士 過去問 無料ダウンロード" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [PASTPROBLEMS_OG_IMAGE],
   },
 };
 

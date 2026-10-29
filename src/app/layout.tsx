@@ -19,6 +19,9 @@ const siteDescription =
   "1級土木・造園施工管理技士が教える、資格取得のリアルな勉強法と合格戦略。";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://doboku-torisetsu.com";
+// twitter:card は summary_large_image なので、画像を出さないページがあるとカードが崩れる。
+// 個別に指定しないページはこの既定画像でカバーする。
+const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent(siteName)}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -38,9 +41,11 @@ export const metadata: Metadata = {
     siteName,
     locale: "ja_JP",
     type: "website",
+    images: [{ url: defaultOgImage, width: 1200, height: 630, alt: siteName }],
   },
   twitter: {
     card: "summary_large_image",
+    images: [defaultOgImage],
   },
   verification: {
     google: [

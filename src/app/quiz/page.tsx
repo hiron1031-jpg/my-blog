@@ -9,6 +9,8 @@ import type { QuizQuestion, YearQuestionsMap } from "@/components/quiz/QuizClien
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import BeaverMascot from "@/components/layout/BeaverMascot";
 
+const QUIZ_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("施工管理技士 過去問チャレンジ")}&category=${encodeURIComponent("無料Web問題集 1,357問")}`;
+
 export const metadata: Metadata = {
   title: "施工管理技士 過去問チャレンジ【無料Web問題集・解説付】",
   description:
@@ -21,6 +23,11 @@ export const metadata: Metadata = {
     description:
       "1級・2級 土木/造園施工管理技士の過去問を4択Webクイズで演習。R4〜R8年度別過去問モード（1,350問超）搭載。スマホ対応・解説付き・完全無料。",
     url: "/quiz",
+    images: [{ url: QUIZ_OG_IMAGE, width: 1200, height: 630, alt: "施工管理技士 過去問チャレンジ" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [QUIZ_OG_IMAGE],
   },
   keywords: "施工管理技士 過去問 アプリ,施工管理技士 過去問 無料,過去問 webアプリ,1級土木 練習問題,2級土木 クイズ,1級造園 問題集,2級造園 クイズ,第一次検定 対策,過去問チャレンジ",
 };

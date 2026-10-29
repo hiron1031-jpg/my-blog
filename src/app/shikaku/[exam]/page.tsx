@@ -270,6 +270,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : `${cat.name}｜合格率・難易度と独学で突破する勉強法`;
   const description = `${cat.name}に独学一発合格した現役監督が、合格率・難易度・試験範囲・勉強法を実体験で解説。過去問PDF（14年分・無料）と1,357問の一問一答クイズもすべて無料で使えます。${meta.tagline}`;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(cat.name)}&category=${encodeURIComponent("合格率・勉強法")}`;
+
   return {
     title,
     description,
@@ -279,6 +282,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${title}｜土木のトリセツ`,
       description,
       type: "article",
+      url: `/shikaku/${exam}`,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: cat.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImageUrl],
     },
   };
 }

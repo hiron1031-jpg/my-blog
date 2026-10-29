@@ -4,6 +4,8 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 
+const TAGS_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("タグ一覧")}`;
+
 export const metadata: Metadata = {
   title: "タグ一覧",
   description:
@@ -17,6 +19,11 @@ export const metadata: Metadata = {
     description:
       "土木のトリセツの全タグを一覧表示。関心のあるテーマから記事を探せます。",
     url: "/tags",
+    images: [{ url: TAGS_OG_IMAGE, width: 1200, height: 630, alt: "タグ一覧" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [TAGS_OG_IMAGE],
   },
 };
 

@@ -1,6 +1,8 @@
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import type { Metadata } from "next";
 
+const PRIVACY_OG_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/og?title=${encodeURIComponent("プライバシーポリシー")}`;
+
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description:
@@ -13,6 +15,11 @@ export const metadata: Metadata = {
     description:
       "個人情報の取り扱い・Cookie・アクセス解析・アフィリエイトプログラムに関する方針を明示しています。",
     url: "/privacy",
+    images: [{ url: PRIVACY_OG_IMAGE, width: 1200, height: 630, alt: "プライバシーポリシー" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [PRIVACY_OG_IMAGE],
   },
 };
 

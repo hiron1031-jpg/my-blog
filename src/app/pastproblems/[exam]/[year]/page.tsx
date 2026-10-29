@@ -42,6 +42,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = `${entry.label} ${category.name} 過去問【問題・解答PDF無料ダウンロード】`;
   const description = `${entry.label}（${western}年度）の${category.name}本試験問題と解答を登録不要・無料でPDFダウンロード。印刷してそのまま本番演習OK。第一次検定・第二次検定の出題傾向と対策ポイントも独学合格者が解説。`;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const ogTitle = `${entry.label} ${category.name} 過去問`;
+  const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(ogTitle)}&category=${encodeURIComponent("過去問PDF 無料")}`;
 
   return {
     title,
@@ -52,6 +55,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${entry.label} ${category.name} 過去問 | 土木のトリセツ`,
       description,
       url: `/pastproblems/${exam}/${year}`,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: ogTitle }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImageUrl],
     },
   };
 }
