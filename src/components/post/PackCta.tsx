@@ -17,6 +17,9 @@ interface Pack {
   listPrice: string;
 }
 
+// ⚠️ defaultLead と MDX 側の lead に書いた試験日は、試験が終わると古くなる。
+// 2026-10-30時点で「10月4日」「10月25日」が過ぎたまま残っていたのを直した。
+// 試験が終わったら、その資格の lead から日付を外すこと（日付は src/lib/exam-schedule.ts が正）。
 const PACKS: Record<PackKey, Pack> = {
   "1doboku": {
     url: "https://note.com/dobokutorisetsu/m/m64d6358b6c04",
@@ -27,10 +30,10 @@ const PACKS: Record<PackKey, Pack> = {
   },
   "2doboku": {
     url: "https://note.com/dobokutorisetsu/m/mf8bc375f28a3",
-    defaultLead: "2級土木の二次検定（10月25日）を受ける方へ",
-    body: "解答解説（全8問）＋模範解答入り解答用紙＋直前キット＋経験記述の例文集16例。一次の発表を待たずに二次の準備を始められます。",
+    defaultLead: "2級土木の二次検定を受けた方・来年度に備える方へ",
+    body: "令和8年度と令和7年度の解答解説（各全8問）＋模範解答入り解答用紙＋直前キット＋経験記述の例文集16例。二次の正答は公表されないので、答え合わせはここでできます。",
     price: "1,480円",
-    listPrice: "2,280円",
+    listPrice: "2,780円",
   },
   "1zouen": {
     url: "https://note.com/dobokutorisetsu/m/mfdff2ba13182",

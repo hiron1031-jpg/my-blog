@@ -286,10 +286,17 @@ export default function PastProblemsPage() {
           {CATEGORIES.map((cat) => (
             <div key={cat.id} className="bg-white border border-border rounded-xl p-5 md:p-6 shadow-sm">
               <h3 className="text-base md:text-lg font-bold mb-1" style={{ color: cat.hex }}>
-                {cat.name} 過去問【問題・解答PDF無料ダウンロード】
+                <Link href={`/pastproblems/${cat.id}`} className="hover:underline">
+                  {cat.name} 過去問【問題・解答PDF無料ダウンロード】
+                </Link>
               </h3>
-              <p className="text-xs text-gray-500 mb-4">
-                {cat.name}の過去問を平成24年度〜令和7年度まで掲載。各年度ページから無料でPDFをダウンロードできます。
+              <p className="text-xs text-gray-500 mb-1">
+                {cat.name}の過去問を{cat.years[cat.years.length - 1].label}〜{cat.years[0].label}の全{cat.years.length}年分掲載。各年度ページから無料でPDFをダウンロードできます。
+              </p>
+              <p className="text-xs mb-4">
+                <Link href={`/pastproblems/${cat.id}`} className="font-bold text-primary hover:underline">
+                  → {cat.shortName}の過去問一覧（全{cat.years.length}年分）を見る
+                </Link>
               </p>
               <div className="flex flex-wrap gap-2">
                 {cat.years.map((y) => (

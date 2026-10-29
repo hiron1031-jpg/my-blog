@@ -462,7 +462,8 @@ export default async function Page({ params }: PageProps) {
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "ホーム", "item": siteUrl },
             { "@type": "ListItem", "position": 2, "name": "過去問ダウンロード", "item": `${siteUrl}/pastproblems` },
-            { "@type": "ListItem", "position": 3, "name": `${entry.label} ${category.shortName}`, "item": `${siteUrl}/pastproblems/${exam}/${year}` },
+            { "@type": "ListItem", "position": 3, "name": `${category.name} 過去問`, "item": `${siteUrl}/pastproblems/${exam}` },
+            { "@type": "ListItem", "position": 4, "name": `${entry.label} ${category.shortName}`, "item": `${siteUrl}/pastproblems/${exam}/${year}` },
           ],
         },
       },
@@ -476,6 +477,7 @@ export default async function Page({ params }: PageProps) {
       <Breadcrumb
         items={[
           { label: "過去問ダウンロード", href: "/pastproblems" },
+          { label: `${category.shortName} 過去問`, href: `/pastproblems/${exam}` },
           { label: `${entry.label} ${category.shortName}` },
         ]}
       />
@@ -960,9 +962,15 @@ export default async function Page({ params }: PageProps) {
               </li>
             ))}
             <li>
+              <Link href={`/pastproblems/${exam}`} className="inline-flex items-center gap-2 text-primary hover:underline">
+                <FiArrowRight size={14} />
+                {category.name} 過去問 年度別一覧（全{category.years.length}年分）
+              </Link>
+            </li>
+            <li>
               <Link href="/pastproblems" className="inline-flex items-center gap-2 text-primary hover:underline">
                 <FiArrowRight size={14} />
-                過去問ダウンロードトップ（14年分の一覧）
+                過去問ダウンロードトップ（4資格すべて）
               </Link>
             </li>
           </ul>

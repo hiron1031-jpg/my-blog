@@ -33,6 +33,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     ...postUrls,
     ...categoryUrls,
+    // 資格ごとの過去問一覧（年度を指定しない検索の受け皿）。年度ページより上位に置く。
+    ...CATEGORIES.map((c) => ({
+      url: `${siteUrl}/pastproblems/${c.id}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
     ...getAllExamYearParams().map((p) => ({
       url: `${siteUrl}/pastproblems/${p.exam}/${p.year}`,
       lastModified: new Date(),
