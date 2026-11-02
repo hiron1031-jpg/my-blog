@@ -585,6 +585,8 @@ C:\Users\hiron\OneDrive\デスクトップ\Claude code\my-blog\public\images\pos
 
 ## 生成済み（対応不要）
 
+- `sagyoin-kara-sekoukanri.png`（作業員から施工管理へ）
+- `shikaku-tenshoku.png`（資格手当は会社で決まる）
 - `shinki-nyujo-kyoiku.png`（新規入場者教育）
 - `note-assets/note-tenshoku-taikenki.png`（note転職体験記・全5回で共通使用）
 - `sagyoin-meibo.png`（作業員名簿）
