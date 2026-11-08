@@ -653,20 +653,40 @@ export default function QuizClient({
               <p className="text-sm font-bold text-secondary mb-1">
                 🎉 あと一歩で合格圏！
               </p>
+              {/* 2級は後期が一次・二次の同日実施。「一次が固まってから二次」では間に合わないので文言を分ける */}
               <p className="text-sm text-secondary/80 mb-2 leading-relaxed">
-                間違えた分野を上のリンクで潰しつつ、一次が固まってきたら二次検定の準備も視野に。R7二次の全問解説（500円）を用意しています。
+                {selectedExam.endsWith("2kyu")
+                  ? "間違えた分野を上のリンクで潰してください。なお2級は、後期は一次と二次を同じ日に受けます。「一次が固まってから二次」では間に合いません。いまのうちに二次にも手をつけておいてください。"
+                  : "間違えた分野を上のリンクで潰しつつ、二次検定の準備も始めてください。二次は準備に時間がかかるので、一次の合格発表を待たないのが鉄則です。"}
               </p>
-              <a
-                href={NOTE_KAISETSU[selectedExam].url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  trackQuizCta("kaisetsu", selectedExam, pct, NOTE_KAISETSU[selectedExam].url)
-                }
-                className="text-sm font-bold text-primary hover:underline"
-              >
-                {NOTE_KAISETSU[selectedExam].label}を見てみる →
-              </a>
+              <div className="flex flex-col gap-1.5 text-sm">
+                {PACK_LINKS[selectedExam] && (
+                  <a
+                    href={PACK_LINKS[selectedExam].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      trackQuizCta("pack", selectedExam, pct, PACK_LINKS[selectedExam].url)
+                    }
+                    className="font-bold text-primary hover:underline"
+                  >
+                    {selectedExam === "zouen-2kyu" ? "一次と二次をまとめた" : "二次対策をまとめた"}
+                    「合格パック」（{PACK_LINKS[selectedExam].price}・単品より
+                    {PACK_LINKS[selectedExam].save}お得）→
+                  </a>
+                )}
+                <a
+                  href={NOTE_KAISETSU[selectedExam].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    trackQuizCta("kaisetsu", selectedExam, pct, NOTE_KAISETSU[selectedExam].url)
+                  }
+                  className="text-secondary/80 hover:underline"
+                >
+                  単品でよければ：{NOTE_KAISETSU[selectedExam].label}（500円）→
+                </a>
+              </div>
             </div>
           )}
 
@@ -702,8 +722,8 @@ export default function QuizClient({
                     }
                     className="font-bold text-primary hover:underline"
                   >
-                    二次対策の教材をまとめた「合格パック」（
-                    {PACK_LINKS[selectedExam].price}・単品より
+                    {selectedExam === "zouen-2kyu" ? "一次と二次をまとめた" : "二次対策をまとめた"}
+                    「合格パック」（{PACK_LINKS[selectedExam].price}・単品より
                     {PACK_LINKS[selectedExam].save}お得）→
                   </a>
                 ) : (
