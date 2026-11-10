@@ -7,9 +7,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const categories = getAllCategories();
 
+  // lastModified は「最後に中身を直した日」。frontmatter の updated を優先する。
+  // date（公開日）だけを使っていたため、大幅に加筆してもサイトマップ上は
+  // 公開日のままになり、Googleが「変わっていない」と判断して再クロールに来なかった。
+  // （2026-11-11 発覚：11/5に3倍に加筆した記事の前回クロールが9/25のままだった）
   const postUrls = posts.map((p) => ({
     url: `${siteUrl}/posts/${p.slug}`,
-    lastModified: new Date(p.frontmatter.date),
+    lastModified: new Date(p.frontmatter.updated ?? p.frontmatter.date),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
